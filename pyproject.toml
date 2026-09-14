@@ -1,0 +1,37 @@
+[project]
+name = "agentic-tender-assistant"
+version = "0.1.0"
+description = "Agentic system for Swiss public tender qualification briefings"
+requires-python = ">=3.11"
+readme = "README.md"
+dependencies = [
+    "pydantic>=2.7",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.5",
+]
+# Track A will likely add a PDF parsing library here (e.g. pypdf / pdfplumber / unstructured).
+# Orchestration may add the NVIDIA NeMo Agent Toolkit here once we've validated its
+# hackathon-time setup cost — see docs/architecture.md "Orchestration".
+
+[project.scripts]
+agentic-tender = "src.pipeline:main"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

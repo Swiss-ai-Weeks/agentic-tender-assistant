@@ -32,3 +32,10 @@ yarn-error.log*
 
 # Logs
 *.log
+
+# Local tender documents (non-public / potentially large — see their README)
+data/sample_tenders/*
+!data/sample_tenders/README.md
+
+# Real company profile (keep only the .example.json in git)
+data/company_profile.json
