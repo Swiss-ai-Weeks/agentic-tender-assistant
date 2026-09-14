@@ -40,13 +40,10 @@ data/sample_tenders/*
 # Real company profile (keep only the .example.json in git)
 data/company_profile.json
 
-# Private Hermes state and rendered ingress
-.hermes/
-.nemoclaw/
-*.htpasswd
-*.db
-*.db-*
-*.sqlite*
-deploy/hermes-ingress/nginx.conf
-integrations/simap/*results*.json
-integrations/simap/*success-check*.json
+# Isolated jury application outputs
+.runtime/
+ui/node_modules/
+ui/dist/
+ui/test-results/
+ui/playwright-report/
+ui/*.tsbuildinfo

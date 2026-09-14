@@ -1,0 +1,18 @@
+# NeMo Agent Toolkit workflow config for live tender discovery.
+#
+# Unlike configs/tender_assistant.yml (local PDFs), this workflow calls
+# Tavily directly (src/agents/tender_search.py) — the same web-search
+# provider NemoClaw/Hermes uses natively for this sandbox, see
+# docs/aiq-blueprint.md "Hermes's native Tavily web search". Needs
+# TAVILY_API_KEY (.env.example) — no separate backend process to start.
+#
+#   nat run --config_file configs/tender_live_search.yml \
+#     --input '{"query": "fourniture informatique Lausanne", "company": {"company_name": "Acme SA", "capabilities": ["IT services"]}}'
+
+general:
+  use_uvloop: true
+
+functions: {}
+
+workflow:
+  _type: tender_live_search

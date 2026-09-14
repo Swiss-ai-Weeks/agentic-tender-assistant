@@ -1,19 +1,50 @@
-# SIMAP MCP for Hermes
+# simap.ch MCP integration (stretch goal)
 
-Verified in the workshop on 14 September 2026: 14 tools discovered; direct and real in-agent calls returned 26 cantons and software tenders with source links. Missing proxy/CA subprocess settings caused earlier connectivity failures. Application ingestion integration remains separate work.
+`CHALLENGE.md` notes simap.ch has no public API. [`@digilac/simap-mcp`](https://www.npmjs.com/package/@digilac/simap-mcp)
+is a third-party MCP server that claims to expose one anyway (`list_cantons`,
+`search_tenders`, and more — 14 tools total), which would let Track A's
+ingestion agent discover live tenders instead of only reading local PDFs from
+`data/sample_tenders/`.
 
-## Installation
+- `package.json` — the npm dependency.
+- `policy.yaml` — the NemoClaw network policy needed to run this MCP server
+  inside the Hermes sandbox: read-only `GET` to `www.simap.ch/api/**` only.
 
-Run `npm ci --ignore-scripts` in this directory in an isolated install location. The lockfile comes from the deployed host tree, with the direct dependency pinned to its resolved 1.4.0. Validate in a separate environment before replacing the running installation. Transfer the installed directory to `/sandbox/.hermes/mcp/simap` using the supported upload flow (`nemohermes tender-assistant upload --help`). Keep dependencies out of Git. The Node runtime must support `--use-env-proxy`.
+## Status: architecturally broken, not just flaky
 
-From the repository root, deliberately apply the preset with `nemohermes tender-assistant policy add --from-file integrations/simap/policy.yaml --yes`. It permits only Node HTTPS GET requests to `www.simap.ch/api/**`. Public discovery requires no account key; protected documents are not covered by these tests.
+Two test runs against the "tender-assistant" Hermes sandbox both failed to
+reach the tool (timeouts, then the tool not appearing in the registry at
+all). That looked like a network/connectivity problem at the time. It isn't:
 
-## Registration
+**`@digilac/simap-mcp` is a stdio MCP server** (a local npm process talking
+MCP over stdin/stdout), and per NemoClaw's own documented architecture
+(`~/.nemoclaw/source/docs/deployment/set-up-mcp-bridge.mdx` and
+`~/.nemoclaw/source/docs/manage-sandboxes/add-mcp-server.mdx`, read directly
+while building the AI-Q Blueprint integration — see `docs/aiq-blueprint.md`):
 
-Use native Hermes stdio registration (`hermes mcp add --help`); NemoClaw 0.0.123 managed MCP registration supports HTTP servers. Merge `hermes-config.example.yaml` into the intended profile without replacing unrelated settings. The workshop registered both base and dashboard profiles; paths are in [the runbook](../../docs/NEMOHERMES_SETUP.md). Verify proxy and certificate paths inside the actual sandbox namespace. Preserve TLS verification.
+> "NemoClaw accepts Streamable HTTP MCP endpoints only. It does not launch an
+> MCP server, stdio adapter, bridge, credential proxy, data-plane relay, or
+> listener on the host." ... "Stdio-only MCP servers are not supported.
+> NemoClaw does not start, wrap, or translate them."
 
-The example includes the recovery settings applied to the base profile: `connect_timeout: 10` and `lazy: true`. Lazy discovery uses a matching schema cache when available, otherwise it connects normally. This is not proof of the original outage cause.
+No amount of network-policy tuning fixes this — NemoClaw was never going to
+run this package at all, stdio MCP servers aren't in scope for it, full stop.
+The `policy.yaml` egress rule here may still be necessary for a *fixed*
+version, but it was never sufficient.
 
-## Validation
+## The actual fix path, if picked up
 
-Check 14 tools in the intended profiles. Call `list_cantons` and `search_tenders(search=software)`, then repeat through a fresh Hermes chat asking for source links. Discovery alone does not prove connectivity. Keep raw session and API evidence outside Git. Preserve the application local-PDF path while adding live discovery.
+To work with NemoClaw, a SIMAP integration needs to be a real **Streamable
+HTTPS MCP endpoint** — a server bound to a routable address with a valid TLS
+certificate, not a local stdio process. `docs/aiq-blueprint.md` documents the
+same requirement being worked through for the AI-Q Blueprint's own MCP server
+(reusing `~/hpe-nvidia-hackathon/hermes-ingress/nginx.conf`'s pattern for
+HTTPS-fronting a local service via the Launchpad-issued hostname already used
+for the Hermes dashboard) — the same approach would apply here: either get
+`@digilac/simap-mcp` (or a replacement) running behind such a proxy, or drop
+it in favor of a plain HTTPS API if simap.ch ever exposes one.
+
+`src/agents/ingestion.py`'s TODO note points here and at
+`src/agents/tender_search.py` (the AI-Q Blueprint-backed live discovery path
+that *is* working, as of this integration, for general web search — just not
+simap.ch-specific structured data).

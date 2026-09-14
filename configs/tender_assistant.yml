@@ -1,0 +1,29 @@
+# NeMo Agent Toolkit (`nat`) workflow config — local-PDF pipeline.
+#
+# Wires the four agents registered in src/pipeline.py into one workflow. This is
+# the CLI-equivalent of `python -m src.pipeline <tender_folder> <company_profile>`;
+# see docs/architecture.md "Orchestration" for why both entry points exist.
+#
+# Run:
+#   nat run --config_file configs/tender_assistant.yml \
+#     --input '{"tender_folder": "data/sample_tenders/<tender-id>", "company_profile_path": "data/company_profile.example.json"}'
+#
+# The `_type` keys below must match the `name=` set on each FunctionBaseConfig
+# subclass in src/pipeline.py. After `pip install -e ".[dev]"`, confirm the
+# registered names with `nat info components -t function`.
+
+general:
+  use_uvloop: true
+
+functions:
+  tender_ingestion:
+    _type: tender_ingestion
+  tender_eligibility_gate:
+    _type: tender_eligibility_gate
+  tender_fit_scoring:
+    _type: tender_fit_scoring
+  tender_briefing:
+    _type: tender_briefing
+
+workflow:
+  _type: tender_qualification_pipeline

@@ -1,0 +1,17 @@
+SYNTHETIC TENDER — not a real public procurement notice
+Title: IT Infrastructure Services
+Buyer: Demonstration Municipality of Lausanne
+Location: Lausanne · Vaud
+Deadline: 2026-10-09
+Scope: IT infrastructure operations, cloud migration and service continuity for municipal services.
+Complete: yes
+§1 Mandatory requirements (controlled demo specification)
+R1 | Information security certification | certifications | contains | ISO 27001 | names
+R2 | Comparable references completed in 2023–2026 | references | >= | 3 | projects
+R3 | French service delivery | languages | contains | French | languages
+R4 | Annual revenue | revenue | >= | 5000000 | CHF
+§2 Award criteria: Service quality 60%; price 40%. Pricing competitiveness requires human review.
+§3 Submission documents: signed offer, reference list, current certificates.
+Value: 2400000 CHF
+Value basis: Total contract ceiling (synthetic specification)
+Mandatory document count: 3

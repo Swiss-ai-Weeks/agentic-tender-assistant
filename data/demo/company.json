@@ -1,0 +1,66 @@
+{
+  "name": "Alpine Digital SA",
+  "description": "A fictional Swiss technology services company. All company evidence and tender fixtures in this demo are synthetic.",
+  "industries": [
+    "Public sector",
+    "Technology services"
+  ],
+  "capabilities": [
+    "IT infrastructure",
+    "Data platform",
+    "Cloud migration",
+    "Cybersecurity"
+  ],
+  "search_terms": [
+    "informatique",
+    "software",
+    "cloud"
+  ],
+  "locations": [
+    "Geneva",
+    "Lausanne"
+  ],
+  "languages": [
+    "French",
+    "German",
+    "English"
+  ],
+  "references": [
+    "Project Arve \u2014 infrastructure, 2024",
+    "Project L\u00e9man \u2014 cloud migration, 2025",
+    "Project Jura \u2014 infrastructure, 2023",
+    "Project Rh\u00f4ne \u2014 data platform, 2026"
+  ],
+  "team": [
+    "24 delivery specialists",
+    "French-speaking project leadership"
+  ],
+  "constraints": [
+    "Delivery in Switzerland",
+    "Minimum 10 working days for bid preparation",
+    "Maximum single contract CHF 3M"
+  ],
+  "preferences": [
+    "Managed services",
+    "Public-sector modernization"
+  ],
+  "initial_evidence": [
+    "certifications.txt",
+    "references.txt",
+    "languages.txt",
+    "financials.txt"
+  ],
+  "knowledge_evidence": [
+    "insurance_renewal_2026.txt"
+  ],
+  "as_of": "2026-09-15",
+  "bid_cost_assumptions": {
+    "internal_day_rate_chf": 1200,
+    "base_days": 2,
+    "days_per_requirement": 0.25,
+    "days_per_blocker": 1.5,
+    "days_per_document": 0.5,
+    "range_multiplier": 1.5,
+    "model": "Planning heuristic v1, not a measured forecast; excludes price preparation and specialist estimates."
+  }
+}

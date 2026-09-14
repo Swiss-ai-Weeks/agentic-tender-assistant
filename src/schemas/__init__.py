@@ -7,7 +7,7 @@ from src.schemas.briefing import (
     RiskFlag,
 )
 from src.schemas.common import Citation, Language
-from src.schemas.company import CompanyProfile, Certification, Reference
+from src.schemas.company import Certification, CompanyProfile, Reference
 from src.schemas.tender import (
     AwardCriterion,
     Deadline,
@@ -17,20 +17,20 @@ from src.schemas.tender import (
 )
 
 __all__ = [
-    "Citation",
-    "Language",
     "AwardCriterion",
+    "AwardCriterionScore",
+    "Certification",
+    "Citation",
+    "CompanyProfile",
     "Deadline",
     "EligibilityCriterion",
-    "ExtractedTenderData",
-    "MandatoryDocument",
-    "CompanyProfile",
-    "Certification",
-    "Reference",
-    "AwardCriterionScore",
     "EligibilityResult",
     "EligibilityStatus",
+    "ExtractedTenderData",
     "GoNoGoRecommendation",
+    "Language",
+    "MandatoryDocument",
     "QualificationBriefing",
+    "Reference",
     "RiskFlag",
 ]

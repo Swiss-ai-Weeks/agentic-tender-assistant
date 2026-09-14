@@ -1,0 +1,173 @@
+{
+  "status": "complete",
+  "generated_at": "2026-09-14T23:03:57.372991+00:00",
+  "label_provenance": "Developer-authored controlled cases. Independent human validation pending.",
+  "cases": 30,
+  "correct": 30,
+  "critical_false_passes": 0,
+  "citations_checked": 25,
+  "citations_verified": 25,
+  "requirements_expected": 13,
+  "requirements_found": 13,
+  "injection_unchanged": true,
+  "results": [
+    {
+      "id": "insurance-equal",
+      "expected": "PASS",
+      "actual": "PASS"
+    },
+    {
+      "id": "insurance-below",
+      "expected": "FAIL",
+      "actual": "FAIL"
+    },
+    {
+      "id": "insurance-above",
+      "expected": "PASS",
+      "actual": "PASS"
+    },
+    {
+      "id": "insurance-missing",
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN"
+    },
+    {
+      "id": "insurance-expired",
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN"
+    },
+    {
+      "id": "insurance-currency",
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN"
+    },
+    {
+      "id": "insurance-string",
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN"
+    },
+    {
+      "id": "refs-exact",
+      "expected": "PASS",
+      "actual": "PASS"
+    },
+    {
+      "id": "refs-more",
+      "expected": "PASS",
+      "actual": "PASS"
+    },
+    {
+      "id": "refs-less",
+      "expected": "FAIL",
+      "actual": "FAIL"
+    },
+    {
+      "id": "refs-zero",
+      "expected": "FAIL",
+      "actual": "FAIL"
+    },
+    {
+      "id": "refs-missing",
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN"
+    },
+    {
+      "id": "refs-wrong-unit",
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN"
+    },
+    {
+      "id": "cert-present",
+      "expected": "PASS",
+      "actual": "PASS"
+    },
+    {
+      "id": "cert-absent",
+      "expected": "FAIL",
+      "actual": "FAIL"
+    },
+    {
+      "id": "cert-empty-register",
+      "expected": "FAIL",
+      "actual": "FAIL"
+    },
+    {
+      "id": "cert-no-register",
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN"
+    },
+    {
+      "id": "cert-case",
+      "expected": "PASS",
+      "actual": "PASS"
+    },
+    {
+      "id": "cert-no-substring",
+      "expected": "FAIL",
+      "actual": "FAIL"
+    },
+    {
+      "id": "language-present",
+      "expected": "PASS",
+      "actual": "PASS"
+    },
+    {
+      "id": "language-absent",
+      "expected": "FAIL",
+      "actual": "FAIL"
+    },
+    {
+      "id": "language-no-evidence",
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN"
+    },
+    {
+      "id": "language-invalid-format",
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN"
+    },
+    {
+      "id": "revenue-exact",
+      "expected": "PASS",
+      "actual": "PASS"
+    },
+    {
+      "id": "revenue-low",
+      "expected": "FAIL",
+      "actual": "FAIL"
+    },
+    {
+      "id": "revenue-missing",
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN"
+    },
+    {
+      "id": "uncited-evidence",
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN"
+    },
+    {
+      "id": "invalid-validity",
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN"
+    },
+    {
+      "id": "human-review-required",
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN"
+    },
+    {
+      "id": "injection-not-a-certificate",
+      "expected": "FAIL",
+      "actual": "FAIL"
+    }
+  ],
+  "unmeasured": [
+    "independent human labels",
+    "real-document precision/recall",
+    "semantic citation accuracy",
+    "unsupported factual claims",
+    "manual qualification time",
+    "human review time"
+  ]
+}

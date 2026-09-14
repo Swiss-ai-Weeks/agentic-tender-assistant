@@ -1,0 +1,37 @@
+# NeMo Agent Toolkit (`nat`) workflow config — MCP server front end.
+#
+# Serves the same workflow as configs/tender_assistant.yml, but as an MCP server
+# instead of a one-shot CLI run, so the "tender-assistant" Hermes sandbox
+# (~/.nemoclaw/sandboxes.json) can call it as a tool. Requires the `nat[mcp]`
+# extra (already in pyproject.toml's core dependencies).
+#
+# Run:
+#   nat mcp --config_file configs/tender_assistant_mcp.yml
+#
+# `general.front_end._type: mcp` is the MCP server front end registered by the
+# `nvidia-nat-mcp` plugin (`nat.plugins.mcp.server`) — `nat validate
+# --config_file configs/tender_assistant_mcp.yml` confirms this schema
+# resolves. A live `nat mcp` serve + real MCP client call hasn't been tested
+# yet, so re-check tool behavior (not just config validity) once Track A/B/C
+# logic replaces the NotImplementedError stubs.
+
+general:
+  use_uvloop: true
+  front_end:
+    _type: mcp
+    name: tender-assistant
+    tool_names:
+      - tender_qualification_pipeline
+
+functions:
+  tender_ingestion:
+    _type: tender_ingestion
+  tender_eligibility_gate:
+    _type: tender_eligibility_gate
+  tender_fit_scoring:
+    _type: tender_fit_scoring
+  tender_briefing:
+    _type: tender_briefing
+
+workflow:
+  _type: tender_qualification_pipeline

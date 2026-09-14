@@ -7,19 +7,32 @@ readme = "README.md"
 dependencies = [
     "pydantic>=2.7",
     "python-dotenv>=1.0",
+    # NVIDIA NeMo Agent Toolkit — orchestration layer, see docs/architecture.md
+    # "Orchestration". `[mcp]` extra adds the `nat mcp` client/server front end
+    # used to expose this pipeline to the Hermes sandbox (see README "Hermes").
+    "nvidia-nat[mcp]>=1.9,<2",
+    # src/agents/tender_search.py calls the separately-running AI-Q Blueprint
+    # backend over plain HTTP — see docs/aiq-blueprint.md.
+    "httpx>=0.27,<1",
 ]
 
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0",
+    "pytest-asyncio>=0.24",
     "ruff>=0.5",
+    "pre-commit>=3.7",
 ]
 # Track A will likely add a PDF parsing library here (e.g. pypdf / pdfplumber / unstructured).
-# Orchestration may add the NVIDIA NeMo Agent Toolkit here once we've validated its
-# hackathon-time setup cost — see docs/architecture.md "Orchestration".
 
 [project.scripts]
 agentic-tender = "src.pipeline:main"
+
+# Registers this package's NAT functions (src/pipeline.py) so `nat` discovers them
+# on startup — see https://docs.nvidia.com/nemo/agent-toolkit for the `nat.components`
+# convention. Confirm with `nat info components -t function` after `pip install -e .`.
+[project.entry-points."nat.components"]
+agentic_tender_assistant = "src.pipeline"
 
 [build-system]
 requires = ["setuptools>=68", "wheel"]
@@ -31,6 +44,7 @@ include = ["src*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+asyncio_mode = "auto"
 
 [tool.ruff]
 line-length = 100

@@ -9,7 +9,7 @@ from datetime import date
 import pytest
 
 from src.schemas.common import Citation, Language
-from src.schemas.company import CompanyProfile, Certification, Reference
+from src.schemas.company import Certification, CompanyProfile, Reference
 from src.schemas.tender import (
     AwardCriterion,
     Deadline,

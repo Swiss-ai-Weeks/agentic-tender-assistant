@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -e ".[dev]"
+      - run: ruff check .
+      - run: pytest
+      # Validates configs/*.yml parse and the workflow's functions resolve —
+      # catches drift between src/pipeline.py's @register_function names and
+      # the YAML `_type` keys without needing an LLM/API key.
+      - run: nat validate --config_file configs/tender_assistant.yml

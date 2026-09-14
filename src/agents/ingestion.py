@@ -13,6 +13,14 @@ TODO(track-a):
 - LLM-based structured extraction into ExtractedTenderData, with citations
   attached at extraction time (not backfilled afterwards).
 - Handle FR/DE/IT source documents.
+- (Stretch) Live tender discovery is now available via
+  src/agents/tender_search.py (NVIDIA AI-Q Blueprint backend) — see
+  docs/aiq-blueprint.md. It returns TenderLead leads, not ExtractedTenderData;
+  once a lead's actual PDFs are downloaded, this function is still what turns
+  them into a cited ExtractedTenderData. The earlier simap.ch MCP server
+  attempt in integrations/simap/ is unrelated and still broken (see its
+  README) — local PDFs (this function's current input) remain the
+  non-stretch path.
 """
 
 from pathlib import Path

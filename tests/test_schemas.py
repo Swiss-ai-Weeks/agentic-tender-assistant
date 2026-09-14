@@ -3,7 +3,7 @@
 TODO: extend as schemas evolve; keep these in sync with src/schemas/.
 """
 
-from datetime import datetime
+from datetime import UTC, datetime
 
 from src.schemas.briefing import GoNoGoRecommendation, QualificationBriefing
 
@@ -30,6 +30,6 @@ def test_qualification_briefing_minimal(sample_tender):
         risks=[],
         recommendation=GoNoGoRecommendation.GO,
         recommendation_justification="Example justification.",
-        generated_at=datetime.now(),
+        generated_at=datetime.now(UTC),
     )
     assert result.eligibility_gate_passed is True
