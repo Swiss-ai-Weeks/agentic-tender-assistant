@@ -1,0 +1,15 @@
+preset:
+  name: simap-readonly
+  description: Read-only public SIMAP API for the SIMAP MCP server
+network_policies:
+  simap-readonly:
+    name: simap-readonly
+    endpoints:
+      - host: www.simap.ch
+        port: 443
+        protocol: rest
+        enforcement: enforce
+        rules:
+          - allow: { method: GET, path: "/api/**" }
+    binaries:
+      - { path: /usr/local/bin/node }

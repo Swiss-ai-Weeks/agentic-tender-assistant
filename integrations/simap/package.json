@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@digilac/simap-mcp": "1.4.0"
+  },
+  "private": true
+}

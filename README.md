@@ -94,3 +94,8 @@ Skeleton stage — schemas are defined, agent modules are stubbed with
 `NotImplementedError` and `# TODO(track-x)` markers, orchestration wiring
 exists in `src/pipeline.py`. No agent logic is implemented yet; each track can
 now branch off `main` independently.
+
+
+## Hermes environment
+
+See [NemoHermes setup](docs/NEMOHERMES_SETUP.md) for the sandbox, SIMAP and dashboard configuration.

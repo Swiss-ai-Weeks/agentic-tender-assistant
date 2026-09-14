@@ -1,0 +1,15 @@
+# Merge only this server; verify proxy and CA values in the target sandbox.
+mcp_servers:
+  simap:
+    command: /usr/local/bin/node
+    args:
+      - --use-env-proxy
+      - /sandbox/.hermes/mcp/simap/node_modules/@digilac/simap-mcp/dist/index.js
+    connect_timeout: 10
+    lazy: true
+    env:
+      NODE_USE_ENV_PROXY: "1"
+      HTTP_PROXY: http://10.200.0.1:3128
+      HTTPS_PROXY: http://10.200.0.1:3128
+      NODE_EXTRA_CA_CERTS: /etc/openshell-tls/openshell-ca.pem
+      SSL_CERT_FILE: /etc/openshell-tls/ca-bundle.pem
