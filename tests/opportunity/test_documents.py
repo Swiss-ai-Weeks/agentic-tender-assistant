@@ -243,8 +243,8 @@ def test_cli_writes_new_output_and_refuses_overwrite(tmp_path, monkeypatch):
     pack.mkdir()
     _write(pack / "a.txt", "First paragraph.\n\nSecond paragraph.")
     out = tmp_path / "out"
-    script = Path("scripts/import_tender_documents.py").resolve()
-    root = Path("pyproject.toml").resolve().parent
+    root = Path(__file__).parents[2]
+    script = root / "scripts" / "import_tender_documents.py"
     env = {**os.environ, "PYTHONPATH": str(root) + os.pathsep + os.environ.get("PYTHONPATH", "")}
     first = subprocess.run(
         [sys.executable, str(script), str(pack), "--tender-id", "T-CLI", "--out", str(out)],
