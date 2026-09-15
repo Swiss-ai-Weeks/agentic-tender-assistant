@@ -4,9 +4,9 @@ Evidence files are immutable records; facts are typed statements derived from
 them, carrying trust class, validity window and provenance. Inferred statements
 never satisfy a mandatory requirement for our own company.
 """
-from datetime import UTC, datetime
 import hashlib
 import json
+from datetime import UTC, datetime
 from pathlib import Path
 
 from src.opportunity.models import Evidence, Source

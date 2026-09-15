@@ -1,0 +1,8 @@
+{
+  "source_document": "insurance_renewal_2026.txt",
+  "source_type": "VERIFIED_INTERNAL",
+  "sha256": "27c94cfba3ea654f15bbe1f9dba0d279e6d3a9337ca89c8d38c3585ce3478451",
+  "version": "1.0",
+  "retrieved_at": "2026-09-15T08:00:00Z",
+  "url": "/api/sources/evidence/insurance_renewal_2026.txt"
+}

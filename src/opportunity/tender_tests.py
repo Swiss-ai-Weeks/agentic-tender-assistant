@@ -5,7 +5,6 @@ deterministic evaluator at and around its threshold. A failing generated test
 means the engine and the compiled rule disagree — a compilation defect, not an
 opinion about the bidder.
 """
-from copy import deepcopy
 from datetime import date, timedelta
 
 from src.opportunity.models import Evidence, Requirement, Source

@@ -4,9 +4,9 @@ A changed tender becomes a new version; an unchanged source keeps its version.
 Qualification results can therefore always name the exact tender version they
 evaluated.
 """
-from datetime import UTC, datetime
 import hashlib
 import json
+from datetime import UTC, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]

@@ -1,5 +1,4 @@
 """Tender Compiler unit tests: compile statuses, thresholds, multilingual input, LLM gate."""
-import pytest
 
 from src.opportunity.compiler import compile_clause, validate_candidate
 from src.opportunity.models import Source

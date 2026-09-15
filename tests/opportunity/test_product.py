@@ -1,9 +1,8 @@
-from datetime import date
 import json
-from pathlib import Path
+from datetime import date
 
-from fastapi.testclient import TestClient
 import pytest
+from fastapi.testclient import TestClient
 
 from src.opportunity.api import app, runs
 from src.opportunity.engine import DEMO, ROOT, decide, evaluate, extract_demo, rank
@@ -92,6 +91,7 @@ def test_captured_notice_never_invents_value_or_go():
     assert op.contract_value is None
     assert op.value_source is None
     assert len(op.checks)==8
+    assert (op.compiled_total, op.compiled_executable, op.compiled_review)==(8,0,8)
     assert op.recommendation!='GO'
     assert op.effort=='NOT ESTIMATED'
     assert all(c.status=='UNKNOWN' and c.requirement.source.section.startswith('/lots/') for c in op.checks)
@@ -105,6 +105,7 @@ def test_real_notice_criteria_compile_individually():
     op=notice_opportunity(lead,json.loads((CAPTURED/(lead['id']+'.json')).read_text()),'captured/'+lead['id']+'.json','captured')
     statuses={c.requirement.compile_status for c in op.checks}
     assert 'NEEDS_REVIEW' in statuses and 'UNSUPPORTED' in statuses
+    assert (op.compiled_total, op.compiled_executable, op.compiled_review)==(130,0,130)
     precise=[c for c in op.checks if c.requirement.compile_reason and 'comparison operator' in c.requirement.compile_reason]
     assert precise, 'the German count-without-bound clause should refuse with the precise reason'
     assert all(c.status=='UNKNOWN' for c in op.checks)  # no verified bidder evidence for real notices
@@ -141,6 +142,11 @@ def test_real_mode_cannot_use_demo_certificates():
         assert data['status']=='complete'
         assert len(data['opportunities'])>=1
         assert all(o['recommendation']!='GO' for o in data['opportunities'])
+        assert all(o['compiled_total']==len(o['checks']) for o in data['opportunities'])
+        assert all(o['compiled_executable']==0 and o['compiled_review']==len(o['checks']) for o in data['opportunities'])
+        tests=client.get('/api/runs/'+ident+'/tests').json()
+        assert tests['compiled_total']==sum(o['compiled_total'] for o in data['opportunities'])
+        assert tests['generated']==0 and 'full specifications' in tests['note']
         assert client.post('/api/runs/'+ident+'/evidence',json={}).status_code==409
 
 

@@ -1,0 +1,9 @@
+{
+  "organization": "helvetia_it",
+  "source_document": "public-award-register.txt",
+  "source_type": "VERIFIED_PUBLIC",
+  "sha256": "8db0f64427ccb0bbcfaa264851999bcb7d0695b77dee95f0eb523db92b79efba",
+  "version": "1.0",
+  "retrieved_at": "2026-09-15T08:00:00Z",
+  "url": "/api/sources/competitors/public-award-register.txt"
+}

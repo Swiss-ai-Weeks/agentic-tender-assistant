@@ -1,5 +1,6 @@
 """Typed product contracts. A decision always travels with its evidence."""
 from typing import Literal
+
 from pydantic import BaseModel, Field
 
 Status = Literal['PASS', 'FAIL', 'UNKNOWN']

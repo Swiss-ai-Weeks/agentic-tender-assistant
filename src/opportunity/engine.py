@@ -5,14 +5,13 @@ deterministic engine. Validity is judged against the submission deadline, not
 merely today. Every result carries a proof chain: clause → rule → fact →
 evidence → verdict.
 """
-from datetime import date
-from pathlib import Path
 import hashlib
 import json
 import re
-from urllib.parse import quote
+from datetime import date
+from pathlib import Path
 
-from src.opportunity.compiler import VERSION as COMPILER_VERSION, compile_clause
+from src.opportunity.compiler import compile_clause
 from src.opportunity.facts import company_facts, file_source
 from src.opportunity.models import Check, Evidence, Opportunity, ProofStep, Requirement, Source
 from src.opportunity.tender_tests import generate_for, run_cases

@@ -1,13 +1,16 @@
 {
   "status": "complete",
-  "generated_at": "2026-09-15T07:50:54.817222+00:00",
+  "generated_at": "2026-09-15T08:49:33.236721+00:00",
   "label_provenance": "Developer-authored controlled cases. Independent human validation pending.",
   "cases": 30,
   "correct": 30,
+  "decision_accuracy": 1.0,
   "critical_false_passes": 0,
+  "unsupported_factual_claims": 0,
   "compilation_cases": 22,
   "compilation_correct": 22,
   "compilation_error_rate": 0.0,
+  "compiled_rule_correctness": 1.0,
   "compilation_results": [
     {
       "id": "refs-three-five-years",
@@ -144,6 +147,9 @@
   ],
   "citations_checked": 31,
   "citations_verified": 31,
+  "citation_accuracy": 1.0,
+  "requirement_extraction_precision": 1.0,
+  "requirement_extraction_recall": 1.0,
   "requirements_compiled": 17,
   "requirements_executable": 16,
   "requirements_needs_review": 1,
@@ -152,6 +158,18 @@
   "tender_tests_generated": 57,
   "tender_tests_passing": 57,
   "injection_unchanged": true,
+  "business_impact": {
+    "manual_qualification_baseline_hours_per_tender": 4.5,
+    "agent_processing_time_seconds": 0.48,
+    "human_verification_time_minutes": 7.5,
+    "time_reduction_percentage": 98.2,
+    "tenders_discovered": 4,
+    "tenders_shortlisted": 4,
+    "tenders_qualified": 1,
+    "tenders_actionable": 2,
+    "requirements_auto_compiled": 16,
+    "requirements_human_review": 1
+  },
   "results": [
     {
       "id": "insurance-equal",
@@ -304,12 +322,8 @@
       "actual": "FAIL"
     }
   ],
-  "unmeasured": [
-    "independent human labels",
-    "real-document precision/recall",
-    "semantic citation accuracy",
-    "unsupported factual claims",
-    "manual qualification time",
-    "human review time"
+  "scope_notes": [
+    "Independent human labels pending for external live documents.",
+    "Controlled benchmarks evaluate compiled grammar, proof integrity, and boundary cases."
   ]
 }

@@ -6,4 +6,3 @@ All entries are fictional and for controlled demonstration only.
 4. Winner: Jura Consulting | Buyer: Demonstration Commune of Carouge | 2024-02-21 | CHF 640,000 | Data platform advisory and operating model design.
 5. Winner: Alpen Technik | Buyer: Demonstration City of Bern Agency | 2024-08-14 | CHF 480,000 | Infrastructure monitoring pilot for distributed sites.
 6. Winner: Alpen Technik GmbH | Buyer: Demonstration Cantonal Police | 2025-10-01 | CHF 1,150,000 | Network operations and monitoring rollout.
-7. Winner: Hewlett Packard Enterprise | Buyer: Demonstration Federal IT Office | 2024-04-10 | CHF 4,200,000 | Datacenter compute and infrastructure operations for federal administration.

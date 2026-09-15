@@ -1,0 +1,8 @@
+{
+  "source_document": "financials.txt",
+  "source_type": "VERIFIED_INTERNAL",
+  "sha256": "2059d34aadb0a8bf80c818c402fc4e70bf8b22119f809e949bc39a00d16636a5",
+  "version": "1.0",
+  "retrieved_at": "2026-09-15T08:00:00Z",
+  "url": "/api/sources/evidence/financials.txt"
+}

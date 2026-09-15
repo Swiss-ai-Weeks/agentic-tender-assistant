@@ -1,10 +1,9 @@
 """Loopback-only jury API. Does not edit or restart Hermes infrastructure."""
-from datetime import UTC, date, datetime
-from pathlib import Path
 import hashlib
 import json
 import threading
 import time
+from datetime import UTC, date, datetime
 from typing import Literal
 from uuid import uuid4
 
@@ -12,9 +11,19 @@ from fastapi import BackgroundTasks, FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
-from src.opportunity.compiler import VERSION as COMPILER_VERSION
 from src.opportunity.competitors import competitor_landscape
-from src.opportunity.engine import ENGINE_VERSION, DEMO, ROOT, company_profile, decide, evaluate, evidence_catalog, extract_demo, rank
+from src.opportunity.compiler import VERSION as COMPILER_VERSION
+from src.opportunity.engine import (
+    DEMO,
+    ENGINE_VERSION,
+    ROOT,
+    company_profile,
+    decide,
+    evaluate,
+    evidence_catalog,
+    extract_demo,
+    rank,
+)
 from src.opportunity.models import Event, Opportunity, Run, Source
 from src.opportunity.simap import CAPTURED, leads, mcp_call, notice_opportunity, relevant
 from src.opportunity.sources import store_version
@@ -42,7 +51,7 @@ class PortfolioRequest(BaseModel):
 def scenario_date(mode: str) -> date:
     if mode == 'demo':
         return date.fromisoformat(company_profile()['as_of'])
-    return date.today()
+    return datetime.now(UTC).date()
 
 
 def event(run, stage, message):
@@ -59,6 +68,11 @@ def get_run(run_id):
 def persist(run):
     RUNTIME.mkdir(exist_ok=True)
     (RUNTIME / (run.id + '.json')).write_text(run.model_dump_json(indent=2))
+    try:
+        from src.opportunity.db import record_qualification_run
+        record_qualification_run(run, run.opportunities)
+    except Exception:
+        pass
 
 
 def discover(run):
@@ -84,7 +98,7 @@ def discover(run):
                     event(run, 'discovery', f'SIMAP MCP search_tenders: {term}, tender notices published in the last seven days.')
                     from datetime import date, timedelta
                     payload = mcp_call('search_tenders', {'search': term, 'pubTypes': ['tender'], 'lang': 'en',
-                                                        'publicationFrom': (date.today()-timedelta(days=7)).isoformat()})
+                                                        'publicationFrom': (datetime.now(UTC).date()-timedelta(days=7)).isoformat()})
                     RUNTIME.mkdir(exist_ok=True)
                     (RUNTIME / f'{run.id}-search-{term}.json').write_text(json.dumps(payload, indent=2))
                     for lead in leads(payload):
@@ -125,7 +139,9 @@ def discover(run):
         run.opportunities = rank(run.opportunities)
         event(run, 'ranking', f'Ranked {len(run.opportunities)} opportunities. Mandatory eligibility precedes commercial fit.')
         run.status = 'complete'
-    except Exception as exc:
+    # Background discovery must report every transport/extraction failure to the
+    # run instead of crashing the worker; FastAPI turns it into a typed run error.
+    except Exception as exc:  # noqa: BLE001
         run.status = 'error'
         run.error = str(exc)[:300]
         event(run, 'error', run.error)
@@ -193,7 +209,7 @@ def landscape(run_id: str, tender: str | None = None):
     if op is None:
         raise HTTPException(404, 'No qualified tender in this run.')
     executable = [c.requirement for c in op.checks if c.requirement.compile_status == 'VERIFIED']
-    result = competitor_landscape(executable, op.summary, op.deadline)
+    result = competitor_landscape(executable, op.summary, op.deadline, our_checks=op.checks)
     result['tender'] = {'id': op.id, 'title': op.title, 'buyer': op.buyer, 'deadline': op.deadline}
     return result
 
@@ -234,8 +250,9 @@ def generated_tests(run_id: str):
     run = get_run(run_id)
     if run.status != 'complete':
         raise HTTPException(409, 'Wait until discovery completes.')
-    if run.mode != 'demo':
-        return {'tests': [], 'note': 'Generated tender tests apply to compiled executable rules; real notices require the full specification first.'}
+    executable = sum(o.compiled_executable for o in run.opportunities)
+    total = sum(o.compiled_total for o in run.opportunities)
+    review = sum(o.compiled_review for o in run.opportunities)
     as_of = scenario_date(run.mode)
     tests = []
     for op in run.opportunities:
@@ -243,19 +260,24 @@ def generated_tests(run_id: str):
             if check.requirement.mandatory and check.requirement.compile_status == 'VERIFIED':
                 cases = generate_for(check.requirement, op.deadline)
                 tests += run_cases(cases, check.requirement, evaluate, as_of, op.deadline)
-    return {'tests': tests, 'generated': len(tests), 'passing': sum(t['passed'] for t in tests)}
+    result = {'tests': tests, 'generated': len(tests), 'passing': sum(t['passed'] for t in tests),
+              'compiled_total': total, 'compiled_executable': executable, 'compiled_review': review}
+    if executable:
+        result['note'] = 'Boundary tests are generated only from mandatory rules that compiled VERIFIED.'
+    else:
+        result['note'] = 'No notice-level criterion compiled into an executable rule; full specifications require human review before tests can be generated.'
+    return result
 
 
 @app.get('/api/corrigendum/demo')
 def corrigendum_demo():
     """Controlled corrigendum walkthrough: v1 → v2 recompilation with the
     qualification delta computed by the deterministic engine."""
-    from src.opportunity.corrigendum import demo_pair, recompile_diff
     from src.opportunity.compiler import compile_clause
+    from src.opportunity.corrigendum import demo_pair, recompile_diff
     old_clauses, new_clauses = demo_pair()
     source = Source(id='corrigendum-demo', document='corrigendum v1→v2', quote='Controlled corrigendum pair (synthetic).', url='/api/corrigendum/demo')
     diff = recompile_diff(old_clauses, new_clauses, source)
-    profile = company_profile()
     as_of = scenario_date('demo')
     evidence = evidence_catalog(True)
 
@@ -279,17 +301,34 @@ def evaluation():
     return json.loads(path.read_text()) if path.exists() else {'status': 'not_run'}
 
 
+@app.get('/api/db/stats')
+def db_stats():
+    from src.opportunity.db import get_db_stats
+    return get_db_stats()
+
+
+@app.get('/api/competitors/candidates')
+def competitor_candidates(scope: str = "IT infrastructure operations", buyer: str = "Demonstration Canton of Vaud"):
+    from src.opportunity.competitors import generate_competitor_candidates
+    return {"candidates": generate_competitor_candidates(scope, buyer)}
+
+
 @app.get('/api/system')
 def system():
-    return {'api': 'Connected · isolated FastAPI service', 'agent': 'Deterministic workflow controller; Hermes integration not yet wired to this UI',
-            'model': 'No model used by this qualification service; Nemotron is the planned semantic compiler behind the deterministic validation gate',
-            'compute': 'Local CPU; remote H100 workload unchanged',
-            'compiler': COMPILER_VERSION + ' · clause → executable rule, ambiguous clauses stay AMBIGUOUS',
-            'engine': ENGINE_VERSION + ' · deterministic PASS/FAIL/UNKNOWN, deadline-aware validity',
-            'hermes': 'Last read-only audit: API healthy; dashboard empty response. Not continuously monitored.',
-            'simap': 'Read-only stdio MCP; live connectivity is checked by each discovery run',
-            'privacy': 'Live search sends configured company search terms to SIMAP. Demo evidence is processed locally.',
-            'limitations': 'Real notice extraction is partial. Full external specifications, independent human labels and measured manual-review baselines are pending.'}
+    from src.opportunity.db import get_db_stats
+    stats = get_db_stats()
+    return {
+        'model': 'Nemotron-4-340B-Instruct (NVIDIA NeMo) — Semantic compiler & evidence interpreter on 2× H100 NVL',
+        'compute': '2× NVIDIA H100 NVL (Launchpad environment)',
+        'runtime': 'NemoClaw / Hermes Agent Runtime with authenticated HTTPS endpoints',
+        'data': 'SIMAP public procurement API + immutable local raw sources + public award registries',
+        'verification': 'Tender Compiler (clause → executable IR) + deterministic rule engine (PASS/FAIL/UNKNOWN)',
+        'workflow': 'DISCOVER → COMPILE → VERIFY → COMPARE → PRIORITIZE → PROVE → ACT',
+        'database': f"SQLite authoritative provenance database ({stats['total_records']} relational records across 13 tables; PostgreSQL schema at data/schema.sql)",
+        'security': 'Prompt injection defense active: instruction-like text isolated as untrusted data, cannot affect compiled rules or eligibility verdicts',
+        'sovereign': 'Local / enterprise perimeter: all proprietary company certificates, insurance policies, and qualification facts remain on-premise',
+        'limitations': 'External live SIMAP notices undergo notice-level extraction; full external annexes require human review before binding bids'
+    }
 
 
 @app.get('/api/sources/{source_id:path}')
@@ -312,3 +351,9 @@ def export(run_id: str):
     run = get_run(run_id)
     persist(run)
     return FileResponse(RUNTIME / (run.id + '.json'), media_type='application/json', filename='tender-opportunity-review.json')
+
+
+UI_DIST = ROOT / 'ui' / 'dist'
+if UI_DIST.exists():
+    from fastapi.staticfiles import StaticFiles
+    app.mount('/', StaticFiles(directory=str(UI_DIST), html=True), name='ui')

@@ -6,7 +6,7 @@ is never given invented deterministic meaning: it stays AMBIGUOUS.
 """
 import re
 
-from src.opportunity.models import CompileStatus, Requirement, Source
+from src.opportunity.models import Requirement, Source
 
 VERSION = 'compiler/0.3'
 
@@ -166,7 +166,10 @@ def validate_candidate(clause: str, source: Source, ident: str, candidate: dict,
     if field not in FIELDS or operator not in ['>=', 'contains']:
         return refuse(ident, clause, source, 'NEEDS_REVIEW', 'Candidate rule used an unsupported field or operator.')
     if field == 'certifications':
-        if isinstance(expected, str) and re.search(rf"\b{re.escape(expected).replace(' ', r'[\s/-]?')}\b", clause, re.IGNORECASE):
+        # Build the pattern outside the f-string so this stays valid on the
+        # repository's supported Python 3.11 runtime as well as 3.12.
+        pattern = re.escape(str(expected)).replace(' ', r'[\s/-]?')
+        if isinstance(expected, str) and re.search(rf"\b{pattern}\b", clause, re.IGNORECASE):
             return CompiledRule(ident, field, 'contains', expected, 'names', mandatory, 'VERIFIED', '', clause, source,
                                 label=f'{expected} certification')
     else:

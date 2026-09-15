@@ -1,21 +1,21 @@
 """Read-only SIMAP MCP discovery and conservative source-grounded notice extraction."""
-from datetime import date
 import html
 import json
-from pathlib import Path
 import re
 import subprocess
+from datetime import UTC, datetime
 
 from src.opportunity.compiler import compile_clause
-from src.opportunity.engine import ROOT, decide, company_profile
+from src.opportunity.engine import ROOT, company_profile, decide, evaluate
 from src.opportunity.models import Check, Opportunity, ProofStep, Requirement, Source
+from src.opportunity.tender_tests import generate_for, run_cases
 
 CAPTURED = ROOT / 'data' / 'captured'
 
 
 def mcp_call(tool, arguments):
     result = subprocess.run(['node', str(ROOT / 'integrations/simap/bridge.mjs'), tool,
-                             json.dumps(arguments)], capture_output=True, text=True, timeout=60)
+                             json.dumps(arguments)], capture_output=True, text=True, timeout=60, check=False)
     if result.returncode:
         raise RuntimeError('SIMAP MCP transport unavailable. Choose stored notices or the synthetic walkthrough.')
     payload = json.loads(result.stdout)
@@ -59,7 +59,7 @@ def plain(value):
 
 def raw_response(payload):
     text = tool_text(payload)
-    match = re.search(r'```json\n(.*?)\n```', text, re.S)
+    match = re.search(r'```json\n(.*?)\n```', text, re.DOTALL)
     if not match:
         raise RuntimeError('SIMAP did not return a full notice; investigation requires manual review.')
     return json.loads(match.group(1))
@@ -87,6 +87,7 @@ def notice_opportunity(lead, payload, source_id, mode='live'):
     if deadline:
         facts['deadline'] = source('/dates/offerDeadline', deadline)
     checks = []
+    executable_rules = []
     family_terms = [('certifications', ['zertif', 'partner-status', 'certificat']),
                     ('references', ['referenz', 'erfahrung', 'référence']),
                     ('capacity', ['kapazität', 'capacité']), ('legal', ['rechtspers', 'juristi']),
@@ -103,6 +104,8 @@ def notice_opportunity(lead, payload, source_id, mode='live'):
             ident = criterion.get('id') or f'{path}-{i}'
             criterion_source = source(f'{path}/qualificationCriteria/{i}', criterion)
             rule = compile_clause(text, criterion_source, ident)
+            if rule.mandatory and rule.status == 'VERIFIED':
+                executable_rules.append(rule)
             if rule.status == 'VERIFIED' and rule.mandatory:
                 # Executable rule from a real notice: still UNKNOWN until verified
                 # bidder evidence exists — fictional demo evidence never applies here.
@@ -148,4 +151,16 @@ def notice_opportunity(lead, payload, source_id, mode='live'):
             op.value_basis = key
             op.value_source = source('/procurement/' + key, value)
             break
-    return decide(op, date.today())
+    # Report the actual notice-level compilation outcome. A published criterion
+    # that cannot be anchored to an executable constraint is human work, not a
+    # silent PASS or an omitted requirement.
+    as_of = datetime.now(UTC).date()
+    generated_tests = []
+    for rule in executable_rules:
+        generated_tests += run_cases(generate_for(rule.to_requirement(), op.deadline), rule.to_requirement(), evaluate, as_of, op.deadline)
+    op.compiled_total = len(checks)
+    op.compiled_executable = len(executable_rules)
+    op.compiled_review = len(checks) - len(executable_rules)
+    op.tests_generated = len(generated_tests)
+    op.tests_passed = sum(test['passed'] for test in generated_tests)
+    return decide(op, datetime.now(UTC).date())

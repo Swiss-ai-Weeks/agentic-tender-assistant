@@ -33,3 +33,27 @@
 .sim-note{font-size:.72rem;color:var(--muted,#8a8574);margin:.3rem 1rem}
 input[type=checkbox]{width:16px;height:16px;accent-color:#3d5a3d}
 .mode-select input[type=number]{border:1px solid var(--line,#d8d3c4);border-radius:8px;padding:.35rem .6rem;width:90px;font:inherit}
+.advantage-pill{display:block;font-size:0.58rem;padding:2px 4px;border-radius:4px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;margin-top:4px;white-space:nowrap}
+.advantage-pill.high-advantage{background:#d8eed5;color:#245924}
+.advantage-pill.low-differentiation{background:#e8ece5;color:#616e58}
+.advantage-pill.market-barrier{background:#fbe1dc;color:#9b3323}
+.advantage-pill.incumbent-field{background:#fff0c9;color:#7e5b0b}
+.advantage-pill.neutral{background:#edebe4;color:#706c61}
+.candidates-strip{margin-bottom:1.2rem;padding:1.1rem 1.4rem;background:#fbfaf6;border:1px solid var(--border);border-radius:10px}
+.candidates-strip h3{font-size:0.85rem;font-weight:600;margin:0 0 0.6rem;color:#395133}
+.candidate-tags{display:flex;flex-wrap:wrap;gap:0.7rem}
+.candidate-badge{background:#fff;border:1px solid #dce4d2;padding:0.6rem 0.9rem;border-radius:8px;font-size:0.75rem;display:flex;flex-direction:column;gap:3px;flex:1;min-width:240px}
+.candidate-cat{font-size:0.62rem;font-weight:750;letter-spacing:0.05em;color:#537345;text-transform:uppercase}
+.candidate-badge small{color:#76846c;line-height:1.4}
+.observation-box{margin:14px 0;padding:14px;background:#f0f5fa;border:1px solid #cbdde9;border-radius:8px;font-size:0.8rem}
+.observation-box blockquote{margin:8px 0 0;padding:6px 10px;background:#fff;border-left:3px solid #8baac4;font-style:italic;font-size:0.78rem}
+.derived-box{margin:14px 0;padding:14px;background:#fbf8ee;border:1px solid #eadfc3;border-radius:8px;font-size:0.8rem}
+.df-tag{display:inline-block;font-size:0.6rem;font-weight:750;padding:2px 5px;border-radius:4px;margin-right:6px}
+.df-tag.supported{background:#d5ecd2;color:#1e5e1c}
+.df-tag.unsupported{background:#fbe1dc;color:#9b3323}
+.system-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:20px 0}
+.system-card{padding:22px;border:1px solid var(--border);border-radius:10px;background:#fdfefa}
+.system-card h3{font-size:12px;font-weight:650;margin-bottom:8px;color:#284f3f;letter-spacing:0.05em;text-transform:uppercase}
+.system-card p{font-size:11px;line-height:1.75;color:#4f6356;margin:0}
+.us-tag{font-size:7px;background:#284f3f;color:#ebf0db;padding:2px 6px;border-radius:4px;font-weight:750;margin-left:8px;letter-spacing:0.05em}
+.db-stat-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #eef2e7;font-size:11px}

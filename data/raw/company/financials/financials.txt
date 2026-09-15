@@ -1,0 +1,3 @@
+SYNTHETIC COMPANY EVIDENCE — Alpine Digital SA
+Demonstration financial statement, reviewed 2026-09-01.
+revenue | 8000000 | CHF | 2026-12-31
