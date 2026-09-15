@@ -46,7 +46,7 @@ class CompiledRule:
 
 
 def refuse(ident, clause, source, status, reason, mandatory=True) -> CompiledRule:
-    field = 'review' if status != 'AMBIGUOUS' else 'review'
+    field = 'review'
     return CompiledRule(ident, field, 'review', clause[:60], '', mandatory, status, reason, clause, source,
                         label=f'{clause[:60]}{"…" if len(clause) > 60 else ""}')
 
@@ -117,7 +117,7 @@ def compile_clause(clause: str, source: Source, ident: str, candidate: dict | No
             operator = '>=' if re.search(r"at least|no less than|minimum|au moins|mindestens", text, re.IGNORECASE) else '='
             status = 'VERIFIED' if operator == '>=' else 'NEEDS_REVIEW'
             reason = '' if operator == '>=' else 'Comparison operator is implicit; confirm the intended bound.'
-            return CompiledRule(ident, 'insurance', '>=' if operator == '>=' else '>=', value, 'CHF', mandatory,
+            return CompiledRule(ident, 'insurance', '>=', value, 'CHF', mandatory,
                                 status, reason, text, source, label=f'Liability insurance ≥ CHF {value:,.0f}')
         return refuse(ident, text, source, 'NEEDS_REVIEW', 'Insurance requirement without a stated coverage amount.')
 

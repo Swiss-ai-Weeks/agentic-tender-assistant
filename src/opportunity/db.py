@@ -564,7 +564,7 @@ def get_db_stats() -> dict:
         ]
         counts = {}
         for table in tables:
-            cur = conn.execute(f"SELECT COUNT(*) as c FROM {table}")  # noqa: S608
+            cur = conn.execute(f"SELECT COUNT(*) as c FROM {table}")
             counts[table] = cur.fetchone()["c"]
         return {
             "database": "SQLite authoritative provenance store (PostgreSQL-equivalent schema)",

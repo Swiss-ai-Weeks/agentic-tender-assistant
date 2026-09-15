@@ -1,6 +1,7 @@
 """Loopback-only jury API. Does not edit or restart Hermes infrastructure."""
 import hashlib
 import json
+import logging
 import threading
 import time
 from datetime import UTC, date, datetime
@@ -29,6 +30,8 @@ from src.opportunity.simap import CAPTURED, leads, mcp_call, notice_opportunity,
 from src.opportunity.sources import store_version
 from src.opportunity.strategy import capability_gaps, plan_portfolio, simulate
 from src.opportunity.tender_tests import generate_for, run_cases
+
+logger = logging.getLogger(__name__)
 
 app = FastAPI(title='Tender Opportunity Agent', docs_url='/api/docs')
 runs: dict[str, Run] = {}
@@ -71,8 +74,8 @@ def persist(run):
     try:
         from src.opportunity.db import record_qualification_run
         record_qualification_run(run, run.opportunities)
-    except Exception:
-        pass
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("provenance recording failed: %s", exc)
 
 
 def discover(run):
@@ -96,7 +99,7 @@ def discover(run):
             if run.mode == 'live':
                 for term in company_profile()['search_terms']:
                     event(run, 'discovery', f'SIMAP MCP search_tenders: {term}, tender notices published in the last seven days.')
-                    from datetime import date, timedelta
+                    from datetime import timedelta
                     payload = mcp_call('search_tenders', {'search': term, 'pubTypes': ['tender'], 'lang': 'en',
                                                         'publicationFrom': (datetime.now(UTC).date()-timedelta(days=7)).isoformat()})
                     RUNTIME.mkdir(exist_ok=True)

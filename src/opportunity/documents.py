@@ -338,7 +338,7 @@ def _load_manifest(pack_root: Path) -> dict | None:
     except Exception as exc:  # noqa: BLE001
         raise ValueError(f"manifest.json is not valid JSON: {exc}")
     if not isinstance(data, dict):
-        raise ValueError("manifest.json must be a JSON object.")
+        raise TypeError("manifest.json must be a JSON object.")
     return data
 
 

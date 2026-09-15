@@ -92,13 +92,18 @@ bounded requests, UI builds, all 7 containers / GPU allocations / ports intact.
   `httpx.Client` with an exploding stub — no HTTP client may be constructed
   while disabled; `status()` never probes the network.
 - `cd ui && npm run build` → PASS (`tsc -b && vite build`, 2.53 s).
-- Lint: under the enforced rule set (pinned pre-commit ruff v0.6.9 defaults,
-  `E4,E7,E9,F`) the only findings are 4 pre-existing ones in untouched lines
-  (`api.py:99` F401 from commit `4750869`, `engine.py:76` E731,
-  `test_product.py` E741 ×2 — all confirmed via `git blame`, none from session
-  edits). The 7 extra findings from venv ruff 0.16.7 (BLE001/S110/TRY004/
-  RUF100) are outside the enforced set; the two BLE001 sites in `nemotron.py`
-  are deliberate conservative network/parse fallbacks.
+- Lint: `.venv/bin/python -m ruff check .` → **0 errors** (2026-09-16
+  follow-up commit on this branch). All 15 earlier findings resolved without
+  behavior change: `api.py` provenance-recording failure now logs instead of
+  silent `pass` (broad catch kept with `noqa`, same best-effort semantics) +
+  unused `date` import dropped; `competitors.py` dead unpack renamed, `if`
+  → `max()`, nested `if`s merged; `compiler.py` two constant conditionals
+  simplified to their only possible value; `db.py` stale `noqa: S608`
+  removed; `documents.py` non-dict manifest now raises `TypeError` (matches
+  `bidder.py`; no test pinned the old type); `nemotron.py` conservative
+  network/parse fallbacks annotated with the repo's existing `noqa: BLE001`
+  convention; `test_competitors.py` dead unpacks renamed (one binding at line
+  28 is genuinely used later and was left intact).
 - Protected workloads unchanged: all 7 containers same uptimes, GPU0 68423
   MiB / GPU1 34495 MiB identical, listeners on 8000/8090/18000 intact, :8090
   uvicorn pid 881229 untouched. No Hermes/Docker/GPU/driver/network changes.

@@ -155,7 +155,7 @@ class NemotronCompiler:
         try:
             with httpx.Client(timeout=_timeout_s()) as client:
                 response = client.post(url, json=payload, headers=headers)
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001
             logger.warning("model candidate fetch failed: %s", exc)
             return None, f"error: model request failed ({type(exc).__name__}); conservative fallback to deterministic rules."
         if response.status_code != 200:
@@ -164,7 +164,7 @@ class NemotronCompiler:
             body = response.json()
             content = body["choices"][0]["message"]["content"]
             parsed = json.loads(content) if isinstance(content, str) else content
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001
             return None, f"error: malformed model response ({type(exc).__name__}); conservative fallback to deterministic rules."
         if isinstance(parsed, dict) and parsed.get("abstain") is True:
             return None, "success: model abstained; clause stays in human review."

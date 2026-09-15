@@ -108,7 +108,7 @@ def generate_competitor_candidates(scope: str, buyer: str) -> list[dict]:
         org_name = resolved["name"]
 
         is_incumbent = buyer_clean in award.get("buyer", "").casefold() or award.get("buyer", "").casefold() in buyer_clean
-        is_comparable, rationale = _award_comparable(award, scope)
+        is_comparable, _rationale = _award_comparable(award, scope)
 
         if is_incumbent or is_comparable:
             cand = candidates.setdefault(
@@ -129,8 +129,7 @@ def generate_competitor_candidates(scope: str, buyer: str) -> list[dict]:
                 cand["reasons"].append(f"Incumbent supplier: past contract with {award.get('buyer')} ({award.get('title')})")
             if is_comparable:
                 cand["reasons"].append(f"Comparable scope: '{award.get('title')}' ({award.get('date')})")
-            if award.get("date") > cand["latest_award"]:
-                cand["latest_award"] = award.get("date")
+            cand["latest_award"] = max(cand["latest_award"], award.get("date"))
 
     result = []
     for cand in candidates.values():
@@ -273,20 +272,23 @@ def _registry_state(
             })
             return "PUBLIC NON-MATCH", fact["note"], evidence, observations, derived_facts
 
-        if requirement_field == "certifications" and isinstance(fact.get("value"), list):
-            if expected in [str(v) for v in fact["value"]]:
-                derived_facts.append({
-                    "predicate": requirement_field,
-                    "claim": f"Public registry confirms active {expected} certification",
-                    "is_supported": True,
-                })
-                return (
-                    "PUBLICLY SUPPORTED",
-                    f"Public registry lists {expected} (valid until {fact.get('valid_until', 'stated validity')}).",
-                    evidence,
-                    observations,
-                    derived_facts,
-                )
+        if (
+            requirement_field == "certifications"
+            and isinstance(fact.get("value"), list)
+            and expected in [str(v) for v in fact["value"]]
+        ):
+            derived_facts.append({
+                "predicate": requirement_field,
+                "claim": f"Public registry confirms active {expected} certification",
+                "is_supported": True,
+            })
+            return (
+                "PUBLICLY SUPPORTED",
+                f"Public registry lists {expected} (valid until {fact.get('valid_until', 'stated validity')}).",
+                evidence,
+                observations,
+                derived_facts,
+            )
 
     note = "No public registry record located for this requirement; absence of evidence is not a negative finding."
     return "UNKNOWN", note, evidence, observations, derived_facts

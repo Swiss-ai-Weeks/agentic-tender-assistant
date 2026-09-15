@@ -16,7 +16,7 @@ def _landscape(tender):
 
 
 def test_three_states_on_iso_requirement():
-    op, landscape = _landscape('infrastructure')
+    _op, landscape = _landscape('infrastructure')
     cells = {row['org_id']: row['cells'] for row in landscape['orgs']}
     assert cells['helvetia-it']['R1']['status']=='PUBLICLY SUPPORTED'
     assert cells['alpen-technik']['R1']['status']=='PUBLIC NON-MATCH'
@@ -40,7 +40,7 @@ def test_reference_counts_use_window_and_stay_unknown_below_threshold():
 
 
 def test_unknown_never_claims_inability():
-    op, landscape = _landscape('servicedesk')
+    _op, landscape = _landscape('servicedesk')
     for row in landscape['orgs']:
         if row.get('is_us'):
             continue
@@ -55,7 +55,7 @@ def test_hpe_entity_resolution_and_iso_support():
     assert resolve_organization('Hewlett Packard Enterprise Switzerland GmbH')['id'] == 'hpe'
     assert resolve_organization('CHE-105.856.321')['id'] == 'hpe'
 
-    op, landscape = _landscape('infrastructure')
+    _op, landscape = _landscape('infrastructure')
     cells = {row['org_id']: row['cells'] for row in landscape['orgs']}
     assert 'hpe' in cells
     assert cells['hpe']['R1']['status'] == 'PUBLICLY SUPPORTED'
