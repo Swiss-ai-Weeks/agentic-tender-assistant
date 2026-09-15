@@ -1,14 +1,126 @@
 {
   "status": "complete",
-  "generated_at": "2026-09-14T23:03:57.372991+00:00",
+  "generated_at": "2026-09-14T23:43:42.091649+00:00",
   "label_provenance": "Developer-authored controlled cases. Independent human validation pending.",
   "cases": 30,
   "correct": 30,
   "critical_false_passes": 0,
-  "citations_checked": 25,
-  "citations_verified": 25,
-  "requirements_expected": 13,
-  "requirements_found": 13,
+  "compilation_cases": 17,
+  "compilation_correct": 17,
+  "compilation_error_rate": 0.0,
+  "compilation_results": [
+    {
+      "id": "refs-three-five-years",
+      "expected": "VERIFIED",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "refs-french",
+      "expected": "VERIFIED",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "refs-no-window",
+      "expected": "NEEDS_REVIEW",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "insurance-10m",
+      "expected": "VERIFIED",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "insurance-millions-word",
+      "expected": "VERIFIED",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "insurance-french",
+      "expected": "VERIFIED",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "insurance-no-comparison",
+      "expected": "NEEDS_REVIEW",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "insurance-no-amount",
+      "expected": "AMBIGUOUS",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "cert-iso",
+      "expected": "VERIFIED",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "cert-unrecognised",
+      "expected": "NEEDS_REVIEW",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "revenue-5m",
+      "expected": "VERIFIED",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "language-en",
+      "expected": "VERIFIED",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "language-speaking",
+      "expected": "VERIFIED",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "ambiguous-hedged",
+      "expected": "AMBIGUOUS",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "ambiguous-mandatory-no-threshold",
+      "expected": "AMBIGUOUS",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "unsupported-administrative",
+      "expected": "UNSUPPORTED",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "unsupported-team-experience",
+      "expected": "UNSUPPORTED",
+      "correct": true,
+      "detail": ""
+    }
+  ],
+  "citations_checked": 31,
+  "citations_verified": 31,
+  "requirements_compiled": 17,
+  "requirements_executable": 16,
+  "requirements_needs_review": 1,
+  "requirements_expected": 16,
+  "requirements_found": 16,
+  "tender_tests_generated": 57,
+  "tender_tests_passing": 57,
   "injection_unchanged": true,
   "results": [
     {

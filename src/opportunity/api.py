@@ -1,6 +1,7 @@
 """Loopback-only jury API. Does not edit or restart Hermes infrastructure."""
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 from pathlib import Path
+import hashlib
 import json
 import threading
 import time
@@ -11,9 +12,14 @@ from fastapi import BackgroundTasks, FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
-from src.opportunity.engine import DEMO, ROOT, company_profile, evidence_catalog, extract_demo, rank
+from src.opportunity.compiler import VERSION as COMPILER_VERSION
+from src.opportunity.competitors import competitor_landscape
+from src.opportunity.engine import ENGINE_VERSION, DEMO, ROOT, company_profile, evaluate, evidence_catalog, extract_demo, rank
 from src.opportunity.models import Event, Run
 from src.opportunity.simap import CAPTURED, leads, mcp_call, notice_opportunity, relevant
+from src.opportunity.sources import store_version
+from src.opportunity.strategy import capability_gaps, plan_portfolio, simulate
+from src.opportunity.tender_tests import generate_for, run_cases
 
 app = FastAPI(title='Tender Opportunity Agent', docs_url='/api/docs')
 runs: dict[str, Run] = {}
@@ -23,6 +29,20 @@ RUNTIME = ROOT / '.runtime'
 
 class DiscoverRequest(BaseModel):
     mode: Literal['demo', 'live', 'captured'] = 'captured'
+
+
+class SimulateRequest(BaseModel):
+    overlay: list[dict]
+
+
+class PortfolioRequest(BaseModel):
+    capacity_days: float
+
+
+def scenario_date(mode: str) -> date:
+    if mode == 'demo':
+        return date.fromisoformat(company_profile()['as_of'])
+    return date.today()
 
 
 def event(run, stage, message):
@@ -94,6 +114,8 @@ def discover(run):
                     payload = json.loads(path.read_text())
                     source_id = 'captured/' + path.name
                 op = notice_opportunity(lead, payload, source_id, run.mode)
+                meta = store_version(lead['id'], json.dumps(payload, ensure_ascii=False).encode(), lead.get('url') or '')
+                op.tender_version, op.sha256, op.retrieved_at = meta['version'], meta['sha256'], meta['retrieved_at']
                 run.investigated += 1
                 if op.deadline and op.deadline <= datetime.now(UTC).date().isoformat():
                     event(run, 'qualification', f'{op.title}: deadline not confirmed future; excluded from open shortlist.')
@@ -125,7 +147,9 @@ def start(body: DiscoverRequest, tasks: BackgroundTasks):
             raise HTTPException(409, 'Discovery is already running. Wait for the current run.')
         if len(runs) >= 40:
             runs.pop(next(iter(runs)))
-        run = Run(id=uuid4().hex, mode=body.mode)
+        profile_hash = hashlib.sha256((DEMO / 'company.json').read_bytes()).hexdigest()[:8]
+        run = Run(id=uuid4().hex, mode=body.mode, profile_version=profile_hash,
+                  rule_compiler_version=COMPILER_VERSION, engine_version=ENGINE_VERSION)
         runs[run.id] = run
         tasks.add_task(discover, run)
         return run
@@ -160,6 +184,68 @@ def search_evidence(run_id: str):
         return run
 
 
+@app.get('/api/runs/{run_id}/landscape')
+def landscape(run_id: str, tender: str | None = None):
+    run = get_run(run_id)
+    if run.status != 'complete':
+        raise HTTPException(409, 'Wait until discovery completes.')
+    op = next((o for o in run.opportunities if o.id == tender), run.opportunities[0] if run.opportunities else None)
+    if op is None:
+        raise HTTPException(404, 'No qualified tender in this run.')
+    executable = [c.requirement for c in op.checks if c.requirement.compile_status == 'VERIFIED']
+    result = competitor_landscape(executable, op.summary, op.deadline)
+    result['tender'] = {'id': op.id, 'title': op.title, 'buyer': op.buyer, 'deadline': op.deadline}
+    return result
+
+
+@app.get('/api/runs/{run_id}/gaps')
+def gaps(run_id: str):
+    run = get_run(run_id)
+    if run.status != 'complete':
+        raise HTTPException(409, 'Wait until discovery completes.')
+    result = capability_gaps(run.opportunities)
+    pipeline = sum(o.contract_value or 0 for o in run.opportunities if o.recommendation in ['GO', 'CONDITIONAL GO'])
+    return {'gaps': result, 'eligible_pipeline_chf': pipeline,
+            'potential_value_affected_chf': sum(g['published_value_chf'] for g in result)}
+
+
+@app.post('/api/runs/{run_id}/simulate')
+def run_simulation(run_id: str, body: SimulateRequest):
+    run = get_run(run_id)
+    if run.status != 'complete':
+        raise HTTPException(409, 'Wait until discovery completes.')
+    if not body.overlay:
+        raise HTTPException(422, 'Provide at least one overlay fact.')
+    return simulate(run.opportunities, body.overlay, scenario_date(run.mode), evidence_catalog(run.mode == 'demo'))
+
+
+@app.post('/api/runs/{run_id}/portfolio')
+def portfolio(run_id: str, body: PortfolioRequest):
+    run = get_run(run_id)
+    if run.status != 'complete':
+        raise HTTPException(409, 'Wait until discovery completes.')
+    if body.capacity_days <= 0:
+        raise HTTPException(422, 'Capacity must be a positive number of days.')
+    return plan_portfolio(run.opportunities, body.capacity_days)
+
+
+@app.get('/api/runs/{run_id}/tests')
+def generated_tests(run_id: str):
+    run = get_run(run_id)
+    if run.status != 'complete':
+        raise HTTPException(409, 'Wait until discovery completes.')
+    if run.mode != 'demo':
+        return {'tests': [], 'note': 'Generated tender tests apply to compiled executable rules; real notices require the full specification first.'}
+    as_of = scenario_date(run.mode)
+    tests = []
+    for op in run.opportunities:
+        for check in op.checks:
+            if check.requirement.mandatory and check.requirement.compile_status == 'VERIFIED':
+                cases = generate_for(check.requirement, op.deadline)
+                tests += run_cases(cases, check.requirement, evaluate, as_of, op.deadline)
+    return {'tests': tests, 'generated': len(tests), 'passing': sum(t['passed'] for t in tests)}
+
+
 @app.get('/api/evaluation')
 def evaluation():
     path = ROOT / 'docs/evidence/evaluation.json'
@@ -169,8 +255,10 @@ def evaluation():
 @app.get('/api/system')
 def system():
     return {'api': 'Connected · isolated FastAPI service', 'agent': 'Deterministic workflow controller; Hermes integration not yet wired to this UI',
-            'model': 'No model used by this qualification service',
+            'model': 'No model used by this qualification service; Nemotron is the planned semantic compiler behind the deterministic validation gate',
             'compute': 'Local CPU; remote H100 workload unchanged',
+            'compiler': COMPILER_VERSION + ' · clause → executable rule, ambiguous clauses stay AMBIGUOUS',
+            'engine': ENGINE_VERSION + ' · deterministic PASS/FAIL/UNKNOWN, deadline-aware validity',
             'hermes': 'Last read-only audit: API healthy; dashboard empty response. Not continuously monitored.',
             'simap': 'Read-only stdio MCP; live connectivity is checked by each discovery run',
             'privacy': 'Live search sends configured company search terms to SIMAP. Demo evidence is processed locally.',

@@ -101,6 +101,8 @@ def notice_opportunity(lead, payload, source_id, mode='live'):
             label = (f"Lot {group['lotNumber']} · " if 'lotNumber' in group else '') + text
             req = Requirement(id=criterion.get('id') or f'{path}-{i}', label=label,
                               field=family, operator='review', expected='Verified supporting evidence',
+                              raw_clause=text, compile_status='UNSUPPORTED',
+                              compile_reason='Published notice criterion only; compilation requires the full specification documents.',
                               source=source(f'{path}/qualificationCriteria/{i}', criterion))
             checks.append(Check(requirement=req, status='UNKNOWN', reason='Published criterion extracted verbatim. Company evidence and interpretation require validation.',
                                 action='Review the cited criterion and provide its requested evidence: ' + (plain(criterion.get('verification')) or 'confirm with the tender documents.')))

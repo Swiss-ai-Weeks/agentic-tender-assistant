@@ -1,0 +1,5 @@
+SYNTHETIC CERTIFICATE REGISTER — demonstration public registry extracts
+Entries are fictional and for controlled demonstration only.
+1. Helvetia IT Services AG — ISO/IEC 27001:2022, certificate CH-27104, issued 2024-04-02, valid until 2027-03-31.
+2. Jura Consulting SA — ISO 9001:2015, certificate CH-90221, issued 2023-11-15, valid until 2026-11-14.
+3. Alpen Technik GmbH — ISO/IEC 27001:2022, certificate CH-27188, WITHDRAWN with effect from 2026-05-31 at the request of the certificate holder.

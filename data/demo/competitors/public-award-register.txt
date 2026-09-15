@@ -1,0 +1,8 @@
+SYNTHETIC PUBLIC AWARD REGISTER — compiled from demonstration SIMAP award notices
+All entries are fictional and for controlled demonstration only.
+1. Winner: Helvetia IT Services AG | Buyer: Demonstration Canton of Vaud | 2024-11-05 | CHF 1,800,000 | Workplace and infrastructure operations for cantonal administration.
+2. Winner: Helvetia IT | Buyer: Demonstration University Hospital | 2025-06-17 | CHF 2,400,000 | Cloud migration of cantonal tax and patient administration services.
+3. Winner: Helvetia IT Services AG | Buyer: Demonstration Commune of Renens | 2023-09-12 | CHF 900,000 | Managed service desk operations for municipal staff.
+4. Winner: Jura Consulting | Buyer: Demonstration Commune of Carouge | 2024-02-21 | CHF 640,000 | Data platform advisory and operating model design.
+5. Winner: Alpen Technik | Buyer: Demonstration City of Bern Agency | 2024-08-14 | CHF 480,000 | Infrastructure monitoring pilot for distributed sites.
+6. Winner: Alpen Technik GmbH | Buyer: Demonstration Cantonal Police | 2025-10-01 | CHF 1,150,000 | Network operations and monitoring rollout.

@@ -142,3 +142,34 @@ with `NotImplementedError` and `# TODO(track-x)` markers, orchestration wiring e
 `src/pipeline.py`. No core agent logic is implemented yet; each track can now branch off
 `main` independently. Exception: `src/agents/tender_search.py` (live tender discovery via
 Tavily) is real, working code — see [docs/aiq-blueprint.md](./docs/aiq-blueprint.md).
+
+## Tender-as-Code qualification layer (current work)
+
+The product core compiles natural-language tender clauses into executable
+requirements and evaluates them deterministically — see
+[docs/JURY_DEMO.md](./docs/JURY_DEMO.md) for the walkthrough:
+
+- **Tender Compiler** (`src/opportunity/compiler.py`): clause → rule IR with
+  compile statuses VERIFIED / NEEDS_REVIEW / AMBIGUOUS / UNSUPPORTED. Hedged or
+  threshold-free clauses are never given invented deterministic meaning; an
+  LLM-proposed candidate (Nemotron/H100, planned) is accepted only through the
+  deterministic `validate_candidate` gate.
+- **Deterministic engine** (`src/opportunity/engine.py`): PASS / FAIL / UNKNOWN
+  with proof chains (clause → rule → fact → evidence → verdict). Evidence
+  validity is judged against the **submission deadline**, not today: a record
+  that expires before the deadline is PROVED NOT MET.
+- **Facts ≠ evidence** (`src/opportunity/facts.py`): trust classes
+  VERIFIED_INTERNAL / VERIFIED_PUBLIC / INFERRED / SIMULATED with provenance
+  and validity windows. Inferred statements never satisfy our mandatory rules.
+- **Generated tender unit tests** (`src/opportunity/tender_tests.py`): boundary
+  tests per compiled rule; a failing generated test is a compilation defect.
+- **Competitive landscape** (`src/opportunity/competitors.py`): entity
+  resolution + public-records-only competitor qualification
+  (PUBLICLY SUPPORTED / PUBLIC NON-MATCH / UNKNOWN).
+- **Strategy** (`src/opportunity/strategy.py`): capability-gap aggregation,
+  non-mutating what-if simulation, capacity-constrained portfolio planning.
+- **Immutable raw sources** (`src/opportunity/sources.py`): captured notices
+  are stored per tender version with SHA-256 (`data/raw/simap/`).
+- **Evaluation** (`python -m src.opportunity.evaluation`): decision accuracy,
+  critical false PASSes, compilation error rate, citation integrity,
+  prompt-injection invariance.

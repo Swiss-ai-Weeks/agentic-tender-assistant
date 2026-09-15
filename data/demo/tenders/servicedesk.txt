@@ -1,0 +1,16 @@
+SYNTHETIC TENDER — not a real public procurement notice
+Title: Service Desk Operations
+Buyer: Demonstration Cantonal Hospital Group
+Location: Zurich
+Deadline: 2028-01-15
+Scope: Multilingual service desk, end-user support and IT infrastructure operations for hospital staff.
+Complete: yes
+§1 Mandatory requirements (raw clauses; compiled by the Tender Compiler)
+R1 | The bidder must provide professional liability insurance coverage of at least CHF 10,000,000 valid through at least the submission deadline.
+R2 | The bidder must demonstrate at least two comparable projects completed within the previous five years.
+R3 | The bidder must hold a valid ISO 9001 quality management certification.
+§2 Award criteria: Service quality 65%; price 35%. Pricing competitiveness requires human review.
+§3 Submission documents: signed offer, insurance certificate, reference list.
+Value: 3300000 CHF
+Value basis: Total contract ceiling (synthetic specification)
+Mandatory document count: 3

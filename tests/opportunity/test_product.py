@@ -23,11 +23,45 @@ def test_real_evidence_update_and_hard_fail_ranking():
     no=extract_demo(DEMO/'tenders/security.txt')
     assert (before.recommendation,before.verified)==('CONDITIONAL GO',4)
     assert (after.recommendation,after.verified)==('GO',5)
-    assert after.checks[-1].evidence.source.document=='insurance_renewal_2026.txt'
+    assert after.checks[4].evidence.source.document=='insurance_renewal_2026.txt'
     assert no.contract_value>after.contract_value
     assert rank([no,after])[0].id==after.id
     assert after.effort_days[0]<before.effort_days[0]
     assert no.recommendation=='NO-GO'
+
+
+def test_ambiguous_clause_stays_out_of_the_gate():
+    op=extract_demo(DEMO/'tenders/data-platform.txt')
+    review=op.checks[5]
+    assert review.requirement.compile_status=='AMBIGUOUS'
+    assert not review.requirement.mandatory
+    assert review.status=='UNKNOWN'
+    assert any(x.startswith('R6') for x in op.needs_review)
+    assert (op.compiled_total,op.compiled_executable,op.compiled_review)==(6,5,1)
+
+
+def test_expiry_before_deadline_is_proved_not_met():
+    op=extract_demo(DEMO/'tenders/servicedesk.txt')
+    assert op.deadline=='2028-01-15'
+    refs=op.checks[1]
+    assert refs.status=='FAIL'
+    assert 'expires 2026-12-31, before the deadline' in refs.reason
+    assert op.recommendation=='NO-GO'
+    assert len(op.blocking_set)==3
+
+
+def test_generated_tender_tests_hold():
+    for name in ['infrastructure','data-platform','security','servicedesk']:
+        op=extract_demo(DEMO/'tenders'/(name+'.txt'))
+        assert op.tests_generated>0 and op.tests_generated==op.tests_passed
+
+
+def test_proof_chain_present():
+    op=extract_demo(DEMO/'tenders/infrastructure.txt')
+    proof=op.checks[0].proof
+    assert [s.stage for s in proof]==['CLAUSE','RULE','FACT','EVIDENCE','VERDICT']
+    assert proof[0].text.startswith('The bidder must hold')
+    assert 'ISO 27001' in proof[1].text
 
 
 def test_no_vacuous_pass_and_expiry():
@@ -41,13 +75,13 @@ def test_no_vacuous_pass_and_expiry():
 def test_family_fail_dominates_unknown_and_pass():
     op=extract_demo(DEMO/'tenders/data-platform.txt')
     assert op.families['Financial / Insurance']=='UNKNOWN'
-    op.checks[-1].status='FAIL'
+    op.checks[4].status='FAIL'
     assert decide(op,date(2026,9,15)).families['Financial / Insurance']=='FAIL'
 
 
 def test_conflicting_evidence_stays_unknown():
     op=extract_demo(DEMO/'tenders/data-platform.txt',True)
-    c=op.checks[-1]
+    c=op.checks[4]
     other=c.evidence.model_copy(update={'value':5000000})
     assert evaluate(c.requirement,[c.evidence,other],date(2026,9,15)).status=='UNKNOWN'
 
@@ -71,8 +105,12 @@ def test_api_run_inspection_evidence_export_and_sources():
         ident=response.json()['id']
         data=client.get('/api/runs/'+ident).json()
         assert data['status']=='complete'
-        assert data['discovered']==3
-        assert [o['recommendation'] for o in data['opportunities']]==['GO','CONDITIONAL GO','NO-GO']
+        assert data['discovered']==4
+        assert [o['recommendation'] for o in data['opportunities']]==['GO','CONDITIONAL GO','NO-GO','NO-GO']
+        assert data['rule_compiler_version'].startswith('compiler/')
+        assert data['engine_version'].startswith('engine/')
+        tests=client.get('/api/runs/'+ident+'/tests').json()
+        assert tests['generated']==tests['passing'] and tests['generated']>50
         updated=client.post('/api/runs/'+ident+'/evidence',json={}).json()
         assert sum(o['recommendation']=='GO' for o in updated['opportunities'])==2
         assert updated['searched_evidence']
@@ -105,3 +143,29 @@ def test_network_failure_stays_live_error(monkeypatch):
         assert data['mode']=='live'
         assert data['opportunities']==[]
         assert data['error']=='Offline test'
+
+
+def test_landscape_gaps_simulation_portfolio_endpoints():
+    runs.clear()
+    with TestClient(app) as client:
+        ident=client.post('/api/runs',json={'mode':'demo'}).json()['id']
+        client.get('/api/runs/'+ident)
+        landscape=client.get('/api/runs/'+ident+'/landscape').json()
+        assert landscape['tender']['id']=='infrastructure'
+        orgs={row['org_id']:row for row in landscape['orgs']}
+        assert orgs['helvetia-it']['cells']['R1']['status']=='PUBLICLY SUPPORTED'
+        assert orgs['alpen-technik']['cells']['R1']['status']=='PUBLIC NON-MATCH'
+        assert orgs['jura-consulting']['cells']['R1']['status']=='UNKNOWN'
+        gaps=client.get('/api/runs/'+ident+'/gaps').json()
+        assert gaps['gaps'] and gaps['gaps'][0]['published_value_chf']>0
+        before={o['id']:o['recommendation'] for o in client.get('/api/runs/'+ident).json()['opportunities']}
+        simulation=client.post('/api/runs/'+ident+'/simulate',json={'overlay':[{'field':'insurance','value':10000000,'unit':'CHF','label':'Liability insurance CHF 10M'}]}).json()
+        after={o['id']:o['recommendation'] for o in simulation['opportunities']}
+        assert before==after or simulation['affected_tenders']
+        assert simulation['pipeline_after_chf']>=simulation['pipeline_before_chf']
+        verified={o['id']:o['recommendation'] for o in client.get('/api/runs/'+ident).json()['opportunities']}
+        assert verified==before  # simulation must not mutate verified state
+        portfolio=client.post('/api/runs/'+ident+'/portfolio',json={'capacity_days':6}).json()
+        assert portfolio['used_days']<=6.001
+        assert portfolio['selected'] or portfolio['deferred']
+        assert client.post('/api/runs/'+ident+'/simulate',json={'overlay':[]}).status_code==422
