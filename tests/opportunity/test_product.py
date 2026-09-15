@@ -95,6 +95,19 @@ def test_captured_notice_never_invents_value_or_go():
     assert op.recommendation!='GO'
     assert op.effort=='NOT ESTIMATED'
     assert all(c.status=='UNKNOWN' and c.requirement.source.section.startswith('/lots/') for c in op.checks)
+    # Real criteria are compiled individually with honest statuses, never blanket-marked.
+    assert all(c.requirement.compile_status in ['VERIFIED','NEEDS_REVIEW','AMBIGUOUS','UNSUPPORTED'] for c in op.checks)
+    assert all(c.proof and c.proof[0].stage=='CLAUSE' for c in op.checks)
+
+
+def test_real_notice_criteria_compile_individually():
+    lead=next(l for l in leads(json.loads((CAPTURED/'search-software.json').read_text())) if l['id']=='a07bd668-e1c0-4d48-a829-776f14c0e2b2')
+    op=notice_opportunity(lead,json.loads((CAPTURED/(lead['id']+'.json')).read_text()),'captured/'+lead['id']+'.json','captured')
+    statuses={c.requirement.compile_status for c in op.checks}
+    assert 'NEEDS_REVIEW' in statuses and 'UNSUPPORTED' in statuses
+    precise=[c for c in op.checks if c.requirement.compile_reason and 'comparison operator' in c.requirement.compile_reason]
+    assert precise, 'the German count-without-bound clause should refuse with the precise reason'
+    assert all(c.status=='UNKNOWN' for c in op.checks)  # no verified bidder evidence for real notices
 
 
 def test_api_run_inspection_evidence_export_and_sources():
@@ -169,3 +182,16 @@ def test_landscape_gaps_simulation_portfolio_endpoints():
         assert portfolio['used_days']<=6.001
         assert portfolio['selected'] or portfolio['deferred']
         assert client.post('/api/runs/'+ident+'/simulate',json={'overlay':[]}).status_code==422
+
+
+def test_corrigendum_recompilation_diff():
+    runs.clear()
+    with TestClient(app) as client:
+        data=client.get('/api/corrigendum/demo').json()
+        assert data['changed'] and data['note'].startswith('Only impacted')
+        kinds={c['id']:c['kind'] for c in data['changes']}
+        assert kinds=={'R2':'CHANGED','R5':'ADDED'}
+        change=next(c for c in data['changes'] if c['id']=='R2')
+        assert '>= 3' in change['old'] and '>= 5' in change['new']
+        assert data['qualification']['before']['recommendation']=='GO'
+        assert data['qualification']['after']['recommendation']=='NO-GO'

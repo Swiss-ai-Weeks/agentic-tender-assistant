@@ -1,22 +1,198 @@
 {
   "label_provenance": "Developer-authored controlled compilation cases. Independent human validation pending.",
   "clauses": [
-    {"id": "refs-three-five-years", "clause": "The bidder must demonstrate at least three comparable projects completed within the previous five years.", "expected": {"status": "VERIFIED", "field": "references", "operator": ">=", "expected": 3, "window_years": 5}},
-    {"id": "refs-french", "clause": "Le soumissionnaire doit justifier d'au moins trois références comparables livrées au cours des cinq dernières années.", "expected": {"status": "VERIFIED", "field": "references", "operator": ">=", "expected": 3, "window_years": 5}},
-    {"id": "refs-no-window", "clause": "The bidder must demonstrate at least two comparable projects.", "expected": {"status": "NEEDS_REVIEW"}},
-    {"id": "insurance-10m", "clause": "The bidder must provide professional liability insurance coverage of at least CHF 10,000,000.", "expected": {"status": "VERIFIED", "field": "insurance", "operator": ">=", "expected": 10000000}},
-    {"id": "insurance-millions-word", "clause": "The bidder must maintain professional liability insurance coverage of at least CHF 25 million.", "expected": {"status": "VERIFIED", "field": "insurance", "operator": ">=", "expected": 25000000}},
-    {"id": "insurance-french", "clause": "Le soumissionnaire doit fournir une assurance responsabilité professionnelle d'un montant d'au moins 10 millions CHF.", "expected": {"status": "VERIFIED", "field": "insurance", "operator": ">=", "expected": 10000000}},
-    {"id": "insurance-no-comparison", "clause": "The bidder must provide professional liability insurance coverage of CHF 10,000,000.", "expected": {"status": "NEEDS_REVIEW"}},
-    {"id": "insurance-no-amount", "clause": "The bidder must provide professional liability insurance coverage appropriate to the contract size.", "expected": {"status": "AMBIGUOUS"}},
-    {"id": "cert-iso", "clause": "The bidder must hold a valid ISO 27001 information security certification at the submission deadline.", "expected": {"status": "VERIFIED", "field": "certifications", "operator": "contains", "expected": "ISO 27001"}},
-    {"id": "cert-unrecognised", "clause": "The bidder must hold a recognised quality management certification issued by an accredited body.", "expected": {"status": "NEEDS_REVIEW"}},
-    {"id": "revenue-5m", "clause": "The bidder must prove an annual turnover of at least CHF 5,000,000.", "expected": {"status": "VERIFIED", "field": "revenue", "operator": ">=", "expected": 5000000}},
-    {"id": "language-en", "clause": "Services must be delivered in French.", "expected": {"status": "VERIFIED", "field": "languages", "operator": "contains", "expected": "French"}},
-    {"id": "language-speaking", "clause": "The bidder must employ a German-speaking project manager for this mandate.", "expected": {"status": "VERIFIED", "field": "languages", "operator": "contains", "expected": "German"}},
-    {"id": "ambiguous-hedged", "clause": "The bidder should demonstrate substantial experience with comparable data platforms.", "expected": {"status": "AMBIGUOUS"}},
-    {"id": "ambiguous-mandatory-no-threshold", "clause": "The bidder must have substantial experience with comparable security operations.", "expected": {"status": "AMBIGUOUS"}},
-    {"id": "unsupported-administrative", "clause": "Bids must be submitted through the electronic procurement platform before the stated deadline.", "expected": {"status": "UNSUPPORTED"}},
-    {"id": "unsupported-team-experience", "clause": "The project manager must have at least five years of experience with comparable mandates.", "expected": {"status": "UNSUPPORTED"}}
+    {
+      "id": "refs-three-five-years",
+      "clause": "The bidder must demonstrate at least three comparable projects completed within the previous five years.",
+      "expected": {
+        "status": "VERIFIED",
+        "field": "references",
+        "operator": ">=",
+        "expected": 3,
+        "window_years": 5
+      }
+    },
+    {
+      "id": "refs-french",
+      "clause": "Le soumissionnaire doit justifier d'au moins trois références comparables livrées au cours des cinq dernières années.",
+      "expected": {
+        "status": "VERIFIED",
+        "field": "references",
+        "operator": ">=",
+        "expected": 3,
+        "window_years": 5
+      }
+    },
+    {
+      "id": "refs-no-window",
+      "clause": "The bidder must demonstrate at least two comparable projects.",
+      "expected": {
+        "status": "NEEDS_REVIEW"
+      }
+    },
+    {
+      "id": "insurance-10m",
+      "clause": "The bidder must provide professional liability insurance coverage of at least CHF 10,000,000.",
+      "expected": {
+        "status": "VERIFIED",
+        "field": "insurance",
+        "operator": ">=",
+        "expected": 10000000
+      }
+    },
+    {
+      "id": "insurance-millions-word",
+      "clause": "The bidder must maintain professional liability insurance coverage of at least CHF 25 million.",
+      "expected": {
+        "status": "VERIFIED",
+        "field": "insurance",
+        "operator": ">=",
+        "expected": 25000000
+      }
+    },
+    {
+      "id": "insurance-french",
+      "clause": "Le soumissionnaire doit fournir une assurance responsabilité professionnelle d'un montant d'au moins 10 millions CHF.",
+      "expected": {
+        "status": "VERIFIED",
+        "field": "insurance",
+        "operator": ">=",
+        "expected": 10000000
+      }
+    },
+    {
+      "id": "insurance-no-comparison",
+      "clause": "The bidder must provide professional liability insurance coverage of CHF 10,000,000.",
+      "expected": {
+        "status": "NEEDS_REVIEW"
+      }
+    },
+    {
+      "id": "insurance-no-amount",
+      "clause": "The bidder must provide professional liability insurance coverage appropriate to the contract size.",
+      "expected": {
+        "status": "AMBIGUOUS"
+      }
+    },
+    {
+      "id": "cert-iso",
+      "clause": "The bidder must hold a valid ISO 27001 information security certification at the submission deadline.",
+      "expected": {
+        "status": "VERIFIED",
+        "field": "certifications",
+        "operator": "contains",
+        "expected": "ISO 27001"
+      }
+    },
+    {
+      "id": "cert-unrecognised",
+      "clause": "The bidder must hold a recognised quality management certification issued by an accredited body.",
+      "expected": {
+        "status": "NEEDS_REVIEW"
+      }
+    },
+    {
+      "id": "revenue-5m",
+      "clause": "The bidder must prove an annual turnover of at least CHF 5,000,000.",
+      "expected": {
+        "status": "VERIFIED",
+        "field": "revenue",
+        "operator": ">=",
+        "expected": 5000000
+      }
+    },
+    {
+      "id": "language-en",
+      "clause": "Services must be delivered in French.",
+      "expected": {
+        "status": "VERIFIED",
+        "field": "languages",
+        "operator": "contains",
+        "expected": "French"
+      }
+    },
+    {
+      "id": "language-speaking",
+      "clause": "The bidder must employ a German-speaking project manager for this mandate.",
+      "expected": {
+        "status": "VERIFIED",
+        "field": "languages",
+        "operator": "contains",
+        "expected": "German"
+      }
+    },
+    {
+      "id": "ambiguous-hedged",
+      "clause": "The bidder should demonstrate substantial experience with comparable data platforms.",
+      "expected": {
+        "status": "AMBIGUOUS"
+      }
+    },
+    {
+      "id": "ambiguous-mandatory-no-threshold",
+      "clause": "The bidder must have substantial experience with comparable security operations.",
+      "expected": {
+        "status": "AMBIGUOUS"
+      }
+    },
+    {
+      "id": "unsupported-administrative",
+      "clause": "Bids must be submitted through the electronic procurement platform before the stated deadline.",
+      "expected": {
+        "status": "UNSUPPORTED"
+      }
+    },
+    {
+      "id": "unsupported-team-experience",
+      "clause": "The project manager must have at least five years of experience with comparable mandates.",
+      "expected": {
+        "status": "UNSUPPORTED"
+      }
+    },
+    {
+      "id": "refs-german-mindestens",
+      "clause": "Der Anbieter muss mindestens drei vergleichbare Referenzprojekte innerhalb der letzten fünf Jahre abgeschlossen haben.",
+      "expected": {
+        "status": "VERIFIED",
+        "field": "references",
+        "operator": ">=",
+        "expected": 3,
+        "window_years": 5
+      }
+    },
+    {
+      "id": "refs-german-no-bound",
+      "clause": "Der Anbieter verfügt je angebotenem Los über zwei Referenzen für vergleichbare Leistungen, wobei der Projektabschluss max. vier Jahren zurückliegt.",
+      "expected": {
+        "status": "NEEDS_REVIEW"
+      }
+    },
+    {
+      "id": "insurance-german",
+      "clause": "Die Anbieterin muss eine Berufshaftpflichtversicherung mit einer Deckung von mindestens CHF 5'000'000 nachweisen.",
+      "expected": {
+        "status": "VERIFIED",
+        "field": "insurance",
+        "operator": ">=",
+        "expected": 5000000
+      }
+    },
+    {
+      "id": "language-german-sprache",
+      "clause": "Die Mitarbeitenden verfügen über sehr gute mündliche und schriftliche Ausdrucksfähigkeit in deutscher Sprache.",
+      "expected": {
+        "status": "VERIFIED",
+        "field": "languages",
+        "operator": "contains",
+        "expected": "German"
+      }
+    },
+    {
+      "id": "experience-german-vague",
+      "clause": "Die Anbieterin verfügt über ausreichende Kapazität für eine sach- und zeitgerechte Ausführung der ausgeschriebenen Leistungen.",
+      "expected": {
+        "status": "AMBIGUOUS"
+      }
+    }
   ]
 }

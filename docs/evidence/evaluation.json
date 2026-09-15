@@ -1,12 +1,12 @@
 {
   "status": "complete",
-  "generated_at": "2026-09-14T23:43:42.091649+00:00",
+  "generated_at": "2026-09-15T07:50:54.817222+00:00",
   "label_provenance": "Developer-authored controlled cases. Independent human validation pending.",
   "cases": 30,
   "correct": 30,
   "critical_false_passes": 0,
-  "compilation_cases": 17,
-  "compilation_correct": 17,
+  "compilation_cases": 22,
+  "compilation_correct": 22,
   "compilation_error_rate": 0.0,
   "compilation_results": [
     {
@@ -108,6 +108,36 @@
     {
       "id": "unsupported-team-experience",
       "expected": "UNSUPPORTED",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "refs-german-mindestens",
+      "expected": "VERIFIED",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "refs-german-no-bound",
+      "expected": "NEEDS_REVIEW",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "insurance-german",
+      "expected": "VERIFIED",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "language-german-sprache",
+      "expected": "VERIFIED",
+      "correct": true,
+      "detail": ""
+    },
+    {
+      "id": "experience-german-vague",
+      "expected": "AMBIGUOUS",
       "correct": true,
       "detail": ""
     }

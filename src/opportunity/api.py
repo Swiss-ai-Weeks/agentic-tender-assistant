@@ -14,8 +14,8 @@ from pydantic import BaseModel
 
 from src.opportunity.compiler import VERSION as COMPILER_VERSION
 from src.opportunity.competitors import competitor_landscape
-from src.opportunity.engine import ENGINE_VERSION, DEMO, ROOT, company_profile, evaluate, evidence_catalog, extract_demo, rank
-from src.opportunity.models import Event, Run
+from src.opportunity.engine import ENGINE_VERSION, DEMO, ROOT, company_profile, decide, evaluate, evidence_catalog, extract_demo, rank
+from src.opportunity.models import Event, Opportunity, Run, Source
 from src.opportunity.simap import CAPTURED, leads, mcp_call, notice_opportunity, relevant
 from src.opportunity.sources import store_version
 from src.opportunity.strategy import capability_gaps, plan_portfolio, simulate
@@ -244,6 +244,33 @@ def generated_tests(run_id: str):
                 cases = generate_for(check.requirement, op.deadline)
                 tests += run_cases(cases, check.requirement, evaluate, as_of, op.deadline)
     return {'tests': tests, 'generated': len(tests), 'passing': sum(t['passed'] for t in tests)}
+
+
+@app.get('/api/corrigendum/demo')
+def corrigendum_demo():
+    """Controlled corrigendum walkthrough: v1 → v2 recompilation with the
+    qualification delta computed by the deterministic engine."""
+    from src.opportunity.corrigendum import demo_pair, recompile_diff
+    from src.opportunity.compiler import compile_clause
+    old_clauses, new_clauses = demo_pair()
+    source = Source(id='corrigendum-demo', document='corrigendum v1→v2', quote='Controlled corrigendum pair (synthetic).', url='/api/corrigendum/demo')
+    diff = recompile_diff(old_clauses, new_clauses, source)
+    profile = company_profile()
+    as_of = scenario_date('demo')
+    evidence = evidence_catalog(True)
+
+    def qualify(clauses: dict[str, str]):
+        rules = [compile_clause(text, source, ident) for ident, text in clauses.items()]
+        checks = [evaluate(r.to_requirement(), evidence, as_of, '2026-10-02') for r in rules]
+        op = Opportunity(id='corrigendum', title='Corrigendum walkthrough', buyer='Synthetic', location='',
+                         deadline='2026-10-02', summary='', source=source, mode='demo',
+                         complete_documents=True, checks=checks)
+        return decide(op, as_of)
+
+    before, after = qualify(old_clauses), qualify(new_clauses)
+    return {**diff,
+            'qualification': {'before': {'verified': f'{before.verified}/{before.total}', 'recommendation': before.recommendation},
+                              'after': {'verified': f'{after.verified}/{after.total}', 'recommendation': after.recommendation}}}
 
 
 @app.get('/api/evaluation')

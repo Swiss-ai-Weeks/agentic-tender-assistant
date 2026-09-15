@@ -6,8 +6,9 @@ from pathlib import Path
 import re
 import subprocess
 
+from src.opportunity.compiler import compile_clause
 from src.opportunity.engine import ROOT, decide, company_profile
-from src.opportunity.models import Check, Opportunity, Requirement, Source
+from src.opportunity.models import Check, Opportunity, ProofStep, Requirement, Source
 
 CAPTURED = ROOT / 'data' / 'captured'
 
@@ -90,7 +91,7 @@ def notice_opportunity(lead, payload, source_id, mode='live'):
                     ('references', ['referenz', 'erfahrung', 'référence']),
                     ('capacity', ['kapazität', 'capacité']), ('legal', ['rechtspers', 'juristi']),
                     ('languages', ['sprache', 'langue']), ('insurance', ['versicherung', 'assurance']),
-                    ('team', ['personal', 'personnel'])]
+                    ('team', ['personal', 'personnel', 'mitarbeitend'])]
     # Preserve lot scope rather than merging different lots into one invented rule.
     groups = [('/criteria', raw.get('criteria') or {})]
     groups += [(f'/lots/{i}', lot) for i, lot in enumerate(raw.get('lots') or [])]
@@ -99,13 +100,34 @@ def notice_opportunity(lead, payload, source_id, mode='live'):
             text = plain(criterion.get('title')) + ': ' + plain(criterion.get('description'))
             family = next((f for f, words in family_terms if any(w in text.casefold() for w in words)), 'technical')
             label = (f"Lot {group['lotNumber']} · " if 'lotNumber' in group else '') + text
-            req = Requirement(id=criterion.get('id') or f'{path}-{i}', label=label,
-                              field=family, operator='review', expected='Verified supporting evidence',
-                              raw_clause=text, compile_status='UNSUPPORTED',
-                              compile_reason='Published notice criterion only; compilation requires the full specification documents.',
-                              source=source(f'{path}/qualificationCriteria/{i}', criterion))
-            checks.append(Check(requirement=req, status='UNKNOWN', reason='Published criterion extracted verbatim. Company evidence and interpretation require validation.',
-                                action='Review the cited criterion and provide its requested evidence: ' + (plain(criterion.get('verification')) or 'confirm with the tender documents.')))
+            ident = criterion.get('id') or f'{path}-{i}'
+            criterion_source = source(f'{path}/qualificationCriteria/{i}', criterion)
+            rule = compile_clause(text, criterion_source, ident)
+            if rule.status == 'VERIFIED' and rule.mandatory:
+                # Executable rule from a real notice: still UNKNOWN until verified
+                # bidder evidence exists — fictional demo evidence never applies here.
+                req = rule.to_requirement()
+                req.label = label[:120]
+                checks.append(Check(requirement=req, status='UNKNOWN',
+                                    reason=f'Compiled executable rule ({rule.label}); awaiting verified bidder evidence for this real notice.',
+                                    action='Provide verified company evidence for this compiled requirement.',
+                                    proof=[ProofStep(stage='CLAUSE', text=text, ref=criterion_source.url),
+                                           ProofStep(stage='RULE', text=f'{req.id}: {rule.label} · compiled VERIFIED'),
+                                           ProofStep(stage='FACT', text='No verified bidder fact configured for real notices.'),
+                                           ProofStep(stage='VERDICT', text='UNKNOWN — compiled rule awaits verified evidence.')]))
+            else:
+                # Published criteria stay conservative: review-gated with the compiler's honest status.
+                req = Requirement(id=ident, label=label, field=family, operator='review',
+                                  expected='Verified supporting evidence', raw_clause=text,
+                                  compile_status=rule.status,
+                                  compile_reason=rule.reason or 'Published criterion extracted verbatim; interpretation requires the full specification.',
+                                  source=criterion_source)
+                checks.append(Check(requirement=req, status='UNKNOWN',
+                                    reason='Published criterion not compiled into an executable rule; interpretation and evidence require validation.',
+                                    action='Review the cited criterion and provide its requested evidence: ' + (plain(criterion.get('verification')) or 'confirm with the tender documents.'),
+                                    proof=[ProofStep(stage='CLAUSE', text=text, ref=criterion_source.url),
+                                           ProofStep(stage='RULE', text=f'{req.id}: not executable · {rule.status} — {rule.reason or "no compilable structure"}'),
+                                           ProofStep(stage='VERDICT', text='UNKNOWN — human interpretation required.')]))
     url = lead.get('url') or ''
     op = Opportunity(id=lead['id'], title=title, buyer=buyer,
                      location=plain(address.get('city')) or lead['location'],
