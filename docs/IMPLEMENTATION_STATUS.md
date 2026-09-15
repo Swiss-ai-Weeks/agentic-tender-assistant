@@ -70,7 +70,40 @@ bounded requests, UI builds, all 7 containers / GPU allocations / ports intact.
    describe the implemented optional proposer (not "pending"); run ports fixed
    to 8090 with a never-8000 note.
 
-## Re-verification (this session, 2026-09-15 ~13:30 UTC)
+## Live service reload + captured-notice verification (2026-09-16, authorized)
+
+- **:8090 reloaded with user authorization**: stale uvicorn (PID 881229,
+  pre-fix code) stopped gracefully with SIGTERM; port confirmed free; new
+  service started detached (`.venv/bin/python -m uvicorn
+  src.opportunity.api:app --host 0.0.0.0 --port 8090`, log
+  `.runtime/api-8090.log`, gitignored). `GET /api/system` → 200 with the
+  truthful status: model DISABLED by default, no 340B/GPU/sovereignty claims.
+  (One stillborn duplicate process logged a bind error and exited; exactly
+  one server serves :8090. No other process/container/GPU touched.)
+- **Captured SIMAP ingestion** (`data/raw/simap/` → `data/imported/`, 5
+  packs): notice markdown materialized per tender version, imported via
+  `scripts/import_tender_documents.py` (`--tender-id/--tender-version/
+  --source-uri`, no `--complete-set-reviewed` — correctly
+  `complete_documents=False` everywhere). 98 clauses: **91 UNSUPPORTED, 7
+  NEEDS_REVIEW, 0 VERIFIED** — the honest yield of thin notice-level text
+  (headings/metadata, few enforceable constraints), not a failure.
+- **Real amendment**: `a07bd668` v1→v2 differs in exactly one clause (C0026:
+  a TED-publication link was added, `ted.status=published`). Both versions
+  compile to identical rule payloads, so `recompile_diff` correctly reports
+  `changed: false` — the amendment moved no enforceable requirement, and v1
+  remains stored/auditable.
+- **Qualification on captures**: all 7 NEEDS_REVIEW rules evaluated with zero
+  bidder evidence → **7× UNKNOWN**, zero fabricated PASS/FAIL.
+- **Live proposer on captured clauses** (`TENDER_LLM_ENABLED=1`,
+  `http://127.0.0.1:18000/v1`, `h100-lab-nemotron-4b-fp8`, bounded,
+  read-only): German no-amount insurance clause → model proposed a
+  string-valued `insurance` candidate → shape allowlist rejected
+  (non-numeric expected) → deterministic NEEDS_REVIEW stood, no amount
+  invented. English references clause → model returned a non-JSON object →
+  rejected → deterministic path compiled VERIFIED on its own. Guards and
+  allowlist held on real hardware; every model event recorded truthfully.
+
+## Re-verification (prior session, 2026-09-15 ~13:30 UTC)
 
 - Full suite `TENDER_DB_PATH=/tmp/tender-forensic.db .venv/bin/python -m
   pytest tests/` → **122 passed**, 2 pre-existing warnings. Real-DB isolation
@@ -143,14 +176,14 @@ bounded requests, UI builds, all 7 containers / GPU allocations / ports intact.
 
 ## Remaining work and genuine blockers
 
-- **Deployed :8090 service is stale**: it was started before this session and
-  still serves the old `/api/system` (340B/two-GPU strings) from pre-fix code.
-  It needs an **explicitly authorized restart** to pick up the truthful status
-  plus `documents`/`bidder` modules. Not restarted (forbidden without approval).
-- **No real tender annexes imported**: `data/raw/simap/` holds captured
-  notice-level payloads only; full-document PDF packs and a real bidder
-  evidence folder were never supplied. End-to-end on real documents is
-  implemented and fixture-proven but **not executed against real data**.
+- **Deployed :8090 service reloaded 2026-09-16** (authorized): now serves
+  the truthful `/api/system` from current code. Restarts remain
+  authorization-gated going forward.
+- **Captured notices ingested, full annexes still missing**: `data/raw/simap/`
+  holds notice-level payloads only (now imported to `data/imported/`, see
+  above); full-document PDF packs and a real bidder evidence folder were
+  never supplied. End-to-end on real documents is implemented and
+  capture-proven but **not executed against real annexes or real evidence**.
 - **No live SIMAP discovery run**: `mcp_call`/Tavily paths untouched (network
   fetch out of scope for this session); captured notices only.
 - **Independent human validation pending**: all 122 tests use

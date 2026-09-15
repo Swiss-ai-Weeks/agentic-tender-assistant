@@ -1,0 +1,367 @@
+{
+  "tender_id": "b1bd13b4",
+  "tender_version": 1,
+  "source_uri": "https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2",
+  "complete_documents": false,
+  "reviewed_by": null,
+  "files": [
+    {
+      "name": "notice-1.md",
+      "sha256": "a5ab9fceb88ac1eab1329c8ca85f82bfe76ffb374f085ae1dc3151e29f4e5c87",
+      "size_bytes": 27982,
+      "status": "EXTRACTED",
+      "reason": "",
+      "page_count": null,
+      "char_count": 27821,
+      "clause_ids": [
+        "b1bd13b4-C0001",
+        "b1bd13b4-C0002",
+        "b1bd13b4-C0003",
+        "b1bd13b4-C0004",
+        "b1bd13b4-C0005",
+        "b1bd13b4-C0006",
+        "b1bd13b4-C0007",
+        "b1bd13b4-C0008",
+        "b1bd13b4-C0009",
+        "b1bd13b4-C0010",
+        "b1bd13b4-C0011",
+        "b1bd13b4-C0012",
+        "b1bd13b4-C0013",
+        "b1bd13b4-C0014",
+        "b1bd13b4-C0015",
+        "b1bd13b4-C0016",
+        "b1bd13b4-C0017"
+      ]
+    }
+  ],
+  "clauses": [
+    {
+      "id": "b1bd13b4-C0001",
+      "text": "# Tender Details",
+      "source": {
+        "id": "b1bd13b4/v1/notice-1.md#txtl1-0",
+        "document": "notice-1.md",
+        "quote": "# Tender Details",
+        "line": 1,
+        "page": null,
+        "section": null,
+        "url": "https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2#txtl1-0",
+        "trust": "VERIFIED_INTERNAL",
+        "retrieved_at": "2026-09-15",
+        "sha256": "a5ab9fceb88ac1eab1329c8ca85f82bfe76ffb374f085ae1dc3151e29f4e5c87"
+      },
+      "document": "notice-1.md",
+      "page": null,
+      "line": 1
+    },
+    {
+      "id": "b1bd13b4-C0002",
+      "text": "## General Information",
+      "source": {
+        "id": "b1bd13b4/v1/notice-1.md#txtl3-1",
+        "document": "notice-1.md",
+        "quote": "## General Information",
+        "line": 3,
+        "page": null,
+        "section": null,
+        "url": "https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2#txtl3-1",
+        "trust": "VERIFIED_INTERNAL",
+        "retrieved_at": "2026-09-15",
+        "sha256": "a5ab9fceb88ac1eab1329c8ca85f82bfe76ffb374f085ae1dc3151e29f4e5c87"
+      },
+      "document": "notice-1.md",
+      "page": null,
+      "line": 3
+    },
+    {
+      "id": "b1bd13b4-C0003",
+      "text": "- **simap Link:** https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2\n- **Project Number:** 43916\n- **Title:** \n- **Type:** supply\n- **Process:** open",
+      "source": {
+        "id": "b1bd13b4/v1/notice-1.md#txtl5-2",
+        "document": "notice-1.md",
+        "quote": "- **simap Link:** https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2\n- **Project Number:** 43916\n- **Title:** \n- **Type:** supply\n- **Process:** open",
+        "line": 5,
+        "page": null,
+        "section": null,
+        "url": "https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2#txtl5-2",
+        "trust": "VERIFIED_INTERNAL",
+        "retrieved_at": "2026-09-15",
+        "sha256": "a5ab9fceb88ac1eab1329c8ca85f82bfe76ffb374f085ae1dc3151e29f4e5c87"
+      },
+      "document": "notice-1.md",
+      "page": null,
+      "line": 5
+    },
+    {
+      "id": "b1bd13b4-C0004",
+      "text": "### Lots (2)",
+      "source": {
+        "id": "b1bd13b4/v1/notice-1.md#txtl11-3",
+        "document": "notice-1.md",
+        "quote": "### Lots (2)",
+        "line": 11,
+        "page": null,
+        "section": null,
+        "url": "https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2#txtl11-3",
+        "trust": "VERIFIED_INTERNAL",
+        "retrieved_at": "2026-09-15",
+        "sha256": "a5ab9fceb88ac1eab1329c8ca85f82bfe76ffb374f085ae1dc3151e29f4e5c87"
+      },
+      "document": "notice-1.md",
+      "page": null,
+      "line": 11
+    },
+    {
+      "id": "b1bd13b4-C0005",
+      "text": "#### Lot 1: \n- Publication: 43916-01 (undefined)",
+      "source": {
+        "id": "b1bd13b4/v1/notice-1.md#txtl13-4",
+        "document": "notice-1.md",
+        "quote": "#### Lot 1: \n- Publication: 43916-01 (undefined)",
+        "line": 13,
+        "page": null,
+        "section": null,
+        "url": "https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2#txtl13-4",
+        "trust": "VERIFIED_INTERNAL",
+        "retrieved_at": "2026-09-15",
+        "sha256": "a5ab9fceb88ac1eab1329c8ca85f82bfe76ffb374f085ae1dc3151e29f4e5c87"
+      },
+      "document": "notice-1.md",
+      "page": null,
+      "line": 13
+    },
+    {
+      "id": "b1bd13b4-C0006",
+      "text": "#### Lot 2: \n- Publication: 43916-01 (undefined)",
+      "source": {
+        "id": "b1bd13b4/v1/notice-1.md#txtl16-5",
+        "document": "notice-1.md",
+        "quote": "#### Lot 2: \n- Publication: 43916-01 (undefined)",
+        "line": 16,
+        "page": null,
+        "section": null,
+        "url": "https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2#txtl16-5",
+        "trust": "VERIFIED_INTERNAL",
+        "retrieved_at": "2026-09-15",
+        "sha256": "a5ab9fceb88ac1eab1329c8ca85f82bfe76ffb374f085ae1dc3151e29f4e5c87"
+      },
+      "document": "notice-1.md",
+      "page": null,
+      "line": 16
+    },
+    {
+      "id": "b1bd13b4-C0007",
+      "text": "## Publication Details",
+      "source": {
+        "id": "b1bd13b4/v1/notice-1.md#txtl19-6",
+        "document": "notice-1.md",
+        "quote": "## Publication Details",
+        "line": 19,
+        "page": null,
+        "section": null,
+        "url": "https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2#txtl19-6",
+        "trust": "VERIFIED_INTERNAL",
+        "retrieved_at": "2026-09-15",
+        "sha256": "a5ab9fceb88ac1eab1329c8ca85f82bfe76ffb374f085ae1dc3151e29f4e5c87"
+      },
+      "document": "notice-1.md",
+      "page": null,
+      "line": 19
+    },
+    {
+      "id": "b1bd13b4-C0008",
+      "text": "- **Title:** Atlassian Cloud 2026\n- **Publication Number:** 43916-01\n- **Project Number:** 43916\n- **Publication Date:** 2026-09-11\n- **Type:** tender · open · supply\n- **Has Project Documents:** no",
+      "source": {
+        "id": "b1bd13b4/v1/notice-1.md#txtl21-7",
+        "document": "notice-1.md",
+        "quote": "- **Title:** Atlassian Cloud 2026\n- **Publication Number:** 43916-01\n- **Project Number:** 43916\n- **Publication Date:** 2026-09-11\n- **Type:** tender · open · supply\n- **Has Project Documents:** no",
+        "line": 21,
+        "page": null,
+        "section": null,
+        "url": "https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2#txtl21-7",
+        "trust": "VERIFIED_INTERNAL",
+        "retrieved_at": "2026-09-15",
+        "sha256": "a5ab9fceb88ac1eab1329c8ca85f82bfe76ffb374f085ae1dc3151e29f4e5c87"
+      },
+      "document": "notice-1.md",
+      "page": null,
+      "line": 21
+    },
+    {
+      "id": "b1bd13b4-C0009",
+      "text": "### CPV\n- **48000000** — Software package and information systems",
+      "source": {
+        "id": "b1bd13b4/v1/notice-1.md#txtl28-8",
+        "document": "notice-1.md",
+        "quote": "### CPV\n- **48000000** — Software package and information systems",
+        "line": 28,
+        "page": null,
+        "section": null,
+        "url": "https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2#txtl28-8",
+        "trust": "VERIFIED_INTERNAL",
+        "retrieved_at": "2026-09-15",
+        "sha256": "a5ab9fceb88ac1eab1329c8ca85f82bfe76ffb374f085ae1dc3151e29f4e5c87"
+      },
+      "document": "notice-1.md",
+      "page": null,
+      "line": 28
+    },
+    {
+      "id": "b1bd13b4-C0010",
+      "text": "### Deadlines\n- **Submission Deadline:** 2026-10-21T12:00:00+02:00\n- **Offer Opening:** 2026-10-22T00:00:00+02:00\n- **Offer Validity:** 365 days",
+      "source": {
+        "id": "b1bd13b4/v1/notice-1.md#txtl31-9",
+        "document": "notice-1.md",
+        "quote": "### Deadlines\n- **Submission Deadline:** 2026-10-21T12:00:00+02:00\n- **Offer Opening:** 2026-10-22T00:00:00+02:00\n- **Offer Validity:** 365 days",
+        "line": 31,
+        "page": null,
+        "section": null,
+        "url": "https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2#txtl31-9",
+        "trust": "VERIFIED_INTERNAL",
+        "retrieved_at": "2026-09-15",
+        "sha256": "a5ab9fceb88ac1eab1329c8ca85f82bfe76ffb374f085ae1dc3151e29f4e5c87"
+      },
+      "document": "notice-1.md",
+      "page": null,
+      "line": 31
+    },
+    {
+      "id": "b1bd13b4-C0011",
+      "text": "**Q&A Rounds:**\n- Rückfragen müssen mittels E-Mail auf dem vorgegebenen Formular «T3-01 Fragen zur Ausschreibung», innerhalb der in «T1-01 Allgemeiner Teil» genannten Frist und zuhanden oiz-ausschreibungen@zuerich.ch eingehen.",
+      "source": {
+        "id": "b1bd13b4/v1/notice-1.md#txtl36-10",
+        "document": "notice-1.md",
+        "quote": "**Q&A Rounds:**\n- Rückfragen müssen mittels E-Mail auf dem vorgegebenen Formular «T3-01 Fragen zur Ausschreibung», innerhalb der in «T1-01 Allgemeiner Teil» genannten Frist und zuhanden oiz-ausschreibungen@zuerich.ch eingehen.",
+        "line": 36,
+        "page": null,
+        "section": null,
+        "url": "https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2#txtl36-10",
+        "trust": "VERIFIED_INTERNAL",
+        "retrieved_at": "2026-09-15",
+        "sha256": "a5ab9fceb88ac1eab1329c8ca85f82bfe76ffb374f085ae1dc3151e29f4e5c87"
+      },
+      "document": "notice-1.md",
+      "page": null,
+      "line": 36
+    },
+    {
+      "id": "b1bd13b4-C0012",
+      "text": "Zu spät eingereichte Fragen, oder Fragen, die nicht mit dem vorgegebenen Formular eingereicht werden, können nicht berücksichtigt werden.",
+      "source": {
+        "id": "b1bd13b4/v1/notice-1.md#txtl39-11",
+        "document": "notice-1.md",
+        "quote": "Zu spät eingereichte Fragen, oder Fragen, die nicht mit dem vorgegebenen Formular eingereicht werden, können nicht berücksichtigt werden.",
+        "line": 39,
+        "page": null,
+        "section": null,
+        "url": "https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2#txtl39-11",
+        "trust": "VERIFIED_INTERNAL",
+        "retrieved_at": "2026-09-15",
+        "sha256": "a5ab9fceb88ac1eab1329c8ca85f82bfe76ffb374f085ae1dc3151e29f4e5c87"
+      },
+      "document": "notice-1.md",
+      "page": null,
+      "line": 39
+    },
+    {
+      "id": "b1bd13b4-C0013",
+      "text": "Alle konsolidierten Fragen und anonymisierten Antworten werden als Teil der Ausschreibungsdokumentation im DecisionAdvisor allen Interessentinnen zur Verfügung gestellt.",
+      "source": {
+        "id": "b1bd13b4/v1/notice-1.md#txtl41-12",
+        "document": "notice-1.md",
+        "quote": "Alle konsolidierten Fragen und anonymisierten Antworten werden als Teil der Ausschreibungsdokumentation im DecisionAdvisor allen Interessentinnen zur Verfügung gestellt.",
+        "line": 41,
+        "page": null,
+        "section": null,
+        "url": "https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2#txtl41-12",
+        "trust": "VERIFIED_INTERNAL",
+        "retrieved_at": "2026-09-15",
+        "sha256": "a5ab9fceb88ac1eab1329c8ca85f82bfe76ffb374f085ae1dc3151e29f4e5c87"
+      },
+      "document": "notice-1.md",
+      "page": null,
+      "line": 41
+    },
+    {
+      "id": "b1bd13b4-C0014",
+      "text": "### Conditions\n- **Consortium allowed:** no\n- **Subcontracting allowed:** yes\n- **Terms type:** in_documents\n- **Remedies notice:** Gegen diese Verfügung kann innert 20 Tagen seit deren Eröffnung durch Publikation beim Verwaltungsgericht des Kantons Zürich, Freischützgasse 1, Postfach, 8090 Zürich, schriftlich Beschwerde eingereicht werden. Die Beschwerdeschrift ist im Doppel einzureichen, sie muss einen Antrag und dessen Begründung enthalten. Die angefochtene Verfügung ist beizulegen. Die angerufenen Beweismittel sind genau zu bezeichnen und soweit möglich beizulegen.",
+      "source": {
+        "id": "b1bd13b4/v1/notice-1.md#txtl43-13",
+        "document": "notice-1.md",
+        "quote": "### Conditions\n- **Consortium allowed:** no\n- **Subcontracting allowed:** yes\n- **Terms type:** in_documents\n- **Remedies notice:** Gegen diese Verfügung kann innert 20 Tagen seit deren Eröffnung durch Publikation beim Verwaltungsgericht des Kantons Zürich, Freischützgasse 1, Postfach, 8090 Zürich, schriftlich Beschwerde eingereicht werden. Die Beschwerdeschrift ist im Doppel einzureichen, sie muss einen Antrag und dessen Begründung enthalten. Die angefochtene Verfügung ist beizulegen. Die angerufenen Beweismittel sind genau zu bezeichnen und soweit möglich beizulegen.",
+        "line": 43,
+        "page": null,
+        "section": null,
+        "url": "https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2#txtl43-13",
+        "trust": "VERIFIED_INTERNAL",
+        "retrieved_at": "2026-09-15",
+        "sha256": "a5ab9fceb88ac1eab1329c8ca85f82bfe76ffb374f085ae1dc3151e29f4e5c87"
+      },
+      "document": "notice-1.md",
+      "page": null,
+      "line": 43
+    },
+    {
+      "id": "b1bd13b4-C0015",
+      "text": "### Publishers\n- simap.ch (c92c5781-c89a-4f93-94b1-f2061c35e556)",
+      "source": {
+        "id": "b1bd13b4/v1/notice-1.md#txtl49-14",
+        "document": "notice-1.md",
+        "quote": "### Publishers\n- simap.ch (c92c5781-c89a-4f93-94b1-f2061c35e556)",
+        "line": 49,
+        "page": null,
+        "section": null,
+        "url": "https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2#txtl49-14",
+        "trust": "VERIFIED_INTERNAL",
+        "retrieved_at": "2026-09-15",
+        "sha256": "a5ab9fceb88ac1eab1329c8ca85f82bfe76ffb374f085ae1dc3151e29f4e5c87"
+      },
+      "document": "notice-1.md",
+      "page": null,
+      "line": 49
+    },
+    {
+      "id": "b1bd13b4-C0016",
+      "text": "### Full Raw Response",
+      "source": {
+        "id": "b1bd13b4/v1/notice-1.md#txtl53-15",
+        "document": "notice-1.md",
+        "quote": "### Full Raw Response",
+        "line": 53,
+        "page": null,
+        "section": null,
+        "url": "https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2#txtl53-15",
+        "trust": "VERIFIED_INTERNAL",
+        "retrieved_at": "2026-09-15",
+        "sha256": "a5ab9fceb88ac1eab1329c8ca85f82bfe76ffb374f085ae1dc3151e29f4e5c87"
+      },
+      "document": "notice-1.md",
+      "page": null,
+      "line": 53
+    },
+    {
+      "id": "b1bd13b4-C0017",
+      "text": "```json\n{\n  \"id\": \"e37b5c78-8d7e-4279-8163-036e4a82d5b4\",\n  \"type\": \"tender\",\n  \"projectType\": \"tender\",\n  \"hasProjectDocuments\": false,\n  \"base\": {\n    \"id\": \"e37b5c78-8d7e-4279-8163-036e4a82d5b4\",\n    \"type\": \"tender\",\n    \"projectType\": \"tender\",\n    \"projectId\": \"b1bd13b4-ec34-4786-814e-1680a39e03c2\",\n    \"projectNumber\": \"43916\",\n    \"publicationNumber\": \"43916-01\",\n    \"publicationDate\": \"2026-09-11\",\n    \"title\": {\n      \"de\": \"Atlassian Cloud 2026\",\n      \"fr\": \"Atlassian Cloud 2026\",\n      \"it\": null,\n      \"en\": null\n    },\n    \"processType\": \"open\",\n    \"orderType\": \"supply\",\n    \"lotsType\": \"with\",\n    \"cpvCode\": {\n      \"code\": \"48000000\",\n      \"label\": {\n        \"de\": \"Softwarepaket und Informationssysteme\",\n        \"fr\": \"Logiciels et systèmes d'information\",\n        \"it\": \"Pacchetti software e sistemi di informazione\",\n        \"en\": \"Software package and information systems\"\n      }\n    },\n    \"procOfficeId\": \"4e21bf79-3447-43ec-a4bd-805e8d333f90\",\n    \"creationLanguage\": \"de\",\n    \"corrected\": false,\n    \"lots\": [\n      {\n        \"id\": \"8ac83c38-b86d-448c-8164-344c004785b4\",\n        \"lotNumber\": 1,\n        \"title\": {\n          \"de\": \"Lieferung von Atlassian Subscriptions und Plugins\",\n          \"en\": null,\n          \"fr\": null,\n          \"it\": null\n        },\n        \"projectSubType\": \"supply\"\n      },\n      {\n        \"id\": \"7bf3e0e0-7140-4b45-b635-c3ac7af60083\",\n        \"lotNumber\": 2,\n        \"title\": {\n          \"de\": \"Dienstleistungen Migration, Betrieb und Support\",\n          \"en\": null,\n          \"fr\": null,\n          \"it\": null\n        },\n        \"projectSubType\": \"service\"\n      }\n    ],\n    \"publicationTed\": true,\n    \"stateContractArea\": true,\n    \"translationLanguages\": [\n      {\n        \"language\": \"fr\",\n        \"type\": \"summary\"\n      }\n    ],\n    \"publishers\": [\n      \"c92c5781-c89a-4f93-94b1-f2061c35e556\"\n    ],\n    \"participantLotsLimitation\": null,\n    \"participantLotsLimitationNote\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"correctedPubId\": null,\n    \"initialPublicationDate\": null,\n    \"referencingPubId\": null,\n    \"cpcCode\": null\n  },\n  \"project-info\": {\n    \"title\": {\n      \"de\": \"Atlassian Cloud 2026\",\n      \"fr\": \"Atlassian Cloud 2026\",\n      \"it\": null,\n      \"en\": null\n    },\n    \"processType\": \"open\",\n    \"orderType\": \"supply\",\n    \"stateContractArea\": true,\n    \"dialog\": \"no\",\n    \"documentsWithCosts\": \"no\",\n    \"publicationTed\": true,\n    \"procOfficeAddress\": {\n      \"postalCode\": \"8047\",\n      \"countryId\": \"CH\",\n      \"cantonId\": \"ZH\",\n      \"id\": \"eceed01d-8dd5-49f1-9502-bb9dc677765a\",\n      \"name\": {\n        \"de\": \"Stadt Zürich, Organisation und Informatik (OIZ)\",\n        \"en\": null,\n        \"fr\": \"Stadt Zürich, Organisation und Informatik (OIZ)\",\n        \"it\": null\n      },\n      \"contactPerson\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"phone\": \"+41444129111\",\n      \"email\": \"oiz-ausschreibungen@zuerich.ch\",\n      \"url\": {\n        \"de\": \"https://www.stadt-zuerich.ch/de/politik-und-verwaltung/stadtverwaltung/fd/oiz.html\",\n        \"en\": null,\n        \"fr\": \"https://www.stadt-zuerich.ch/de/politik-und-verwaltung/stadtverwaltung/fd/oiz.html\",\n        \"it\": null\n      },\n      \"reference\": null,\n      \"street\": {\n        \"de\": \"Albisriederstrasse 201\",\n        \"en\": null,\n        \"fr\": \"Albisriederstrasse 201\",\n        \"it\": null\n      },\n      \"city\": {\n        \"de\": \"Zürich \",\n        \"en\": null,\n        \"fr\": \"Zürich \",\n        \"it\": null\n      }\n    },\n    \"procurementRecipientAddress\": {\n      \"postalCode\": \"8047\",\n      \"countryId\": \"CH\",\n      \"cantonId\": \"ZH\",\n      \"id\": \"8e36002a-a3bc-46a7-8cb7-3c2ae69cfb80\",\n      \"name\": {\n        \"de\": \"Stadt Zürich, Organisation und Informatik (OIZ)\",\n        \"en\": null,\n        \"fr\": \"Stadt Zürich, Organisation und Informatik (OIZ)\",\n        \"it\": null\n      },\n      \"contactPerson\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"phone\": \"+41444129111\",\n      \"email\": \"oiz-ausschreibungen@zuerich.ch\",\n      \"url\": {\n        \"de\": \"https://www.stadt-zuerich.ch/de/politik-und-verwaltung/stadtverwaltung/fd/oiz.html\",\n        \"en\": null,\n        \"fr\": \"https://www.stadt-zuerich.ch/de/politik-und-verwaltung/stadtverwaltung/fd/oiz.html\",\n        \"it\": null\n      },\n      \"reference\": null,\n      \"street\": {\n        \"de\": \"Albisriederstrasse 201\",\n        \"en\": null,\n        \"fr\": \"Albisriederstrasse 201\",\n        \"it\": null\n      },\n      \"city\": {\n        \"de\": \"Zürich \",\n        \"en\": null,\n        \"fr\": \"Zürich \",\n        \"it\": null\n      }\n    },\n    \"documentsLanguages\": [\n      \"de\"\n    ],\n    \"documentsSourceType\": \"documents_source_url\",\n    \"offerLanguages\": [\n      \"de\"\n    ],\n    \"offerTypes\": [\n      \"offer_digital_external_platform\"\n    ],\n    \"publicationLanguages\": [\n      \"de\"\n    ],\n    \"participantLotsLimitation\": null,\n    \"participantLotsLimitationNote\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"dialogNote\": null,\n    \"documentsCosts\": {\n      \"currency\": null,\n      \"price\": null\n    },\n    \"documentsCostsNote\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"documentsLanguagesNote\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"documentsSourceEmail\": null,\n    \"documentsSourceUrl\": \"https://oiz.decisionadvisor.ch/login?code=58BeAYY5xovNuHKaFBRew/k6EVGILljmzToJqdyxiuc%3D\",\n    \"documentsSourceNote\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"offerSpecificNote\": {\n      \"de\": \"<p>Das Angebot ist in deutscher Sprache und ausschliesslich im Online-Tool «DecisionAdvisor» einzureichen. Weitere Informationen der einzureichenden Unterlagen sind der Ausschreibungsdokumentation zu entnehmen.</p><p><br></p><p>Das nach Abschluss des Angebotes vom «DecisionAdvisor» automatisch erstellte Formular «Report Angebot» (vgl. «Anleitung Angebot einreichen» im «DecisionAdvisor») ist durch eine zeichnungsberechtigte Person mittels qualifizierter elektronischer Unterschrift (QES), Unterschrift gemäss europäischem Standard eIDAS oder einer gleichwertigen Signatur zu unterzeichnen und im «DecisionAdvisor» hochzuladen. Beachten Sie, dass die Möglichkeit zum Upload des Reports nur bis zum Zeitpunkt «Frist für Eingabe der Angebote» besteht.</p>\",\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"offerDigitalExternalPlatformUrl\": {\n      \"de\": \"https://oiz.decisionadvisor.ch/login?code=58BeAYY5xovNuHKaFBRew/k6EVGILljmzToJqdyxiuc%3D\",\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"documentsSourceAddress\": null,\n    \"offerAddress\": null,\n    \"publicationLanguagesComment\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    }\n  },\n  \"procurement\": {\n    \"orderDescription\": {\n      \"de\": \"<p>Mit Los 1 der vorliegenden Ausschreibung soll die Lieferantin bestimmt werden, die für die Vertragsdauer die Stadt Zürich mit Software-Subscriptions für die Atlassian Software-Produkte und dazugehörigen Plugins beliefert.</p><p><br></p><p>Mit Los 2 der vorliegenden Ausschreibung soll die Dienstleisterin bestimmt werden, die Migrationen der On-Premises Instanzen in die Cloud plant, begleitet und unterstützt oder vollständig durchführt. Zusätzlich erbringt sie weitere Dienstleistungen im Zusammenhang mit dem Betrieb und Support der Atlassian-Instanzen.</p>\",\n      \"fr\": \"<p>Le lot 1 du présent appel d'offres, vise à sélectionner le fournisseur qui, pour la durée du contrat, fournira à la Ville de Zurich des abonnements logiciels pour les produits Atlassian et les plugins y afférents.</p><p><br></p><p>Le lot 2 du présent appel d'offres, vise à sélectionner le fournisseur qui planifiera, accompagnera et soutiendra les migrations des instances on-premises vers le cloud, ou qui les réalise intégralement. Il fournira en outre d’autres prestations liées au fonctionnement et au support des instances Atlassian.</p>\",\n      \"it\": null,\n      \"en\": null\n    },\n    \"cpvCode\": {\n      \"code\": \"48000000\",\n      \"label\": {\n        \"de\": \"Softwarepaket und Informationssysteme\",\n        \"fr\": \"Logiciels et systèmes d'information\",\n        \"it\": \"Pacchetti software e sistemi di informazione\",\n        \"en\": \"Software package and information systems\"\n      }\n    },\n    \"processType\": \"open\",\n    \"orderType\": \"supply\",\n    \"additionalCpvCodes\": null,\n    \"supplyType\": null,\n    \"orderAddressOnlyDescription\": null,\n    \"orderAddressDescription\": null,\n    \"executionDeadlineType\": null,\n    \"executionPeriod\": null,\n    \"executionDays\": null,\n    \"executionNote\": null,\n    \"variants\": null,\n    \"variantsNote\": null,\n    \"partialOffers\": null,\n    \"partialOffersNote\": null,\n    \"orderAddress\": null,\n    \"contractDeadlineType\": null,\n    \"contractPeriod\": null,\n    \"contractDays\": null,\n    \"canContractBeExtended\": null,\n    \"canContractBeExtendedNote\": null,\n    \"options\": null,\n    \"optionsNote\": null\n  },\n  \"dates\": {\n    \"publicationDate\": \"2026-09-11\",\n    \"offerDeadline\": \"2026-10-21T12:00:00+02:00\",\n    \"offerOpening\": {\n      \"dateTime\": \"2026-10-22T00:00:00+02:00\",\n      \"ignoreTime\": true\n    },\n    \"offerValidityDeadlineDays\": 365,\n    \"offerValidityDeadlineDate\": null,\n    \"qnas\": [\n      {\n        \"id\": \"e479ba41-44df-4ac7-b52e-ea9a6624daf0\",\n        \"date\": null,\n        \"note\": {\n          \"de\": \"Rückfragen müssen mittels E-Mail auf dem vorgegebenen Formular «T3-01 Fragen zur Ausschreibung», innerhalb der in «T1-01 Allgemeiner Teil» genannten Frist und zuhanden oiz-ausschreibungen@zuerich.ch eingehen.\\n\\nZu spät eingereichte Fragen, oder Fragen, die nicht mit dem vorgegebenen Formular eingereicht werden, können nicht berücksichtigt werden.\\n\\nAlle konsolidierten Fragen und anonymisierten Antworten werden als Teil der Ausschreibungsdokumentation im DecisionAdvisor allen Interessentinnen zur Verfügung gestellt.\",\n          \"fr\": null,\n          \"it\": null,\n          \"en\": null\n        },\n        \"externalLink\": null\n      }\n    ],\n    \"qnaRoundSourceType\": \"external_system\",\n    \"offerValidityDeadlineType\": \"days_after\",\n    \"offerValidityNotes\": {\n      \"de\": \"Angebote für Los 1 müssen eine Gültigkeit von mindestens 6 Monaten ab Eingabetermin aufweisen.\\nAngebote für Los 2 müssen eine Gültigkeit von mindestens 12 Monaten ab Eingabetermin aufweisen.\",\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"reductionMinimumOfferDeadline\": false,\n    \"publicOfferOpening\": \"no\",\n    \"otherAppointments\": [],\n    \"processType\": \"open\",\n    \"orderType\": \"supply\",\n    \"initialPublicationDate\": null,\n    \"publicationDateForecast\": null,\n    \"specificDeadlinesAndFormalRequirements\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"documentsAvailable\": {\n      \"dateRange\": [\n        \"2026-09-11\",\n        \"2026-10-21\"\n      ]\n    },\n    \"expressionOfInterestUntil\": null,\n    \"offerOpeningNotes\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"offerOpeningPostalCode\": null,\n    \"offerOpeningCity\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    }\n  },\n  \"terms\": {\n    \"consortiumAllowed\": \"no\",\n    \"subContractorAllowed\": \"yes\",\n    \"termsType\": \"in_documents\",\n    \"termsNote\": {\n      \"de\": null,\n      \"fr\": null,\n      \"it\": null,\n      \"en\": null\n    },\n    \"termsOfBusiness\": {\n      \"de\": null,\n      \"fr\": null,\n      \"it\": null,\n      \"en\": null\n    },\n    \"termsOfPayment\": {\n      \"de\": null,\n      \"fr\": null,\n      \"it\": null,\n      \"en\": null\n    },\n    \"remediesNotice\": {\n      \"de\": \"Gegen diese Verfügung kann innert 20 Tagen seit deren Eröffnung durch Publikation beim Verwaltungsgericht des Kantons Zürich, Freischützgasse 1, Postfach, 8090 Zürich, schriftlich Beschwerde eingereicht werden. Die Beschwerdeschrift ist im Doppel einzureichen, sie muss einen Antrag und dessen Begründung enthalten. Die angefochtene Verfügung ist beizulegen. Die angerufenen Beweismittel sind genau zu bezeichnen und soweit möglich beizulegen.\",\n      \"fr\": null,\n      \"it\": null,\n      \"en\": null\n    },\n    \"termsCriteria\": [],\n    \"termsCriteriaAsPDF\": false,\n    \"consortiumMultiApplicationAllowed\": \"no\",\n    \"subContractorMultiApplicationAllowed\": \"yes\",\n    \"processType\": \"open\",\n    \"orderType\": \"supply\",\n    \"preInvolvedVendor\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"includedCosts\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"securityDeposits\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"nonWTORequirements\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"walkThroughNotes\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"otherRequirements\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"consortiumNote\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"subContractorNote\": {\n      \"de\": \"Es steht der Anbieterin frei, die ausgeschriebenen Leistungen zusammen mit Subunternehmen zu erbringen.\\nEs gelten die Bestimmungen der Ziff. 9 der «Allgemeinen Geschäftsbedingungen für IKT-Leistungen», Ausgabe März 2025, «Digitale Verwaltung Schweiz».\",\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    }\n  },\n  \"criteria\": null,\n  \"publishers\": [\n    {\n      \"id\": \"c92c5781-c89a-4f93-94b1-f2061c35e556\",\n      \"name\": \"simap.ch\"\n    }\n  ],\n  \"lots\": [\n    {\n      \"additionalCpvCodes\": [\n        {\n          \"code\": \"48000000\",\n          \"label\": {\n            \"de\": \"Softwarepaket und Informationssysteme\",\n            \"en\": \"Software package and information systems\",\n            \"fr\": \"Logiciels et systèmes d'information\",\n            \"it\": \"Pacchetti software e sistemi di informazione\"\n          }\n        }\n      ],\n      \"supplyType\": \"rent\",\n      \"id\": \"8ac83c38-b86d-448c-8164-344c004785b4\",\n      \"lotNumber\": 1,\n      \"title\": {\n        \"de\": \"Lieferung von Atlassian Subscriptions und Plugins\",\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"projectSubType\": \"supply\",\n      \"orderDescription\": {\n        \"de\": \"<p>Mit Los 1 der vorliegenden Ausschreibung soll die Lieferantin bestimmt werden, die für die Vertragsdauer die Stadt Zürich mit Software-Subscriptions für die Atlassian Software-Produkte und dazugehörigen Plugins beliefert.&nbsp;</p>\",\n        \"en\": null,\n        \"fr\": \"<p>Le lot 1 du présent appel d'offres, vise à sélectionner le fournisseur qui, pour la durée du contrat, fournira à la Ville de Zurich des abonnements logiciels pour les produits Atlassian et les plugins y afférents.</p>\",\n        \"it\": null\n      },\n      \"qualificationCriteriaInDocuments\": \"no\",\n      \"qualificationCriteriaAsPDF\": false,\n      \"qualificationCriteria\": [\n        {\n          \"id\": \"c1c999f2-e5a9-4638-a40a-7c14e6c8dc04\",\n          \"description\": {\n            \"de\": \"<p>Die Anbieterin ist eine juristische Person.</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"title\": {\n            \"de\": \"Rechtspersönlichkeit\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"verification\": {\n            \"de\": \"<p>Auszug aus dem Handelsregister</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          }\n        },\n        {\n          \"id\": \"78bf5ebf-8622-40be-9425-0e3b0f0ab5eb\",\n          \"description\": {\n            \"de\": \"<p>Die Anbieterin ist etablierte Dienstleisterin im Bereich der ausgeschriebenen Leistungen.</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"title\": {\n            \"de\": \"Etablierte Dienstleisterin\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"verification\": null\n        },\n        {\n          \"id\": \"7b19cfd7-e509-4ec5-b797-955c495a12b4\",\n          \"description\": {\n            \"de\": \"<p>Die Anbieterin und allfällige Subunternehmen verfügen über Erfahrung mit den offerierten Leistungen in vergleichbarer Grössenordnung und Komplexität.</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"title\": {\n            \"de\": \"Erfahrung\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"verification\": {\n            \"de\": \"<p>Referenzangaben</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          }\n        },\n        {\n          \"id\": \"92afcd8a-211a-45d7-9863-b5225b4b9b08\",\n          \"description\": {\n            \"de\": \"<p>Die Anbieterin verfügt über ausreichende Kapazität für eine sach- und zeitgerechte Ausführung der ausgeschriebenen Leistungen.</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"title\": {\n            \"de\": \"Kapazität\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"verification\": null\n        }\n      ],\n      \"awardCriteriaSelection\": \"criteria_in_documents\",\n      \"awardCriteria\": [],\n      \"weightedQualificationCriteriaInDocuments\": \"no\",\n      \"weightedQualificationCriteria\": [],\n      \"processType\": \"open\",\n      \"orderType\": \"supply\",\n      \"orderAddressOnlyDescription\": \"yes\",\n      \"orderAddressDescription\": {\n        \"de\": \"Gemäss Ausschreibungsdokumentation\",\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"executionDeadlineType\": \"not_specified\",\n      \"executionPeriod\": null,\n      \"executionDays\": null,\n      \"executionNote\": {\n        \"de\": \"Gemäss Ausschreibungsunterlagen\",\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"variants\": \"no\",\n      \"variantsNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"partialOffers\": \"no\",\n      \"partialOffersNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"orderAddress\": {\n        \"countryId\": \"CH\",\n        \"cantonId\": null,\n        \"postalCode\": null,\n        \"city\": {\n          \"de\": null,\n          \"en\": null,\n          \"fr\": null,\n          \"it\": null\n        }\n      },\n      \"qualificationCriteriaNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"awardCriteriaNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"weightedQualificationCriteriaNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"contractDeadlineType\": \"date_time\",\n      \"contractPeriod\": {\n        \"dateRange\": [\n          \"2027-04-01\",\n          \"2032-03-31\"\n        ]\n      },\n      \"contractDays\": null,\n      \"canContractBeExtended\": \"no\",\n      \"canContractBeExtendedNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"options\": \"yes\",\n      \"optionsNote\": {\n        \"de\": \"Lieferung von Atlassian Guard Premium Lizenzen\",\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      }\n    },\n    {\n      \"additionalCpvCodes\": [\n        {\n          \"code\": \"72000000\",\n          \"label\": {\n            \"de\": \"IT-Dienste: Beratung, Software-Entwicklung, Internet und Hilfestellung\",\n            \"en\": \"IT services: consulting, software development, Internet and support\",\n            \"fr\": \"Services de technologies de l'information, conseil, développement de logiciels, internet et appui\",\n            \"it\": \"Servizi informatici: consulenza, sviluppo di software, Internet e supporto\"\n          }\n        }\n      ],\n      \"bkpCodes\": [],\n      \"ebkphCodes\": [],\n      \"ebkptCodes\": [],\n      \"npkCodes\": [],\n      \"id\": \"7bf3e0e0-7140-4b45-b635-c3ac7af60083\",\n      \"lotNumber\": 2,\n      \"title\": {\n        \"de\": \"Dienstleistungen Migration, Betrieb und Support\",\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"projectSubType\": \"service\",\n      \"orderDescription\": {\n        \"de\": \"<p>Mit Los 2 der vorliegenden Ausschreibung soll die Dienstleisterin bestimmt werden, die&nbsp;Migrationen der On-Premises Instanzen in die Cloud plant, begleitet und unterstützt oder&nbsp;vollständig durchführt. Zusätzlich erbringt sie weitere Dienstleistungen im Zusammenhang mit dem Betrieb und Support der Atlassian-Instanzen.</p>\",\n        \"en\": null,\n        \"fr\": \"<p>Le lot 2 du présent appel d'offres, vise à sélectionner le fournisseur qui planifiera, accompagnera et soutiendra les migrations des instances on-premises vers le cloud, ou qui les réalise intégralement. Il fournira en outre d’autres prestations liées au fonctionnement et au support des instances Atlassian.</p>\",\n        \"it\": null\n      },\n      \"qualificationCriteriaInDocuments\": \"no\",\n      \"qualificationCriteriaAsPDF\": false,\n      \"qualificationCriteria\": [\n        {\n          \"id\": \"4b3207dc-cb77-4c19-948b-f4008a8a380c\",\n          \"description\": {\n            \"de\": \"<p>Die Anbieterin ist eine juristische Person.</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"title\": {\n            \"de\": \"Rechtspersönlichkeit\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"verification\": {\n            \"de\": \"<p>Auszug aus dem Handelsregister</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          }\n        },\n        {\n          \"id\": \"d0f5ff35-2aaf-4451-a924-1baef49b8827\",\n          \"description\": {\n            \"de\": \"<p>Die Anbieterin verfügt über einen Atlassian Partner-Status mit Dienstleistungsengagement in den Bereichen «Cloud-Migrationsdienste» und «Managed Services &amp; Support».</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"title\": {\n            \"de\": \"Partner-Status\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"verification\": {\n            \"de\": \"<p>Zertifikat Partner-Status</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          }\n        },\n        {\n          \"id\": \"e7d0115a-9a08-49ff-bfd9-a27979d6d16e\",\n          \"description\": {\n            \"de\": \"<p>Die Anbieterin und allfällige Subunternehmen verfügen über Erfahrung mit den offerierten Leistungen in vergleichbarer Grössenordnung und Komplexität.</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"title\": {\n            \"de\": \"Erfahrung\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"verification\": {\n            \"de\": \"<p>Referenzangaben</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          }\n        },\n        {\n          \"id\": \"8f8a3a01-4176-4e5f-9c86-6fe709e9c16a\",\n          \"description\": {\n            \"de\": \"<p>Die Anbieterin verfügt über ausreichende Kapazität für eine sach- und zeitgerechte Ausführung der ausgeschriebenen Leistungen.</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"title\": {\n            \"de\": \"Kapazität\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"verification\": null\n        }\n      ],\n      \"awardCriteriaSelection\": \"criteria_in_documents\",\n      \"awardCriteria\": [],\n      \"weightedQualificationCriteriaInDocuments\": \"no\",\n      \"weightedQualificationCriteria\": [],\n      \"processType\": \"open\",\n      \"orderType\": \"service\",\n      \"orderAddressOnlyDescription\": \"yes\",\n      \"orderAddressDescription\": {\n        \"de\": \"Gemäss Ausschreibungsdokumentation\",\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"executionDeadlineType\": \"not_specified\",\n      \"executionPeriod\": null,\n      \"executionDays\": null,\n      \"executionNote\": {\n        \"de\": \"Gemäss Ausschreibungsdokumentation\",\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"variants\": \"no\",\n      \"variantsNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"partialOffers\": \"no\",\n      \"partialOffersNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"orderAddress\": {\n        \"countryId\": \"CH\",\n        \"cantonId\": null,\n        \"postalCode\": null,\n        \"city\": {\n          \"de\": null,\n          \"en\": null,\n          \"fr\": null,\n          \"it\": null\n        }\n      },\n      \"qualificationCriteriaNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"awardCriteriaNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"weightedQualificationCriteriaNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"contractDeadlineType\": \"date_time\",\n      \"contractPeriod\": {\n        \"dateRange\": [\n          \"2027-04-01\",\n          \"2032-03-31\"\n        ]\n      },\n      \"contractDays\": null,\n      \"canContractBeExtended\": \"no\",\n      \"canContractBeExtendedNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"options\": \"no\",\n      \"optionsNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      }\n    }\n  ],\n  \"correction\": null,\n  \"referencingPub\": null,\n  \"invitedVendors\": null,\n  \"ted\": {\n    \"status\": \"published\",\n    \"url\": \"https://ted.europa.eu/udl?uri=TED:NOTICE:630782-2026:HTML:DE:HTML\"\n  }\n}\n```",
+      "source": {
+        "id": "b1bd13b4/v1/notice-1.md#txtl55-16",
+        "document": "notice-1.md",
+        "quote": "```json\n{\n  \"id\": \"e37b5c78-8d7e-4279-8163-036e4a82d5b4\",\n  \"type\": \"tender\",\n  \"projectType\": \"tender\",\n  \"hasProjectDocuments\": false,\n  \"base\": {\n    \"id\": \"e37b5c78-8d7e-4279-8163-036e4a82d5b4\",\n    \"type\": \"tender\",\n    \"projectType\": \"tender\",\n    \"projectId\": \"b1bd13b4-ec34-4786-814e-1680a39e03c2\",\n    \"projectNumber\": \"43916\",\n    \"publicationNumber\": \"43916-01\",\n    \"publicationDate\": \"2026-09-11\",\n    \"title\": {\n      \"de\": \"Atlassian Cloud 2026\",\n      \"fr\": \"Atlassian Cloud 2026\",\n      \"it\": null,\n      \"en\": null\n    },\n    \"processType\": \"open\",\n    \"orderType\": \"supply\",\n    \"lotsType\": \"with\",\n    \"cpvCode\": {\n      \"code\": \"48000000\",\n      \"label\": {\n        \"de\": \"Softwarepaket und Informationssysteme\",\n        \"fr\": \"Logiciels et systèmes d'information\",\n        \"it\": \"Pacchetti software e sistemi di informazione\",\n        \"en\": \"Software package and information systems\"\n      }\n    },\n    \"procOfficeId\": \"4e21bf79-3447-43ec-a4bd-805e8d333f90\",\n    \"creationLanguage\": \"de\",\n    \"corrected\": false,\n    \"lots\": [\n      {\n        \"id\": \"8ac83c38-b86d-448c-8164-344c004785b4\",\n        \"lotNumber\": 1,\n        \"title\": {\n          \"de\": \"Lieferung von Atlassian Subscriptions und Plugins\",\n          \"en\": null,\n          \"fr\": null,\n          \"it\": null\n        },\n        \"projectSubType\": \"supply\"\n      },\n      {\n        \"id\": \"7bf3e0e0-7140-4b45-b635-c3ac7af60083\",\n        \"lotNumber\": 2,\n        \"title\": {\n          \"de\": \"Dienstleistungen Migration, Betrieb und Support\",\n          \"en\": null,\n          \"fr\": null,\n          \"it\": null\n        },\n        \"projectSubType\": \"service\"\n      }\n    ],\n    \"publicationTed\": true,\n    \"stateContractArea\": true,\n    \"translationLanguages\": [\n      {\n        \"language\": \"fr\",\n        \"type\": \"summary\"\n      }\n    ],\n    \"publishers\": [\n      \"c92c5781-c89a-4f93-94b1-f2061c35e556\"\n    ],\n    \"participantLotsLimitation\": null,\n    \"participantLotsLimitationNote\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"correctedPubId\": null,\n    \"initialPublicationDate\": null,\n    \"referencingPubId\": null,\n    \"cpcCode\": null\n  },\n  \"project-info\": {\n    \"title\": {\n      \"de\": \"Atlassian Cloud 2026\",\n      \"fr\": \"Atlassian Cloud 2026\",\n      \"it\": null,\n      \"en\": null\n    },\n    \"processType\": \"open\",\n    \"orderType\": \"supply\",\n    \"stateContractArea\": true,\n    \"dialog\": \"no\",\n    \"documentsWithCosts\": \"no\",\n    \"publicationTed\": true,\n    \"procOfficeAddress\": {\n      \"postalCode\": \"8047\",\n      \"countryId\": \"CH\",\n      \"cantonId\": \"ZH\",\n      \"id\": \"eceed01d-8dd5-49f1-9502-bb9dc677765a\",\n      \"name\": {\n        \"de\": \"Stadt Zürich, Organisation und Informatik (OIZ)\",\n        \"en\": null,\n        \"fr\": \"Stadt Zürich, Organisation und Informatik (OIZ)\",\n        \"it\": null\n      },\n      \"contactPerson\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"phone\": \"+41444129111\",\n      \"email\": \"oiz-ausschreibungen@zuerich.ch\",\n      \"url\": {\n        \"de\": \"https://www.stadt-zuerich.ch/de/politik-und-verwaltung/stadtverwaltung/fd/oiz.html\",\n        \"en\": null,\n        \"fr\": \"https://www.stadt-zuerich.ch/de/politik-und-verwaltung/stadtverwaltung/fd/oiz.html\",\n        \"it\": null\n      },\n      \"reference\": null,\n      \"street\": {\n        \"de\": \"Albisriederstrasse 201\",\n        \"en\": null,\n        \"fr\": \"Albisriederstrasse 201\",\n        \"it\": null\n      },\n      \"city\": {\n        \"de\": \"Zürich \",\n        \"en\": null,\n        \"fr\": \"Zürich \",\n        \"it\": null\n      }\n    },\n    \"procurementRecipientAddress\": {\n      \"postalCode\": \"8047\",\n      \"countryId\": \"CH\",\n      \"cantonId\": \"ZH\",\n      \"id\": \"8e36002a-a3bc-46a7-8cb7-3c2ae69cfb80\",\n      \"name\": {\n        \"de\": \"Stadt Zürich, Organisation und Informatik (OIZ)\",\n        \"en\": null,\n        \"fr\": \"Stadt Zürich, Organisation und Informatik (OIZ)\",\n        \"it\": null\n      },\n      \"contactPerson\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"phone\": \"+41444129111\",\n      \"email\": \"oiz-ausschreibungen@zuerich.ch\",\n      \"url\": {\n        \"de\": \"https://www.stadt-zuerich.ch/de/politik-und-verwaltung/stadtverwaltung/fd/oiz.html\",\n        \"en\": null,\n        \"fr\": \"https://www.stadt-zuerich.ch/de/politik-und-verwaltung/stadtverwaltung/fd/oiz.html\",\n        \"it\": null\n      },\n      \"reference\": null,\n      \"street\": {\n        \"de\": \"Albisriederstrasse 201\",\n        \"en\": null,\n        \"fr\": \"Albisriederstrasse 201\",\n        \"it\": null\n      },\n      \"city\": {\n        \"de\": \"Zürich \",\n        \"en\": null,\n        \"fr\": \"Zürich \",\n        \"it\": null\n      }\n    },\n    \"documentsLanguages\": [\n      \"de\"\n    ],\n    \"documentsSourceType\": \"documents_source_url\",\n    \"offerLanguages\": [\n      \"de\"\n    ],\n    \"offerTypes\": [\n      \"offer_digital_external_platform\"\n    ],\n    \"publicationLanguages\": [\n      \"de\"\n    ],\n    \"participantLotsLimitation\": null,\n    \"participantLotsLimitationNote\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"dialogNote\": null,\n    \"documentsCosts\": {\n      \"currency\": null,\n      \"price\": null\n    },\n    \"documentsCostsNote\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"documentsLanguagesNote\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"documentsSourceEmail\": null,\n    \"documentsSourceUrl\": \"https://oiz.decisionadvisor.ch/login?code=58BeAYY5xovNuHKaFBRew/k6EVGILljmzToJqdyxiuc%3D\",\n    \"documentsSourceNote\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"offerSpecificNote\": {\n      \"de\": \"<p>Das Angebot ist in deutscher Sprache und ausschliesslich im Online-Tool «DecisionAdvisor» einzureichen. Weitere Informationen der einzureichenden Unterlagen sind der Ausschreibungsdokumentation zu entnehmen.</p><p><br></p><p>Das nach Abschluss des Angebotes vom «DecisionAdvisor» automatisch erstellte Formular «Report Angebot» (vgl. «Anleitung Angebot einreichen» im «DecisionAdvisor») ist durch eine zeichnungsberechtigte Person mittels qualifizierter elektronischer Unterschrift (QES), Unterschrift gemäss europäischem Standard eIDAS oder einer gleichwertigen Signatur zu unterzeichnen und im «DecisionAdvisor» hochzuladen. Beachten Sie, dass die Möglichkeit zum Upload des Reports nur bis zum Zeitpunkt «Frist für Eingabe der Angebote» besteht.</p>\",\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"offerDigitalExternalPlatformUrl\": {\n      \"de\": \"https://oiz.decisionadvisor.ch/login?code=58BeAYY5xovNuHKaFBRew/k6EVGILljmzToJqdyxiuc%3D\",\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"documentsSourceAddress\": null,\n    \"offerAddress\": null,\n    \"publicationLanguagesComment\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    }\n  },\n  \"procurement\": {\n    \"orderDescription\": {\n      \"de\": \"<p>Mit Los 1 der vorliegenden Ausschreibung soll die Lieferantin bestimmt werden, die für die Vertragsdauer die Stadt Zürich mit Software-Subscriptions für die Atlassian Software-Produkte und dazugehörigen Plugins beliefert.</p><p><br></p><p>Mit Los 2 der vorliegenden Ausschreibung soll die Dienstleisterin bestimmt werden, die Migrationen der On-Premises Instanzen in die Cloud plant, begleitet und unterstützt oder vollständig durchführt. Zusätzlich erbringt sie weitere Dienstleistungen im Zusammenhang mit dem Betrieb und Support der Atlassian-Instanzen.</p>\",\n      \"fr\": \"<p>Le lot 1 du présent appel d'offres, vise à sélectionner le fournisseur qui, pour la durée du contrat, fournira à la Ville de Zurich des abonnements logiciels pour les produits Atlassian et les plugins y afférents.</p><p><br></p><p>Le lot 2 du présent appel d'offres, vise à sélectionner le fournisseur qui planifiera, accompagnera et soutiendra les migrations des instances on-premises vers le cloud, ou qui les réalise intégralement. Il fournira en outre d’autres prestations liées au fonctionnement et au support des instances Atlassian.</p>\",\n      \"it\": null,\n      \"en\": null\n    },\n    \"cpvCode\": {\n      \"code\": \"48000000\",\n      \"label\": {\n        \"de\": \"Softwarepaket und Informationssysteme\",\n        \"fr\": \"Logiciels et systèmes d'information\",\n        \"it\": \"Pacchetti software e sistemi di informazione\",\n        \"en\": \"Software package and information systems\"\n      }\n    },\n    \"processType\": \"open\",\n    \"orderType\": \"supply\",\n    \"additionalCpvCodes\": null,\n    \"supplyType\": null,\n    \"orderAddressOnlyDescription\": null,\n    \"orderAddressDescription\": null,\n    \"executionDeadlineType\": null,\n    \"executionPeriod\": null,\n    \"executionDays\": null,\n    \"executionNote\": null,\n    \"variants\": null,\n    \"variantsNote\": null,\n    \"partialOffers\": null,\n    \"partialOffersNote\": null,\n    \"orderAddress\": null,\n    \"contractDeadlineType\": null,\n    \"contractPeriod\": null,\n    \"contractDays\": null,\n    \"canContractBeExtended\": null,\n    \"canContractBeExtendedNote\": null,\n    \"options\": null,\n    \"optionsNote\": null\n  },\n  \"dates\": {\n    \"publicationDate\": \"2026-09-11\",\n    \"offerDeadline\": \"2026-10-21T12:00:00+02:00\",\n    \"offerOpening\": {\n      \"dateTime\": \"2026-10-22T00:00:00+02:00\",\n      \"ignoreTime\": true\n    },\n    \"offerValidityDeadlineDays\": 365,\n    \"offerValidityDeadlineDate\": null,\n    \"qnas\": [\n      {\n        \"id\": \"e479ba41-44df-4ac7-b52e-ea9a6624daf0\",\n        \"date\": null,\n        \"note\": {\n          \"de\": \"Rückfragen müssen mittels E-Mail auf dem vorgegebenen Formular «T3-01 Fragen zur Ausschreibung», innerhalb der in «T1-01 Allgemeiner Teil» genannten Frist und zuhanden oiz-ausschreibungen@zuerich.ch eingehen.\\n\\nZu spät eingereichte Fragen, oder Fragen, die nicht mit dem vorgegebenen Formular eingereicht werden, können nicht berücksichtigt werden.\\n\\nAlle konsolidierten Fragen und anonymisierten Antworten werden als Teil der Ausschreibungsdokumentation im DecisionAdvisor allen Interessentinnen zur Verfügung gestellt.\",\n          \"fr\": null,\n          \"it\": null,\n          \"en\": null\n        },\n        \"externalLink\": null\n      }\n    ],\n    \"qnaRoundSourceType\": \"external_system\",\n    \"offerValidityDeadlineType\": \"days_after\",\n    \"offerValidityNotes\": {\n      \"de\": \"Angebote für Los 1 müssen eine Gültigkeit von mindestens 6 Monaten ab Eingabetermin aufweisen.\\nAngebote für Los 2 müssen eine Gültigkeit von mindestens 12 Monaten ab Eingabetermin aufweisen.\",\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"reductionMinimumOfferDeadline\": false,\n    \"publicOfferOpening\": \"no\",\n    \"otherAppointments\": [],\n    \"processType\": \"open\",\n    \"orderType\": \"supply\",\n    \"initialPublicationDate\": null,\n    \"publicationDateForecast\": null,\n    \"specificDeadlinesAndFormalRequirements\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"documentsAvailable\": {\n      \"dateRange\": [\n        \"2026-09-11\",\n        \"2026-10-21\"\n      ]\n    },\n    \"expressionOfInterestUntil\": null,\n    \"offerOpeningNotes\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"offerOpeningPostalCode\": null,\n    \"offerOpeningCity\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    }\n  },\n  \"terms\": {\n    \"consortiumAllowed\": \"no\",\n    \"subContractorAllowed\": \"yes\",\n    \"termsType\": \"in_documents\",\n    \"termsNote\": {\n      \"de\": null,\n      \"fr\": null,\n      \"it\": null,\n      \"en\": null\n    },\n    \"termsOfBusiness\": {\n      \"de\": null,\n      \"fr\": null,\n      \"it\": null,\n      \"en\": null\n    },\n    \"termsOfPayment\": {\n      \"de\": null,\n      \"fr\": null,\n      \"it\": null,\n      \"en\": null\n    },\n    \"remediesNotice\": {\n      \"de\": \"Gegen diese Verfügung kann innert 20 Tagen seit deren Eröffnung durch Publikation beim Verwaltungsgericht des Kantons Zürich, Freischützgasse 1, Postfach, 8090 Zürich, schriftlich Beschwerde eingereicht werden. Die Beschwerdeschrift ist im Doppel einzureichen, sie muss einen Antrag und dessen Begründung enthalten. Die angefochtene Verfügung ist beizulegen. Die angerufenen Beweismittel sind genau zu bezeichnen und soweit möglich beizulegen.\",\n      \"fr\": null,\n      \"it\": null,\n      \"en\": null\n    },\n    \"termsCriteria\": [],\n    \"termsCriteriaAsPDF\": false,\n    \"consortiumMultiApplicationAllowed\": \"no\",\n    \"subContractorMultiApplicationAllowed\": \"yes\",\n    \"processType\": \"open\",\n    \"orderType\": \"supply\",\n    \"preInvolvedVendor\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"includedCosts\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"securityDeposits\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"nonWTORequirements\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"walkThroughNotes\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"otherRequirements\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"consortiumNote\": {\n      \"de\": null,\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    },\n    \"subContractorNote\": {\n      \"de\": \"Es steht der Anbieterin frei, die ausgeschriebenen Leistungen zusammen mit Subunternehmen zu erbringen.\\nEs gelten die Bestimmungen der Ziff. 9 der «Allgemeinen Geschäftsbedingungen für IKT-Leistungen», Ausgabe März 2025, «Digitale Verwaltung Schweiz».\",\n      \"en\": null,\n      \"fr\": null,\n      \"it\": null\n    }\n  },\n  \"criteria\": null,\n  \"publishers\": [\n    {\n      \"id\": \"c92c5781-c89a-4f93-94b1-f2061c35e556\",\n      \"name\": \"simap.ch\"\n    }\n  ],\n  \"lots\": [\n    {\n      \"additionalCpvCodes\": [\n        {\n          \"code\": \"48000000\",\n          \"label\": {\n            \"de\": \"Softwarepaket und Informationssysteme\",\n            \"en\": \"Software package and information systems\",\n            \"fr\": \"Logiciels et systèmes d'information\",\n            \"it\": \"Pacchetti software e sistemi di informazione\"\n          }\n        }\n      ],\n      \"supplyType\": \"rent\",\n      \"id\": \"8ac83c38-b86d-448c-8164-344c004785b4\",\n      \"lotNumber\": 1,\n      \"title\": {\n        \"de\": \"Lieferung von Atlassian Subscriptions und Plugins\",\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"projectSubType\": \"supply\",\n      \"orderDescription\": {\n        \"de\": \"<p>Mit Los 1 der vorliegenden Ausschreibung soll die Lieferantin bestimmt werden, die für die Vertragsdauer die Stadt Zürich mit Software-Subscriptions für die Atlassian Software-Produkte und dazugehörigen Plugins beliefert.&nbsp;</p>\",\n        \"en\": null,\n        \"fr\": \"<p>Le lot 1 du présent appel d'offres, vise à sélectionner le fournisseur qui, pour la durée du contrat, fournira à la Ville de Zurich des abonnements logiciels pour les produits Atlassian et les plugins y afférents.</p>\",\n        \"it\": null\n      },\n      \"qualificationCriteriaInDocuments\": \"no\",\n      \"qualificationCriteriaAsPDF\": false,\n      \"qualificationCriteria\": [\n        {\n          \"id\": \"c1c999f2-e5a9-4638-a40a-7c14e6c8dc04\",\n          \"description\": {\n            \"de\": \"<p>Die Anbieterin ist eine juristische Person.</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"title\": {\n            \"de\": \"Rechtspersönlichkeit\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"verification\": {\n            \"de\": \"<p>Auszug aus dem Handelsregister</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          }\n        },\n        {\n          \"id\": \"78bf5ebf-8622-40be-9425-0e3b0f0ab5eb\",\n          \"description\": {\n            \"de\": \"<p>Die Anbieterin ist etablierte Dienstleisterin im Bereich der ausgeschriebenen Leistungen.</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"title\": {\n            \"de\": \"Etablierte Dienstleisterin\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"verification\": null\n        },\n        {\n          \"id\": \"7b19cfd7-e509-4ec5-b797-955c495a12b4\",\n          \"description\": {\n            \"de\": \"<p>Die Anbieterin und allfällige Subunternehmen verfügen über Erfahrung mit den offerierten Leistungen in vergleichbarer Grössenordnung und Komplexität.</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"title\": {\n            \"de\": \"Erfahrung\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"verification\": {\n            \"de\": \"<p>Referenzangaben</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          }\n        },\n        {\n          \"id\": \"92afcd8a-211a-45d7-9863-b5225b4b9b08\",\n          \"description\": {\n            \"de\": \"<p>Die Anbieterin verfügt über ausreichende Kapazität für eine sach- und zeitgerechte Ausführung der ausgeschriebenen Leistungen.</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"title\": {\n            \"de\": \"Kapazität\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"verification\": null\n        }\n      ],\n      \"awardCriteriaSelection\": \"criteria_in_documents\",\n      \"awardCriteria\": [],\n      \"weightedQualificationCriteriaInDocuments\": \"no\",\n      \"weightedQualificationCriteria\": [],\n      \"processType\": \"open\",\n      \"orderType\": \"supply\",\n      \"orderAddressOnlyDescription\": \"yes\",\n      \"orderAddressDescription\": {\n        \"de\": \"Gemäss Ausschreibungsdokumentation\",\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"executionDeadlineType\": \"not_specified\",\n      \"executionPeriod\": null,\n      \"executionDays\": null,\n      \"executionNote\": {\n        \"de\": \"Gemäss Ausschreibungsunterlagen\",\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"variants\": \"no\",\n      \"variantsNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"partialOffers\": \"no\",\n      \"partialOffersNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"orderAddress\": {\n        \"countryId\": \"CH\",\n        \"cantonId\": null,\n        \"postalCode\": null,\n        \"city\": {\n          \"de\": null,\n          \"en\": null,\n          \"fr\": null,\n          \"it\": null\n        }\n      },\n      \"qualificationCriteriaNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"awardCriteriaNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"weightedQualificationCriteriaNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"contractDeadlineType\": \"date_time\",\n      \"contractPeriod\": {\n        \"dateRange\": [\n          \"2027-04-01\",\n          \"2032-03-31\"\n        ]\n      },\n      \"contractDays\": null,\n      \"canContractBeExtended\": \"no\",\n      \"canContractBeExtendedNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"options\": \"yes\",\n      \"optionsNote\": {\n        \"de\": \"Lieferung von Atlassian Guard Premium Lizenzen\",\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      }\n    },\n    {\n      \"additionalCpvCodes\": [\n        {\n          \"code\": \"72000000\",\n          \"label\": {\n            \"de\": \"IT-Dienste: Beratung, Software-Entwicklung, Internet und Hilfestellung\",\n            \"en\": \"IT services: consulting, software development, Internet and support\",\n            \"fr\": \"Services de technologies de l'information, conseil, développement de logiciels, internet et appui\",\n            \"it\": \"Servizi informatici: consulenza, sviluppo di software, Internet e supporto\"\n          }\n        }\n      ],\n      \"bkpCodes\": [],\n      \"ebkphCodes\": [],\n      \"ebkptCodes\": [],\n      \"npkCodes\": [],\n      \"id\": \"7bf3e0e0-7140-4b45-b635-c3ac7af60083\",\n      \"lotNumber\": 2,\n      \"title\": {\n        \"de\": \"Dienstleistungen Migration, Betrieb und Support\",\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"projectSubType\": \"service\",\n      \"orderDescription\": {\n        \"de\": \"<p>Mit Los 2 der vorliegenden Ausschreibung soll die Dienstleisterin bestimmt werden, die&nbsp;Migrationen der On-Premises Instanzen in die Cloud plant, begleitet und unterstützt oder&nbsp;vollständig durchführt. Zusätzlich erbringt sie weitere Dienstleistungen im Zusammenhang mit dem Betrieb und Support der Atlassian-Instanzen.</p>\",\n        \"en\": null,\n        \"fr\": \"<p>Le lot 2 du présent appel d'offres, vise à sélectionner le fournisseur qui planifiera, accompagnera et soutiendra les migrations des instances on-premises vers le cloud, ou qui les réalise intégralement. Il fournira en outre d’autres prestations liées au fonctionnement et au support des instances Atlassian.</p>\",\n        \"it\": null\n      },\n      \"qualificationCriteriaInDocuments\": \"no\",\n      \"qualificationCriteriaAsPDF\": false,\n      \"qualificationCriteria\": [\n        {\n          \"id\": \"4b3207dc-cb77-4c19-948b-f4008a8a380c\",\n          \"description\": {\n            \"de\": \"<p>Die Anbieterin ist eine juristische Person.</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"title\": {\n            \"de\": \"Rechtspersönlichkeit\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"verification\": {\n            \"de\": \"<p>Auszug aus dem Handelsregister</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          }\n        },\n        {\n          \"id\": \"d0f5ff35-2aaf-4451-a924-1baef49b8827\",\n          \"description\": {\n            \"de\": \"<p>Die Anbieterin verfügt über einen Atlassian Partner-Status mit Dienstleistungsengagement in den Bereichen «Cloud-Migrationsdienste» und «Managed Services &amp; Support».</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"title\": {\n            \"de\": \"Partner-Status\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"verification\": {\n            \"de\": \"<p>Zertifikat Partner-Status</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          }\n        },\n        {\n          \"id\": \"e7d0115a-9a08-49ff-bfd9-a27979d6d16e\",\n          \"description\": {\n            \"de\": \"<p>Die Anbieterin und allfällige Subunternehmen verfügen über Erfahrung mit den offerierten Leistungen in vergleichbarer Grössenordnung und Komplexität.</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"title\": {\n            \"de\": \"Erfahrung\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"verification\": {\n            \"de\": \"<p>Referenzangaben</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          }\n        },\n        {\n          \"id\": \"8f8a3a01-4176-4e5f-9c86-6fe709e9c16a\",\n          \"description\": {\n            \"de\": \"<p>Die Anbieterin verfügt über ausreichende Kapazität für eine sach- und zeitgerechte Ausführung der ausgeschriebenen Leistungen.</p>\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"title\": {\n            \"de\": \"Kapazität\",\n            \"en\": null,\n            \"fr\": null,\n            \"it\": null\n          },\n          \"verification\": null\n        }\n      ],\n      \"awardCriteriaSelection\": \"criteria_in_documents\",\n      \"awardCriteria\": [],\n      \"weightedQualificationCriteriaInDocuments\": \"no\",\n      \"weightedQualificationCriteria\": [],\n      \"processType\": \"open\",\n      \"orderType\": \"service\",\n      \"orderAddressOnlyDescription\": \"yes\",\n      \"orderAddressDescription\": {\n        \"de\": \"Gemäss Ausschreibungsdokumentation\",\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"executionDeadlineType\": \"not_specified\",\n      \"executionPeriod\": null,\n      \"executionDays\": null,\n      \"executionNote\": {\n        \"de\": \"Gemäss Ausschreibungsdokumentation\",\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"variants\": \"no\",\n      \"variantsNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"partialOffers\": \"no\",\n      \"partialOffersNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"orderAddress\": {\n        \"countryId\": \"CH\",\n        \"cantonId\": null,\n        \"postalCode\": null,\n        \"city\": {\n          \"de\": null,\n          \"en\": null,\n          \"fr\": null,\n          \"it\": null\n        }\n      },\n      \"qualificationCriteriaNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"awardCriteriaNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"weightedQualificationCriteriaNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"contractDeadlineType\": \"date_time\",\n      \"contractPeriod\": {\n        \"dateRange\": [\n          \"2027-04-01\",\n          \"2032-03-31\"\n        ]\n      },\n      \"contractDays\": null,\n      \"canContractBeExtended\": \"no\",\n      \"canContractBeExtendedNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      },\n      \"options\": \"no\",\n      \"optionsNote\": {\n        \"de\": null,\n        \"en\": null,\n        \"fr\": null,\n        \"it\": null\n      }\n    }\n  ],\n  \"correction\": null,\n  \"referencingPub\": null,\n  \"invitedVendors\": null,\n  \"ted\": {\n    \"status\": \"published\",\n    \"url\": \"https://ted.europa.eu/udl?uri=TED:NOTICE:630782-2026:HTML:DE:HTML\"\n  }\n}\n```",
+        "line": 55,
+        "page": null,
+        "section": null,
+        "url": "https://www.simap.ch/en/project-detail/b1bd13b4-ec34-4786-814e-1680a39e03c2#txtl55-16",
+        "trust": "VERIFIED_INTERNAL",
+        "retrieved_at": "2026-09-15",
+        "sha256": "a5ab9fceb88ac1eab1329c8ca85f82bfe76ffb374f085ae1dc3151e29f4e5c87"
+      },
+      "document": "notice-1.md",
+      "page": null,
+      "line": 55
+    }
+  ],
+  "needs_review": [
+    "COMPLETE SET UNVERIFIED — extraction success alone never marks the set complete."
+  ],
+  "warnings": [],
+  "importer_version": "documents/0.1"
+}
