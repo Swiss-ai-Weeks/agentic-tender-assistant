@@ -65,7 +65,7 @@ def raw_response(payload):
     return json.loads(match.group(1))
 
 
-def notice_opportunity(lead, payload, source_id, mode='live'):
+def notice_opportunity(lead, payload, source_id, mode='live', llm=None, use_llm=False):
     raw = raw_response(payload)
     # JSON pointer citations retain the exact published fields, including HTML.
     def source(pointer, value):
@@ -88,6 +88,7 @@ def notice_opportunity(lead, payload, source_id, mode='live'):
         facts['deadline'] = source('/dates/offerDeadline', deadline)
     checks = []
     executable_rules = []
+    model_events: list[str] = []
     family_terms = [('certifications', ['zertif', 'partner-status', 'certificat']),
                     ('references', ['referenz', 'erfahrung', 'référence']),
                     ('capacity', ['kapazität', 'capacité']), ('legal', ['rechtspers', 'juristi']),
@@ -103,7 +104,12 @@ def notice_opportunity(lead, payload, source_id, mode='live'):
             label = (f"Lot {group['lotNumber']} · " if 'lotNumber' in group else '') + text
             ident = criterion.get('id') or f'{path}-{i}'
             criterion_source = source(f'{path}/qualificationCriteria/{i}', criterion)
-            rule = compile_clause(text, criterion_source, ident)
+            llm_events: list[str] = []
+            if llm is not None and use_llm:
+                rule, llm_events = llm.compile_clause_with_guard(text, criterion_source, ident, use_llm=True)
+                model_events.extend(llm_events)
+            else:
+                rule = compile_clause(text, criterion_source, ident)
             if rule.mandatory and rule.status == 'VERIFIED':
                 executable_rules.append(rule)
             if rule.status == 'VERIFIED' and rule.mandatory:
@@ -163,4 +169,5 @@ def notice_opportunity(lead, payload, source_id, mode='live'):
     op.compiled_review = len(checks) - len(executable_rules)
     op.tests_generated = len(generated_tests)
     op.tests_passed = sum(test['passed'] for test in generated_tests)
+    op.security_events.extend(model_events)
     return decide(op, datetime.now(UTC).date())

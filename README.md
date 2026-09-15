@@ -11,7 +11,22 @@ See [docs/CHALLENGE.md](./docs/CHALLENGE.md) for the official brief,
 [docs/architecture.md](./docs/architecture.md) for the full pipeline design,
 and [CLAUDE.md](./CLAUDE.md) for repo conventions and commands.
 
-## Architecture
+## Current product entrypoint
+
+The working product is the Tender-as-Code qualification layer:
+`src/opportunity/` (loopback API at `src/opportunity/api.py`, deterministic
+engine, compiler, provenance DB) plus the `ui/` React frontend. Run it with
+`.venv/bin/python -m uvicorn src.opportunity.api:app --port 8090` and
+`cd ui && npm run build` (or `npm run dev`); evaluate with
+`python -m src.opportunity.evaluation`.
+
+The older `src/agents/` modules (`ingestion.py`, `eligibility_gate.py`,
+`fit_scoring.py`, `briefing.py`) and `src/pipeline.py` are a legacy stubbed
+scaffold (`NotImplementedError`, `# TODO(track-x)` markers). They do not run
+and are not the product entrypoint; they are preserved for historical
+architectural context only.
+
+## Historical architecture (legacy scaffold — does not run)
 
 ```mermaid
 flowchart LR
@@ -137,11 +152,24 @@ separate integration points:
 
 ## Status
 
-Skeleton stage — schemas are defined, the four core pipeline agent modules are stubbed
-with `NotImplementedError` and `# TODO(track-x)` markers, orchestration wiring exists in
-`src/pipeline.py`. No core agent logic is implemented yet; each track can now branch off
-`main` independently. Exception: `src/agents/tender_search.py` (live tender discovery via
-Tavily) is real, working code — see [docs/aiq-blueprint.md](./docs/aiq-blueprint.md).
+Current product: the `src/opportunity/` qualification layer plus `ui/` (see
+"Current product entrypoint" above and
+[docs/JURY_DEMO.md](./docs/JURY_DEMO.md)). Historical evaluation is 30
+controlled developer-authored cases plus 22 controlled compilation cases
+(`docs/evidence/evaluation.json`); independent human validation is pending.
+
+Legacy scaffold: the four core `src/agents/` pipeline modules remain stubbed
+with `NotImplementedError` and `# TODO(track-x)` markers; orchestration wiring
+exists in `src/pipeline.py` but does not run the product. Exception:
+`src/agents/tender_search.py` (live tender discovery via Tavily) is real,
+working code — see [docs/aiq-blueprint.md](./docs/aiq-blueprint.md).
+
+Remaining real-data acceptance (not complete): real bidder evidence is not
+configured (synthetic demo evidence cannot qualify a real bidder); stored real
+SIMAP notices have notice-level extraction only with full annexes still
+requiring human review; end-to-end discovery → documents → cited requirements
+→ verified evidence → decision (including a real amendment and FR/DE/IT
+coverage) is still required.
 
 ## Tender-as-Code qualification layer (current work)
 
@@ -151,9 +179,11 @@ requirements and evaluates them deterministically — see
 
 - **Tender Compiler** (`src/opportunity/compiler.py`): clause → rule IR with
   compile statuses VERIFIED / NEEDS_REVIEW / AMBIGUOUS / UNSUPPORTED. Hedged or
-  threshold-free clauses are never given invented deterministic meaning; an
-  LLM-proposed candidate (Nemotron/H100, planned) is accepted only through the
-  deterministic `validate_candidate` gate.
+  threshold-free clauses are never given invented deterministic meaning; a
+  candidate proposal (local pattern matching, plus an optional bounded HTTP
+  model proposer enabled only via `TENDER_LLM_ENABLED=1` with
+  `TENDER_LLM_BASE_URL`/`TENDER_LLM_MODEL`) is accepted only through the deterministic
+  `validate_candidate` gate. No specific model or GPU deployment is asserted.
 - **Deterministic engine** (`src/opportunity/engine.py`): PASS / FAIL / UNKNOWN
   with proof chains (clause → rule → fact → evidence → verdict). Evidence
   validity is judged against the **submission deadline**, not today: a record
@@ -171,5 +201,8 @@ requirements and evaluates them deterministically — see
 - **Immutable raw sources** (`src/opportunity/sources.py`): captured notices
   are stored per tender version with SHA-256 (`data/raw/simap/`).
 - **Evaluation** (`python -m src.opportunity.evaluation`): decision accuracy,
-  critical false PASSes, compilation error rate, citation integrity,
-  prompt-injection invariance.
+  critical false PASSes, compilation error rate, and citation integrity over
+  the controlled developer-authored set (independent human validation pending);
+  the prompt-injection check is a scoped controlled regression, not an immunity
+  guarantee. Timing figures are developer planning estimates, not measured
+  business outcomes.

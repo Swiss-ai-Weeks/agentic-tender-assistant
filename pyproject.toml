@@ -14,6 +14,8 @@ dependencies = [
     # src/agents/tender_search.py calls the separately-running AI-Q Blueprint
     # backend over plain HTTP — see docs/aiq-blueprint.md.
     "httpx>=0.27,<1",
+    # Track A document import (src/opportunity/documents.py) parses local PDF packs.
+    "pypdf>=4,<7",
 ]
 
 [project.optional-dependencies]

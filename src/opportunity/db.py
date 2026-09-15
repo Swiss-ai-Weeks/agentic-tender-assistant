@@ -14,12 +14,20 @@ PostgreSQL / SQLite relational tables:
 """
 import hashlib
 import json
+import os
 import sqlite3
 from datetime import UTC, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-DB_PATH = ROOT / "data" / "evidence_provenance.db"
+
+
+def _db_path() -> Path:
+    override = os.getenv("TENDER_DB_PATH", "").strip()
+    return Path(override) if override else ROOT / "data" / "evidence_provenance.db"
+
+
+DB_PATH = _db_path()
 SCHEMA_SQL_PATH = ROOT / "data" / "schema.sql"
 
 SCHEMA_SQL = """-- Authoritative Evidence and Provenance Database Schema
@@ -219,7 +227,7 @@ CREATE TABLE IF NOT EXISTS candidate_evidence_index (
 
 
 def get_connection() -> sqlite3.Connection:
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(_db_path())
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     return conn
@@ -227,7 +235,8 @@ def get_connection() -> sqlite3.Connection:
 
 def init_db():
     """Create all relational tables and write schema.sql if not existing."""
-    DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+    path = _db_path()
+    path.parent.mkdir(parents=True, exist_ok=True)
     SCHEMA_SQL_PATH.write_text(SCHEMA_SQL)
     with get_connection() as conn:
         conn.executescript(SCHEMA_SQL)

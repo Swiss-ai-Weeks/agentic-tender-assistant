@@ -316,18 +316,34 @@ def competitor_candidates(scope: str = "IT infrastructure operations", buyer: st
 @app.get('/api/system')
 def system():
     from src.opportunity.db import get_db_stats
+    from src.opportunity.nemotron import default_compiler
     stats = get_db_stats()
+    llm = default_compiler.status()
+    if llm['state'] == 'disabled':
+        model_text = ('Optional model candidate generation is DISABLED (no model contacted; '
+                      'deterministic compiler only). Set TENDER_LLM_ENABLED=1 with TENDER_LLM_BASE_URL '
+                      'and TENDER_LLM_MODEL to enable explicit candidate proposals.')
+    elif llm['state'] == 'configured':
+        model_text = (f"Optional model candidate generation is CONFIGURED (model={llm['model']}, "
+                      f"endpoint={llm['endpoint']}). Candidates are used only on explicit request "
+                      "and only after deterministic clause-anchored validation; the model never decides eligibility.")
+    else:
+        model_text = ('Optional model candidate generation is INCOMPLETE: ' + llm['detail']
+                      + ' Deterministic compiler only; no model contacted.')
     return {
-        'model': 'Nemotron-4-340B-Instruct (NVIDIA NeMo) — Semantic compiler & evidence interpreter on 2× H100 NVL',
-        'compute': '2× NVIDIA H100 NVL (Launchpad environment)',
-        'runtime': 'NemoClaw / Hermes Agent Runtime with authenticated HTTPS endpoints',
+        'model': model_text,
+        'model_state': llm['state'],
+        'model_endpoint': llm['endpoint'],
+        'model_name': llm['model'],
+        'compute': 'Local application runtime (no fixed GPU claim; inference endpoint, if enabled, is configured via TENDER_LLM_BASE_URL)',
+        'runtime': 'FastAPI loopback service (port 8090 in this environment); Hermes/NAT integration is deployment-specific, not asserted here',
         'data': 'SIMAP public procurement API + immutable local raw sources + public award registries',
         'verification': 'Tender Compiler (clause → executable IR) + deterministic rule engine (PASS/FAIL/UNKNOWN)',
         'workflow': 'DISCOVER → COMPILE → VERIFY → COMPARE → PRIORITIZE → PROVE → ACT',
         'database': f"SQLite authoritative provenance database ({stats['total_records']} relational records across 13 tables; PostgreSQL schema at data/schema.sql)",
-        'security': 'Prompt injection defense active: instruction-like text isolated as untrusted data, cannot affect compiled rules or eligibility verdicts',
-        'sovereign': 'Local / enterprise perimeter: all proprietary company certificates, insurance policies, and qualification facts remain on-premise',
-        'limitations': 'External live SIMAP notices undergo notice-level extraction; full external annexes require human review before binding bids'
+        'security': 'Prompt-injection handling: detected instruction-like text is isolated as untrusted data and reported; verdicts come from the deterministic engine, not the model',
+        'limitations': 'External live SIMAP notices undergo notice-level extraction; full external annexes require human review before binding bids. '
+                       'Evaluation labels are developer-authored regression fixtures; independent human validation is pending.'
     }
 
 

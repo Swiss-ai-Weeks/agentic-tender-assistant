@@ -2,6 +2,17 @@ PRD — Agentic Tender Assistant
 
 Status: Draft v2 — Hackathon (HPE & NVIDIA Agentic AI Hackathon, Swiss AI Weeks) Owner: Team (3 engineers)
 
+Implementation status note (2026-09-15): the working product entrypoint is
+`src/opportunity/` (API + deterministic engine/compiler/provenance DB) plus
+the `ui/` frontend — see README "Current product entrypoint" and
+`docs/JURY_DEMO.md`. The `src/agents/` + `src/pipeline.py` multi-agent
+pipeline described in sections 6–7 below is the preserved historical scaffold:
+those modules remain stubbed (`NotImplementedError`) and do not run. Sections
+4–7 are kept as the original product/architectural intent, not as claims about
+what runs today. Evaluation scope throughout is the controlled
+developer-authored set (`docs/evidence/evaluation.json`); independent human
+validation is pending.
+
 1. Executive Summary
 
 A go/no-bid decision assistant for Swiss public tenders. It connects directly to simap.ch via the SIMAP MCP server (no scraping required — simap exposes a public, read-only API), extracts and cites every eligibility rule, deadline, and award criterion from the tender documents, and produces a structured, defensible qualification briefing. Where information isn't available on simap itself (buyer background, sector context, unclear terminology), the system uses Tavily for live web enrichment — always kept visibly separate from grounded document facts.
@@ -82,12 +93,20 @@ Drafting the actual bid/proposal response content
 Submission/filing automation
 Long-term cross-session "agent memory" beyond the reusable company profile and tender history (see earlier discussion — a database, not a memory framework)
 Full multi-tenant production auth/billing (single or few demo profiles is enough)
-9. Success Metrics (for the demo)
+9. Success Metrics (for the demo — controlled scope; independent human validation pending)
 Time from tender selection to full briefing: under 2 minutes
-100% of eligibility criteria in the demo set correctly classified met/unmet/unclear (zero false "met")
-100% of extracted facts (deadlines, criteria) carry a source citation
+Eligibility criteria in the controlled demo set classified met/unmet/unclear with zero false "met" observed in that set (see `critical_false_passes`; not a zero-failure guarantee)
+Extracted facts (deadlines, criteria) in the controlled set carry a source citation (see `citations_checked`/`citations_verified`)
 At least one live corrigenda-detection example shown via get_publication_history
 Judges can pick any claim in the briefing and trace it back to the exact source
+
+Remaining real-data acceptance (not complete, not claimed as done): real bidder
+evidence is not configured (synthetic demo evidence cannot qualify a real
+bidder); stored real SIMAP notices have notice-level extraction only with full
+annexes still requiring human review; end-to-end discovery → documents → cited
+requirements → verified evidence → decision (including a real amendment and
+FR/DE/IT coverage) is still required. No business time-saving is claimed;
+timing figures are developer planning estimates for the controlled corpus.
 10. Risks & Assumptions
 Risk: LLM extraction misreads an eligibility criterion → mitigated by requiring citation for every field; unclear cases are flagged, never silently marked "met"
 Risk: SIMAP MCP is a community project (Digilac, MIT license), not an official government API client — depends on simap's public API remaining stable and available during the demo window

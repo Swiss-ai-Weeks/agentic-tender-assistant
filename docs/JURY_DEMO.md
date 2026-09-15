@@ -8,7 +8,7 @@ notices are replayed read-only in "captured" mode and are clearly labelled.
 ## Preparation
 
 ```bash
-.venv/bin/python -m uvicorn src.opportunity.api:app --port 8000   # loopback API
+.venv/bin/python -m uvicorn src.opportunity.api:app --port 8090   # loopback API (never 8000: Hermes)
 cd ui && npx vite build                                           # or: npm run dev
 ```
 
@@ -94,17 +94,30 @@ Open **Capability Gaps**: blockers aggregated across tenders with the
 ONLY** panel; verified state is untouched. Set bid capacity → **Plan
 portfolio**: an explainable selection ranked by value per estimated bid day.
 
-## 4:00 — Evaluation & Business Impact
+## 4:00 — Evaluation (controlled scope)
 
-The **Evaluation** page demonstrates rigorous measurement:
-- 30/30 decision accuracy (100%), 22/22 compilation correctness.
-- **Compilation Error Rate: 0.0%**.
-- **Critical false PASSes: 0** (zero false eligibility approvals).
-- **Unsupported factual claims: 0** (every fact strictly grounded in source citations).
-- 31/31 citations verified verbatim.
-- 57/57 generated boundary unit tests passing.
-- Prompt-injection defense: an in-corpus "IGNORE ALL PREVIOUS INSTRUCTIONS" clause is isolated as passive text; eligibility is 100% unchanged.
-- **Business Impact**: Manual qualification baseline of 4.5 hours reduced to 0.48s agent triage (**98.2% time reduction**), focusing human verification on a 7.5-minute targeted proof audit.
+The **Evaluation** page reports the controlled developer-authored regression only
+(`docs/evidence/evaluation.json`; independent human validation pending):
+- Decision accuracy: 30/30 in the controlled set (see `cases`/`correct` fields).
+- Compilation correctness: 22/22 in the controlled set (see
+  `compilation_cases`/`compilation_correct` fields; error rate derived as
+  `compilation_error_rate`).
+- Critical false PASSes: 0 in the controlled set (see `critical_false_passes`);
+  this is the observed count for these 30 cases, not a zero-failure guarantee.
+- Unsupported factual claims: 0 in the controlled set (see
+  `unsupported_factual_claims`); every checked fact traced to a source citation.
+- Citations: 31/31 checked quotes verified verbatim in the controlled set (see
+  `citations_checked`/`citations_verified`).
+- Generated boundary unit tests: 57/57 passing in the controlled set (see
+  `tender_tests_generated`/`tender_tests_passing`).
+- Prompt-injection check (controlled): one in-corpus "IGNORE ALL PREVIOUS
+  INSTRUCTIONS" clause is treated as passive text and the tested verdicts were
+  unchanged (`injection_unchanged: true`). This is a scoped regression check,
+  not immunity against prompt injection.
+
+No business time-saving is claimed. Timing figures in the evaluation report are
+developer planning estimates for the controlled synthetic corpus, not measured
+customer outcomes; human verification of every proof chain is still required.
 
 **Fallback:** stored real SIMAP notices also show per-requirement compile
 outcomes. On the captured 15 September corpus, their notice-level criteria are
@@ -114,12 +127,33 @@ not a fabricated GO.
 
 ## 4:25 — System Architecture & Sovereign Story
 
-Open **System**:
-- **Model:** Nemotron-4-340B-Instruct (NVIDIA NeMo) on 2× NVIDIA H100 NVL (Launchpad). Nemotron proposes candidate rules and interprets evidence comparability; it never serves as the final eligibility judge.
+Open **System** (status is backend-provided via `/api/system`; the UI asserts
+no specific model or GPU deployment):
+- **Candidate proposer:** local pattern matching, plus an optional bounded
+  HTTP model proposer (`src/opportunity/nemotron.py`: OpenAI-compatible
+  `/chat/completions`, strict JSON validation, timeouts, disabled by default).
+  Candidate proposals never serve as the final eligibility judge — only the deterministic
+  verifier decides.
 - **Runtime:** NemoClaw / Hermes Agent Runtime with authenticated Streamable HTTPS endpoints.
 - **Data Architecture:** Authoritative relational Evidence & Provenance Database (PostgreSQL schema at `data/schema.sql`, SQLite engine) tracking 13 tables (organizations, tenders, versions, requirements, evidence, facts, observations, derived claims, awards, runs, results).
 - **Raw Storage:** Immutable raw source preservation under `data/raw/simap/`, `data/raw/company/`, `data/raw/competitors/`.
-- **Sovereign Perimeter:** All sensitive qualification certificates, employee CVs, and financial data are kept inside the enterprise-controlled boundary.
+- **Deployment boundary (unverified in the UI):** no guarantee is made here that
+  sensitive certificates, CVs, or financial data stay on-premise or never reach
+  third-party APIs. Verify the backend and deployment configuration before
+  loading real bidder data.
+
+## 4:45 — Remaining real-data acceptance (not complete)
+
+- Real bidder evidence is not configured: `/runs/{id}/evidence` refuses
+  non-demo modes and states that synthetic certificates cannot qualify a real
+  bidder. Real notices require verified company evidence before any GO/NO-GO.
+- Stored real SIMAP notices have notice-level extraction only (0 executable
+  rules so far on the captured corpus); full annexes still require human review.
+- End-to-end acceptance still required: discovery → documents → cited
+  requirements → verified company evidence → decision, including a real
+  amendment and FR/DE/IT coverage.
+- Independent human labeling of external live documents is pending; current
+  figures are controlled developer-authored regression only.
 
 ## 4:50 — Close
 
