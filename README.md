@@ -113,27 +113,25 @@ Run tests:
 pytest
 ```
 
-Run the pipeline once your track's piece is implemented — either directly:
+Run the fixed-sequence MVP workflow directly:
 
 ```bash
-python -m src.pipeline data/sample_tenders/<tender-id> data/company_profile.example.json
+python -m src.pipeline --mode demo --tender-id data-platform
 ```
 
-or through the NeMo Agent Toolkit (see `docs/architecture.md` "Orchestration"):
+The primary entrypoint is NeMo Agent Toolkit:
 
 ```bash
 nat run --config_file configs/tender_assistant.yml \
-  --input '{"tender_folder": "data/sample_tenders/<tender-id>", "company_profile_path": "data/company_profile.example.json"}'
+  --input '{"mode":"demo","tender_id":"data-platform"}'
 ```
 
-Live tender discovery (finding candidates, not extracting from PDFs you already have) calls
-Tavily directly — set `TAVILY_API_KEY` in `.env` (see
-[docs/aiq-blueprint.md](./docs/aiq-blueprint.md) for how this relates to Hermes's own native
-Tavily integration), then:
+For live discovery, the workflow calls the read-only SIMAP MCP transport configured for
+Hermes. Stored captured notices remain available for a network-independent walkthrough:
 
 ```bash
-nat run --config_file configs/tender_live_search.yml \
-  --input '{"query": "fourniture informatique Lausanne", "company": {"company_name": "Acme SA", "capabilities": ["IT services"]}}'
+nat run --config_file configs/tender_assistant.yml \
+  --input '{"mode":"captured","query":"software"}'
 ```
 
 ## Hermes

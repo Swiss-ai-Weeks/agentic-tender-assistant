@@ -151,10 +151,10 @@ def test_real_mode_cannot_use_demo_certificates():
 
 
 def test_network_failure_stays_live_error(monkeypatch):
-    from src.opportunity import api
+    from src import pipeline
     runs.clear()
     def fail(*args,**kwargs):raise RuntimeError('Offline test')
-    monkeypatch.setattr(api,'mcp_call',fail)
+    monkeypatch.setattr(pipeline,'search_simap',fail)
     with TestClient(app) as client:
         ident=client.post('/api/runs',json={'mode':'live'}).json()['id']
         data=client.get('/api/runs/'+ident).json()

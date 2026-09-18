@@ -58,6 +58,8 @@ def plain(value):
 
 
 def raw_response(payload):
+    if isinstance(payload, dict) and isinstance(payload.get('base'), dict):
+        return payload
     text = tool_text(payload)
     match = re.search(r'```json\n(.*?)\n```', text, re.DOTALL)
     if not match:

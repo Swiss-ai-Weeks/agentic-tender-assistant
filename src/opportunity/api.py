@@ -26,7 +26,7 @@ from src.opportunity.engine import (
     rank,
 )
 from src.opportunity.models import Event, Opportunity, Run, Source
-from src.opportunity.simap import CAPTURED, leads, mcp_call, notice_opportunity, relevant
+from src.opportunity.simap import CAPTURED, relevant
 from src.opportunity.sources import store_version
 from src.opportunity.strategy import capability_gaps, plan_portfolio, simulate
 from src.opportunity.tender_tests import generate_for, run_cases
@@ -96,21 +96,16 @@ def discover(run):
                 event(run, 'qualification', f'{op.title}: {op.verified}/{op.total} mandatory requirements verified; {op.recommendation}.')
         else:
             all_leads = {}
+            from src.pipeline import LoadTenderInput, SearchInput, load_tender, search_simap
+            search_mode = 'live' if run.mode == 'live' else 'captured'
+            terms = company_profile()['search_terms'] if run.mode == 'live' else ['software']
+            for term in terms:
+                event(run, 'discovery', f'NeMo workflow → SIMAP MCP search_tenders: {term}.')
+                for lead in search_simap(SearchInput(query=term, mode=search_mode)):
+                    all_leads[lead['id']] = lead
             if run.mode == 'live':
-                for term in company_profile()['search_terms']:
-                    event(run, 'discovery', f'SIMAP MCP search_tenders: {term}, tender notices published in the last seven days.')
-                    from datetime import timedelta
-                    payload = mcp_call('search_tenders', {'search': term, 'pubTypes': ['tender'], 'lang': 'en',
-                                                        'publicationFrom': (datetime.now(UTC).date()-timedelta(days=7)).isoformat()})
-                    RUNTIME.mkdir(exist_ok=True)
-                    (RUNTIME / f'{run.id}-search-{term}.json').write_text(json.dumps(payload, indent=2))
-                    for lead in leads(payload):
-                        all_leads[lead['id']] = lead
                 event(run, 'discovery', 'Search is bounded to one page per query; counts are retrieved notices, not all SIMAP opportunities.')
             else:
-                payload = json.loads((CAPTURED / 'search-software.json').read_text())
-                for lead in leads(payload):
-                    all_leads[lead['id']] = lead
                 event(run, 'discovery', 'Loaded real SIMAP notices captured 15 September 2026. This is an offline replay, not live availability.')
             run.discovered = len(all_leads)
             candidates = [lead for lead in all_leads.values() if relevant(lead)]
@@ -118,20 +113,13 @@ def discover(run):
             run.relevant = len(candidates)
             event(run, 'triage', f'{len(candidates)} notices match company search terms or capabilities. Inspecting up to 5.')
             for lead in candidates[:5] if run.mode == 'live' else candidates:
-                if run.mode == 'live':
-                    event(run, 'documents', 'SIMAP MCP get_tender_details: ' + lead['title'])
-                    payload = mcp_call('get_tender_details', {'projectId': lead['id'], 'publicationId': lead['publication'], 'lang': 'en', 'fullRaw': True})
-                    filename = f'{run.id}-{lead["id"]}.json'
-                    (RUNTIME / filename).write_text(json.dumps(payload, ensure_ascii=False, indent=2))
-                    source_id = 'runtime/' + filename
-                else:
-                    path = CAPTURED / (lead['id'] + '.json')
-                    if not path.exists():
-                        continue
-                    payload = json.loads(path.read_text())
-                    source_id = 'captured/' + path.name
-                op = notice_opportunity(lead, payload, source_id, run.mode)
-                meta = store_version(lead['id'], json.dumps(payload, ensure_ascii=False).encode(), lead.get('url') or '')
+                event(run, 'documents', 'NeMo workflow → SIMAP MCP get_tender_details: ' + lead['title'])
+                try:
+                    op = load_tender(LoadTenderInput(lead=lead, mode=search_mode))
+                except ValueError as exc:
+                    event(run, 'documents', f'{lead["title"]}: skipped because the stored notice could not be loaded ({exc}).')
+                    continue
+                meta = store_version(lead['id'], op.model_dump_json().encode(), lead.get('url') or '')
                 op.tender_version, op.sha256, op.retrieved_at = meta['version'], meta['sha256'], meta['retrieved_at']
                 run.investigated += 1
                 if op.deadline and op.deadline <= datetime.now(UTC).date().isoformat():
